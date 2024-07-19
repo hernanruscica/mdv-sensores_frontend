@@ -1,0 +1,60 @@
+header{
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow:  0px 4px 4px 0px rgba(0,0,0,0.25);;
+}
+
+.header-img{
+    width: 100px;
+    height: auto;
+}
+
+.header-link{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #362702;
+}
+
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4em;
+}
+
+.navbar-btn{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    width: fit-content;   
+    height: fit-content; 
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 15px;
+    border-radius: 15px;    
+    background-color: #F6B510;
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.navbar-btn-icon{
+    width: 20px;
+    height: auto;
+}
+.navbar-btn-text{
+    width: 100%;
+}
+
+.navbar-btn--danger{
+    background-color: #DE6528;
+}
