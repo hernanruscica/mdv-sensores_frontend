@@ -1,0 +1,51 @@
+
+
+.Breadcumb-container{
+    width: 100%;
+}
+
+.breadcrumb{
+    width: 100%;
+    display: flex;
+    flex-direction: row;   
+    align-items: center;    
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    background-color: #EDEFF0;    
+}
+
+.breadcumb-item, .breadcumb-item-current{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;    
+    height: 100%;
+}
+.breadcumb-item-current{
+    color: #F6B510;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    padding-left: 0.5em;
+}
+.breadcumb-btn:hover{
+    background-color: #F6B510;
+}
+.breadcumb-separator-icon{
+    width: auto;
+    height: 20px;
+}
+
+.breadcumb-btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-width: 100px;
+    text-decoration: none;
+    padding: 16px 8px;
+}
+.breadcumb-icon{
+    width: 25px;
+    height: auto;
+}

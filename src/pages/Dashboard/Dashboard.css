@@ -1,0 +1,12 @@
+
+.cards-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 2em;
+    justify-content:space-evenly;
+    align-items: flex-start;      
+}
+

@@ -1,0 +1,12 @@
+.title1-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    padding: 0 30px;
+    width: 100%;
+}
+.title1-img{
+    width: 40px;
+    height: auto;
+}

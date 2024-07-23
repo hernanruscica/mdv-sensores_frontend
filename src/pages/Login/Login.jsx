@@ -1,6 +1,7 @@
 // src/pages/Login.js
 import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
+import './Login.css'
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -13,7 +14,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <section className='section'>
       <h1>Login page</h1>
       <p>Welcome to the login Page</p>
       <form onSubmit={handleSubmit}>
@@ -31,7 +32,7 @@ const Login = () => {
           />
         <button type="submit">Login</button>
       </form>
-    </>
+    </section>
   );
 };
 
