@@ -1,8 +1,8 @@
 /************       CardCategoriesInfo component starts           *******/
-.card-categories-info{
+.card-datalogger-info{
     display: flex;
     flex-direction: column;   
-    justify-content: space-between; 
+    justify-content: space-between;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.5);    
@@ -10,7 +10,7 @@
     min-width: 320px;
     
 }
-.card-categories-info__title{
+.card-datalogger-info__title{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -22,15 +22,16 @@
     text-transform: uppercase;
     background: linear-gradient(to bottom, #fbe2a2 0%, #f6b510 100%);
 }
-.card-categories-info__title__icon{
+.card-datalogger-info__title__icon{
     width: 20px;
     height: auto;
 }
-.card-categories-info__title__text{
+.card-datalogger-info__title__text{
     font-family: "Roboto", sans-serif;
 }
 
-.card-categories-info__description{
+.card-datalogger-info__description{
+    min-height: 200px;
     background-color: #EDEFF0;
     display: flex;
     flex-direction: column;
@@ -41,12 +42,15 @@
     color: #362702;
 }
 
-.card-categories-info__description__paragraph{
+.card-datalogger-info__description__paragraph{
+    display: flex;
+    flex-direction: column;    
+    gap: 10px;
     text-align: center;
 }
 
 
-.card-categories-info__btn{
+.card-datalogger-info__btn{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -56,20 +60,20 @@
     background-color: #F6B510;
 }
 
-.card-categories-info__btn:hover{
+.card-datalogger-info__btn:hover{
     background-color: #d39b0e;
 }
 
-.card-categories-info__btn{
+.card-datalogger-info__btn{
     text-decoration: none;
 }
 
-.card-categories-info__btn__img{
+.card-datalogger-info__btn__img{
     width: 25px;
     height: auto;
 }
 
-.card-categories-info__btn__text{
+.card-datalogger-info__btn__text{
     text-transform: uppercase;
     font-size: 20px;
     font-weight: 700;

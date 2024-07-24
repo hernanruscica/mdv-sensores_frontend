@@ -20,9 +20,9 @@ const Dashboard = () => {
       {/* <Link to="/panel/dataloggers/1/canales/1">Ver canal</Link> */}
 
       <section className="cards-container">
-        <CardCategoriesInfo title="usuarios" />
-        <CardCategoriesInfo title="ubicaciones" />
-        <CardCategoriesInfo title="dataloggers" />
+        <CardCategoriesInfo title="ubicaciones"  itemsQty='3'/>
+        <CardCategoriesInfo title="usuarios" itemsQty='4'/>
+        <CardCategoriesInfo title="dataloggers"  itemsQty='2'/>
       </section>      
     </>
   );

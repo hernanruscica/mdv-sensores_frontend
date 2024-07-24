@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Users from './pages/Users';
-import Dataloggers from './pages/Dataloggers';
+import Dataloggers from './pages/Dataloggers/Dataloggers';
 import Channels from './pages/Channels';
 import ViewUser from './pages/ViewUser';
 import Locations from './pages/Locations';

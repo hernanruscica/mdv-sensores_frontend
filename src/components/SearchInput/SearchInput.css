@@ -1,0 +1,29 @@
+/* SearchInput.css */
+  .search-container {
+    position: relative;
+    width: 250px;
+    
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px 20px 10px 40px; /* Add padding to make room for the icon */
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    fill: #aaa;
+    pointer-events: none; /* Ensure the icon doesn't block input clicks */
+  }
+  

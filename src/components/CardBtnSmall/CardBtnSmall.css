@@ -1,0 +1,13 @@
+.card-categories-info__description__link{
+    text-decoration: none;
+    text-transform: capitalize;    
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #362702;
+    background-color: #F6B510;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+.card-categories-info__description__link:hover{
+    background-color: #d39b0e;
+}
