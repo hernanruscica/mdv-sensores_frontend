@@ -1,36 +1,39 @@
 // src/pages/Login.js
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import './Login.css'
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     login(username, password);
+    navigate('/panel');
   };
 
   return (
-    <section className='section'>
-      <h1>Login page</h1>
-      <p>Welcome to the login Page</p>
-      <form onSubmit={handleSubmit}>
+    <section className='login-container'>
+      <h1>Página de ingreso</h1>
+      <form onSubmit={handleSubmit} className='login-form'>
+      <p>Introduzca sus credenciales para ingresar a la aplicación.</p>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
+          placeholder="Ingrese su D.N.I."
           />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
+          placeholder="Inregese su contraseña"
           />
-        <button type="submit">Login</button>
+        <button type="submit">Ingresar</button>
       </form>
     </section>
   );

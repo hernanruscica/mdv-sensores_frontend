@@ -1,6 +1,7 @@
 
+
 export const ENV = {
-    URL: 'http://localhost:5173',
+    URL: import.meta.env.VITE_APP_URL,
     ICONS: [
             {
                 nameSection: 'default',
