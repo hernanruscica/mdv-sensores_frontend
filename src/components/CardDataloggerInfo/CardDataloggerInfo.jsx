@@ -55,7 +55,7 @@ export const CardDataloggerInfo = (props) => {
         </p>
       </div>
 
-      <Link to={`${id}`} className="card-datalogger-info__btn">
+      <Link to={`${ENV.URL}/panel/dataloggers/${id}`} className="card-datalogger-info__btn">
         <img
           src={`${ENV.URL}/icons/eye-regular-white.svg`}
           alt="icono de la ver categoria"

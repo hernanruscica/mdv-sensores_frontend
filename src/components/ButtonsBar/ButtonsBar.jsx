@@ -11,10 +11,10 @@ const ButtonsBar = (props) => {
                 text="Agregar"
                 icon="plus-circle-solid.svg"
                 type="normal"
-                url="agregar"
+                url={`panel/${itemsName}/agregar`}
             />
             <SearchInput itemsName={itemsName}/>
-            <span>Mostrando <strong>3</strong> {itemsName}</span>
+            <span>Mostrando <strong>3</strong> {itemsName}</span>   
         </div>
     )
 }

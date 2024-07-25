@@ -40,7 +40,7 @@ const Breadcumb = () => {
 
           {/* Home */}
           <li key={"home"} className='breadcumb-item'>
-            <Link to="/" className='breadcumb-btn'>
+            <Link to={ENV.URL} className='breadcumb-btn'>
               <img src={`${ENV.URL}/icons/home-solid.svg`} 
                         alt="icono de home o inicio" 
                         className='breadcumb-icon'

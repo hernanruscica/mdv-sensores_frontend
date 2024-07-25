@@ -4,8 +4,8 @@ import React from 'react';
 const Home = () => {
   return (
     <>
-      <h1>Home page</h1>
-      <p>Welcome to the Home Page</p>
+      <h1>Página de inicio</h1>
+      <p>Bienvenidos a MDV Sensores. Para probar la aplicación tiene que ingresar. Click en el botón de arriba, en la cabecera.</p>
     </>
   )
 };

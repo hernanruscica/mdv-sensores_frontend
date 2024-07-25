@@ -34,7 +34,7 @@ export const CardCategoriesInfo = (props) => {
             url={`${title}/agregar`} 
         />
       </div>
-      <Link to={`${title}`} className="card-categories-info__btn">
+      <Link to={`${ENV.URL}/panel/${title}`} className="card-categories-info__btn">
         <img
           src={`${ENV.URL}/icons/eye-regular-white.svg`}
           alt="icono de la ver categoria"

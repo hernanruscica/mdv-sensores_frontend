@@ -15,13 +15,13 @@ const Header = () => {
       {user ? (
         <>
           <nav className="navbar">
-            <Link to="/panel" className="header-link">
+            <Link to={`${ENV.URL}/panel`} className="header-link">
               PANEL DE CONTROL
             </Link>
-            <Link to="/alarmas" className="header-link">
+            <Link to={`${ENV.URL}/alarmas`} className="header-link">
               ALARMAS
             </Link>
-            <Link to="/usuario" className="header-link">
+            <Link to={`${ENV.URL}/usuario`} className="header-link">
               {user}
             </Link>
           </nav>
@@ -29,7 +29,7 @@ const Header = () => {
             text="Salir"
             icon="sign-out-alt-solid-white.svg"
             type="danger"
-            url="/"
+            url=''
             onClick={logout}
           />
         </>
@@ -53,7 +53,7 @@ const Header = () => {
             text="Ingresar"
             icon="user-regular.svg"
             type="normal"
-            url="/inicio"
+            url={`inicio`}
           />
         </>
       )}
