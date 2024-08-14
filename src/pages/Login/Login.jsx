@@ -1,6 +1,6 @@
 // src/pages/Login.js
 import React, { useState } from 'react';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'
 // import { ENV } from '../../context/env';
@@ -12,10 +12,15 @@ const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(username, password);
-    navigate(`/panel`);
+    const userLogged = await login(username, password);    
+    if  (userLogged) {
+      navigate(`/panel`);
+    }else{
+      alert('Usuario y/o contraseña incorrectos!')
+      navigate(`/inicio`);
+    }
   };
 
   return (

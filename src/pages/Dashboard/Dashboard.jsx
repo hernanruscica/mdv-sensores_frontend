@@ -1,6 +1,6 @@
 // src/pages/Dashboard.js
 import React from "react";
-//import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext.jsx';
 import { Title1 } from "../../components/Title1/Title1";
 
 import Breadcumb from "../../components/Breadcumb/Breadcumb";
@@ -10,19 +10,23 @@ import CardCategoriesInfo from "../../components/CardCategoriesInfo/CardCategori
 
 
 const Dashboard = () => {
-  //const { user } = useAuth();
+  const { user, token } = useAuth();
+  console.log(user, token);
 
   return (
     <>
-      <Title1 text="panel" />
+      <Title1 
+        type="panel"
+        text="Panel de Control" 
+      />
       <Breadcumb />
       
       {/* <Link to="/panel/dataloggers/1/canales/1">Ver canal</Link> */}
 
       <section className="cards-container">
-        <CardCategoriesInfo title="ubicaciones"  itemsQty='3'/>
-        <CardCategoriesInfo title="usuarios" itemsQty='4'/>
-        <CardCategoriesInfo title="dataloggers"  itemsQty='2'/>
+        <CardCategoriesInfo key="locations" title="ubicaciones"  itemsQty='3'/>
+        <CardCategoriesInfo key="users" title="usuarios" itemsQty='4'/>
+        <CardCategoriesInfo key="dataloggers" title="dataloggers"  itemsQty='2'/>
       </section>      
     </>
   );

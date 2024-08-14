@@ -44,7 +44,8 @@ const currentAlarms = [
   return (
     <>
       <Title1        
-        text="dataloggers"
+        type="dataloggers"
+        text="Dataloggers"
       />
       <Breadcumb />
       <ButtonsBar itemsName='dataloggers'/>
