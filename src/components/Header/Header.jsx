@@ -8,7 +8,7 @@ import BtnCallToAction from "../BtnCallToAction/BtnCallToAction.jsx";
 
 const Header = () => {
   const { user, logout } = useAuth();
-
+  //console.log("hay user y token en localstorage", user)
   return (
     <header>
       <img src={`${ENV.URL}/images/mdvsrl-logo.jpg`} className="header-img" />
@@ -22,7 +22,7 @@ const Header = () => {
               ALARMAS
             </Link>
             <Link to={`${ENV.URL}/usuario`} className="header-link">
-              {user}
+              {`${user.nombre_1} ${user.apellido_1}`}
             </Link>
           </nav>
           <BtnCallToAction

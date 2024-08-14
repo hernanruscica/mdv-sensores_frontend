@@ -11,7 +11,7 @@ import CardCategoriesInfo from "../../components/CardCategoriesInfo/CardCategori
 
 const Dashboard = () => {
   const { user, token } = useAuth();
-  console.log(user, token);
+  //console.log(user, token);
 
   return (
     <>

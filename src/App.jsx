@@ -16,6 +16,8 @@ import ViewLocation from './pages/Locations/ViewLocation';
 import PrivateRoute from './components/PrivateRoute';
 
 
+
+
 const App = () => {
   
   return (

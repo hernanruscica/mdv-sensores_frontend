@@ -9,8 +9,8 @@ const Breadcumb = () => {
   //const currentPageName = fullPath[fullPath.length - 1];  
   const currentPageName = fullPath.pop();  
   const currentPageIcon = ENV.ICONS.find(({nameSection}) => nameSection === currentPageName) || ENV.ICONS.find(({nameSection}) => nameSection === 'default');  
-    console.log(location.pathname);
-    console.log(fullPath, fullPath.length)
+    // console.log(location.pathname);
+    // console.log(fullPath, fullPath.length)
 
     const navigate = useNavigate();
     const handleBack = (event) => {

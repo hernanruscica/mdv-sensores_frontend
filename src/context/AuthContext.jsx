@@ -1,54 +1,43 @@
 // src/context/AuthContext.js
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useContext } from 'react';
 import apiClient from '../api/apiClient';
+import useEncryptedLocalStorageState from '../hooks/useEncryptedLocalStorageState';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  // Usar el hook personalizado para manejar user y token en localStorage
+  const [userLS, setUserLS] = useEncryptedLocalStorageState('user', null);
+  const [tokenLS, setTokenLS] = useEncryptedLocalStorageState('token', null);
 
+  // Manejar login
   const login = async (dni, password) => {
-     try {
-       const response = await apiClient.post('/api/users/login', { dni, password });
-       console.log(response.data.user);
-       const userNameShow = `${response.data.user.nombre_1} ${response.data.user.apellido_1}`
-       setUser(userNameShow);
-       setToken(response.data.token);
-       
-       localStorage.setItem('token', response.data.token);
-       localStorage.setItem('user', JSON.stringify(response.data.user));
-       return response.data.user;
-       
-     } catch (error) {
-       console.error('Login failed:', error);
-     }    
+    try {
+      const response = await apiClient.post('/api/users/login', { dni, password });     
+
+      setUserLS({ ...response.data.user});
+      setTokenLS(response.data.token);
+
+      return response.data.user;
+    } catch (error) {
+      console.error('Login failed:', error);
+      //throw error; // Lanzar el error para manejarlo en la UI si es necesario
+      return null;
+    }
   };
 
+  // Manejar logout
   const logout = () => {
-    setUser(null);
-    setToken(null)
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    setUserLS(null);
+    setTokenLS(null);
   };
-
-   //Recuperar el usuario desde localStorage al cargar la aplicación
-    useEffect(() => {
-      const savedUser = localStorage.getItem('user');
-      const savedToken = localStorage.getItem('token');
-      if (savedUser && savedToken) {
-        const savedUserObject = JSON.parse(savedUser);
-        setUser(savedUserObject.nombre_1 + " " + savedUserObject.apellido_1);
-        setToken(savedToken);
-        console.log("hay user y token en localstorage", user)
-      }
-    }, []);
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user: userLS, token: tokenLS, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
+// Hook para usar el contexto de autenticación
 export const useAuth = () => useContext(AuthContext);

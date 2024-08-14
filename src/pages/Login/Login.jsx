@@ -14,6 +14,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     const userLogged = await login(username, password);    
     if  (userLogged) {
       navigate(`/panel`);
