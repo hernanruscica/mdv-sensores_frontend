@@ -20,11 +20,11 @@ export const CardLocationInfo = (props) => {
           alt="icono de la categoria"
           className="card-location-info__title__icon"
         />
-        <span className="card-location-info__title__text">{locationData.name}</span>
+        <span className="card-location-info__title__text">{locationData.ubicaciones_nombre}</span>
       </div>
       <div className="card-location-info__description">
         <p className="card-location-info__description__paragraph">
-          {locationData.description}
+          {locationData.ubicaciones_descripcion}
         </p>
       </div>
       <div className="card-location-info__description">
@@ -49,7 +49,7 @@ export const CardLocationInfo = (props) => {
         </p>        
       </div>
 
-      <Link to={`${ENV.URL}/panel/locations/${locationData.id}`} className="card-location-info__btn">
+      <Link to={`${ENV.URL}/panel/locations/${locationData.ubicaciones_id}`} className="card-location-info__btn">
         <img
           src={`${ENV.URL}/icons/eye-regular-white.svg`}
           alt="icono de la ver categoria"

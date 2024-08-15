@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import { AuthProvider } from './context/AuthContext.jsx';
+import { DashboardProvider } from './context/DashboardContext.jsx';
 import Header from './components/Header/Header';
 import Home from './pages/Home';
 import Login from './pages/Login/Login';
@@ -22,22 +23,22 @@ const App = () => {
   
   return (
     <AuthProvider>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/inicio" element={<Login />} />
-
-          <Route path="/panel" element={<PrivateRoute ><Dashboard /></PrivateRoute>} />
-          <Route path="/panel/usuarios" element={<PrivateRoute ><Users /></PrivateRoute>} />
-          <Route path="/panel/dataloggers" element={<PrivateRoute ><Dataloggers /></PrivateRoute>} />          
-          <Route path="/panel/ubicaciones" element={<PrivateRoute ><Locations /></PrivateRoute>} />       
-          <Route path="/panel/ubicaciones/:id" element={<PrivateRoute ><ViewLocation /></PrivateRoute>} />     
-          <Route path="/panel/usuarios/:id" element={<PrivateRoute ><ViewUser /></PrivateRoute>} />    
-          <Route path="/panel/dataloggers/:id/canales/:id" element={<PrivateRoute ><Channels /></PrivateRoute>} /> 
-          
-        </Routes>
-      </Router>
+      <DashboardProvider>
+        <Router>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/inicio" element={<Login />} />
+              <Route path="/panel" element={<PrivateRoute ><Dashboard /></PrivateRoute>} />
+              <Route path="/panel/usuarios" element={<PrivateRoute ><Users /></PrivateRoute>} />
+              <Route path="/panel/dataloggers" element={<PrivateRoute ><Dataloggers /></PrivateRoute>} />          
+              <Route path="/panel/ubicaciones" element={<PrivateRoute ><Locations /></PrivateRoute>} />       
+              <Route path="/panel/ubicaciones/:id" element={<PrivateRoute ><ViewLocation /></PrivateRoute>} />     
+              <Route path="/panel/usuarios/:id" element={<PrivateRoute ><ViewUser /></PrivateRoute>} />    
+              <Route path="/panel/dataloggers/:id/canales/:id" element={<PrivateRoute ><Channels /></PrivateRoute>} /> 
+          </Routes>
+        </Router>
+      </DashboardProvider>
     </AuthProvider>
   );
 };

@@ -1,6 +1,6 @@
-// src/pages/Dashboard.js
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from '../../context/AuthContext.jsx';
+import { useDashboard } from "../../context/DashboardContext.jsx";
 import { Title1 } from "../../components/Title1/Title1";
 
 import Breadcumb from "../../components/Breadcumb/Breadcumb";
@@ -8,10 +8,17 @@ import "./Dashboard.css";
 
 import CardCategoriesInfo from "../../components/CardCategoriesInfo/CardCategoriesInfo";
 
-
 const Dashboard = () => {
-  const { user, token } = useAuth();
-  //console.log(user, token);
+  const { user } = useAuth();
+  const { locations, loadLocations } = useDashboard();
+
+  // Cargar las locations al actualizar la pagina
+  useEffect(() => {
+    loadLocations(user.id);
+  }, []); 
+
+  // console.log(user, token);
+  // console.log(locations.locationUserData);
 
   return (
     <>
@@ -20,13 +27,11 @@ const Dashboard = () => {
         text="Panel de Control" 
       />
       <Breadcumb />
-      
-      {/* <Link to="/panel/dataloggers/1/canales/1">Ver canal</Link> */}
 
       <section className="cards-container">
-        <CardCategoriesInfo key="locations" title="ubicaciones"  itemsQty='3'/>
+        <CardCategoriesInfo key="locations" title="ubicaciones" itemsQty={locations.count || 0} />
         <CardCategoriesInfo key="users" title="usuarios" itemsQty='4'/>
-        <CardCategoriesInfo key="dataloggers" title="dataloggers"  itemsQty='2'/>
+        <CardCategoriesInfo key="dataloggers" title="dataloggers" itemsQty='2'/>
       </section>      
     </>
   );
