@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import apiClient from '../api/apiClient';
+import createApiClient from '../api/apiClient';
 import useEncryptedLocalStorageState from '../hooks/useEncryptedLocalStorageState';
 
 const DashboardContext = createContext();
@@ -11,21 +11,24 @@ export const DashboardProvider = ({ children }) => {
   const [usersLS, setUsersLS] = useEncryptedLocalStorageState('users', null);
   const [channelsLS, setChannelsLS] = useEncryptedLocalStorageState('channels', null);
   const [alarmsLS, setAlarmsLS] = useEncryptedLocalStorageState('alarms', null);
+  
+  const apiClient = createApiClient();
 
   // Funciones para cargar datos desde la API y almacenarlos en localStorage
   const loadLocations = async (userId) => {
     try {
       const response = await apiClient.get(`/api/locationsusers/locationsbyuser/${userId}`);
-      setLocationsLS(response.data);
+      setLocationsLS(response.data.locationUserData);
     } catch (error) {
       console.error('Failed to load locations:', error);
     }
   };
 
-  const loadDataloggers = async () => {
+  
+  const loadDataloggers = async (userId) => {
     try {
-      const response = await apiClient.get('/api/dataloggers');
-      setDataloggersLS(response.data);
+      const response = await apiClient.get(`/api/dataloggers/byuser/${userId}`);
+      setDataloggersLS(response.data.dataloggers);
     } catch (error) {
       console.error('Failed to load dataloggers:', error);
     }
