@@ -30,7 +30,11 @@ export const ENV = {
             {
                 nameSection: 'ubicaciones',
                 fileName: 'building-regular.svg'
-            }
+            },
+            {
+                nameSection: 'alarmas',
+                fileName: 'bell-regular.svg'
+            },           
         ]
 };
 

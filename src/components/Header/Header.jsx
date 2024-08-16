@@ -18,10 +18,10 @@ const Header = () => {
             <Link to={`${ENV.URL}/panel`} className="header-link">
               PANEL DE CONTROL
             </Link>
-            <Link to={`${ENV.URL}/alarmas`} className="header-link">
+            <Link to={`${ENV.URL}/panel/alarmas`} className="header-link">
               ALARMAS
             </Link>
-            <Link to={`${ENV.URL}/usuario`} className="header-link">
+            <Link to={`${ENV.URL}/panel/usuarios/${user.id}`} className="header-link">
               {`${user.nombre_1} ${user.apellido_1}`}
             </Link>
           </nav>

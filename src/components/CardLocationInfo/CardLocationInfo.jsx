@@ -10,7 +10,7 @@ import { CardBtnSmall } from "../CardBtnSmall/CardBtnSmall";
 export const CardLocationInfo =  (props) => {    
   const { type, locationData, dataloggers } = props;
   const filteredDataloggersByLocation =  dataloggers.filter(datalogger => datalogger.ubicacion_id === locationData.ubicaciones_id);
-  console.log(filteredDataloggersByLocation);
+  //console.log(filteredDataloggersByLocation);
   const currentPageIcon =
     ENV.ICONS.find(({ nameSection }) => nameSection === type) ||
     ENV.ICONS.find(({ nameSection }) => nameSection === "default");
@@ -51,7 +51,7 @@ export const CardLocationInfo =  (props) => {
         </p>        
       </div>
 
-      <Link to={`${ENV.URL}/panel/locations/${locationData.ubicaciones_id}`} className="card-location-info__btn">
+      <Link to={`${ENV.URL}/panel/ubicaciones/${locationData.ubicaciones_id}`} className="card-location-info__btn">
         <img
           src={`${ENV.URL}/icons/eye-regular-white.svg`}
           alt="icono de la ver categoria"

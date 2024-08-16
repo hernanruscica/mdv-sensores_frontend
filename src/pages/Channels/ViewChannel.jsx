@@ -7,15 +7,15 @@ import UnderConstruction from "../../components/UnderConstruction/UnderConstruct
 
 //import "./Dataloggers.css";
 
-const ViewLocation = (props) => {
+const ViewChannel = () => {
   
   //const { user } = useAuth();
-  const { id } = useParams();
+  const { id, channelId} = useParams();
   return (
     <>
       <Title1     
-        type="ubicaciones"   
-        text={`Ubicacion nombre con id: ${id}`}
+        type="canales"   
+        text={`Canal con id: ${channelId} del datalogger con id: ${id}`}
       />
       <Breadcumb />
       <UnderConstruction></UnderConstruction>
@@ -24,4 +24,4 @@ const ViewLocation = (props) => {
   );
 };
 
-export default ViewLocation;
+export default ViewChannel;

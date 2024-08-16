@@ -1,6 +1,5 @@
-// src/context/AuthContext.js
 import React, { createContext, useContext } from 'react';
-import apiClient from '../api/apiClient';
+import createApiClient from '../api/apiClient';
 import useEncryptedLocalStorageState from '../hooks/useEncryptedLocalStorageState';
 
 const AuthContext = createContext();
@@ -9,7 +8,9 @@ export const AuthProvider = ({ children }) => {
   // Usar el hook personalizado para manejar user y token en localStorage
   const [userLS, setUserLS] = useEncryptedLocalStorageState('user', null);
   const [tokenLS, setTokenLS] = useEncryptedLocalStorageState('token', null);
-
+  
+  const apiClient = createApiClient(); 
+   
   // Manejar login
   const login = async (dni, password) => {
     try {

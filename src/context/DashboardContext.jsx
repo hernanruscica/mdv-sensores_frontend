@@ -34,28 +34,28 @@ export const DashboardProvider = ({ children }) => {
     }
   };
 
-  const loadUsers = async () => {
+  const loadUsers = async (userId) => {
     try {
-      const response = await apiClient.get('/api/users');
-      setUsersLS(response.data);
+      const response = await apiClient.get(`/api/users/byuser/${userId}`);
+      setUsersLS(response.data.users);
     } catch (error) {
       console.error('Failed to load users:', error);
     }
   };
 
-  const loadChannels = async () => {
+  const loadChannels = async (userId) => {
     try {
-      const response = await apiClient.get('/api/channels');
-      setChannelsLS(response.data);
+      const response = await apiClient.get(`/api/channels/byuser/${userId}`);
+      setChannelsLS(response.data.channels);
     } catch (error) {
       console.error('Failed to load channels:', error);
     }
   };
 
-  const loadAlarms = async () => {
+  const loadAlarms = async (userId) => {
     try {
-      const response = await apiClient.get('/api/alarms');
-      setAlarmsLS(response.data);
+      const response = await apiClient.get(`/api/alarmusers/alarmsbyuser/${userId}`);
+      setAlarmsLS(response.data.alarms);
     } catch (error) {
       console.error('Failed to load alarms:', error);
     }

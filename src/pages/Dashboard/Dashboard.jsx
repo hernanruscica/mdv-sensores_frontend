@@ -10,14 +10,17 @@ import CardCategoriesInfo from "../../components/CardCategoriesInfo/CardCategori
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const { locations, loadLocations, dataloggers, loadDataloggers } = useDashboard();  
+  const { locations, loadLocations, dataloggers, loadDataloggers, users, loadUsers, channels, loadChannels, alarms, loadAlarms } = useDashboard();  
 
   // Cargar las locations al actualizar la pagina
   useEffect(() => {
     const loadData = async () => {
       await loadLocations(user.id);
-      await loadDataloggers(user.id)
-      console.log(dataloggers);
+      await loadDataloggers(user.id);
+      await loadUsers(user.id);
+      await loadChannels(user.id);
+      await loadAlarms(user.id)
+      //console.log(alarms);
       }
       loadData();
   }, [user.id]); 
@@ -33,7 +36,7 @@ const Dashboard = () => {
       <Breadcumb />      
       <section className="cards-container">
         <CardCategoriesInfo key="locations" title="ubicaciones" itemsQty={locations.length  || 0} />
-        <CardCategoriesInfo key="users" title="usuarios" itemsQty='4'/>
+        <CardCategoriesInfo key="users" title="usuarios" itemsQty={users.length || 0}/>
         <CardCategoriesInfo key="dataloggers" title="dataloggers" itemsQty={dataloggers.length || 0}/>
       </section>      
     </>

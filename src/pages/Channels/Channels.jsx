@@ -1,26 +1,27 @@
 import React from "react";
 //import { useAuth } from '../context/AuthContext';
-import { Title1 } from "../../components/Title1/Title1";
-import Breadcumb from "../../components/Breadcumb/Breadcumb";
 import { useParams } from "react-router-dom";
+import Breadcumb from "../../components/Breadcumb/Breadcumb.jsx";
+import { Title1 } from "../../components/Title1/Title1.jsx";
 import UnderConstruction from "../../components/UnderConstruction/UnderConstruction.jsx";
 
-//import "./Dataloggers.css";
+//import "./Users.css";
 
-const ViewUser = (props) => {
-  
+
+const Channels = () => {
   //const { user } = useAuth();
-  const { id } = useParams();
+  const { id, channelId } = useParams();
   return (
     <>
-      <Title1     
-        type="usuarios"   
-        text={`Usuario nombre con id: ${id}`}
+      <Title1
+        type="canales"
+        text="Canales"
       />
       <Breadcumb />
+
       <UnderConstruction></UnderConstruction>
     </>
   );
 };
 
-export default ViewUser;
+export default Channels;
