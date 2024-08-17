@@ -14,7 +14,7 @@ const createApiClient = () => {
   }
   
   return axios.create({
-    baseURL: 'http://localhost:5000', // Reemplaza con la URL de tu API
+    baseURL: import.meta.env.VITE_API_URL, // Reemplaza con la URL de tu API
     headers: {
       'Content-Type': 'application/json',
       'Authorization': token ? `Bearer ${token}` : undefined

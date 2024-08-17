@@ -1,7 +1,7 @@
 
 
 export const ENV = {
-    URL: import.meta.env.VITE_APP_URL,
+    URL: import.meta.env.VITE_APP_URL,    
     ICONS: [
             {
                 nameSection: 'default',
