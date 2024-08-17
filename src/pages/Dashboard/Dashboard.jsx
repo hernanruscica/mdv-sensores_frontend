@@ -25,7 +25,8 @@ const Dashboard = () => {
       loadData();
   }, [user.id]); 
 
-  // console.log(user, token);
+  
+
 
   return (
     <>
@@ -35,9 +36,9 @@ const Dashboard = () => {
       />
       <Breadcumb />      
       <section className="cards-container">
-        <CardCategoriesInfo key="locations" title="ubicaciones" itemsQty={locations.length  || 0} />
-        <CardCategoriesInfo key="users" title="usuarios" itemsQty={users.length || 0}/>
-        <CardCategoriesInfo key="dataloggers" title="dataloggers" itemsQty={dataloggers.length || 0}/>
+        <CardCategoriesInfo key="locations" title="ubicaciones" itemsQty={locations?.length || 0} />
+        <CardCategoriesInfo key="users" title="usuarios" itemsQty={users?.length || 0}/>
+        <CardCategoriesInfo key="dataloggers" title="dataloggers" itemsQty={dataloggers?.length || 0}/>
       </section>      
     </>
   );
