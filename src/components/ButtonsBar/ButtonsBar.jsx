@@ -4,7 +4,7 @@ import SearchInput from '../../components/SearchInput/SearchInput';
 import './ButtonsBar.css';
 
 const ButtonsBar = (props) => {
-    const {itemsName} = props;
+    const {itemsName, itemsQty} = props;
     return (
         <div className='buttons-bar'>
             <BtnCallToAction
@@ -14,7 +14,7 @@ const ButtonsBar = (props) => {
                 url={`panel/${itemsName}/agregar`}
             />
             <SearchInput itemsName={itemsName}/>
-            <span>Mostrando <strong>3</strong> {itemsName}</span>   
+            <span>Mostrando <strong>{itemsQty || "0"}</strong> {itemsName}</span>   
         </div>
     )
 }

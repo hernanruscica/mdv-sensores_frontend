@@ -20,7 +20,7 @@ const Dashboard = () => {
       await loadUsers(user.id);
       await loadChannels(user.id);
       await loadAlarms(user.id)
-      //console.log(alarms);
+      console.log(locations);
       }
       loadData();
   }, [user.id]); 

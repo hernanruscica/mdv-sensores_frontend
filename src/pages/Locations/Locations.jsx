@@ -16,10 +16,11 @@ const Locations = () => {
 
   const title = 'Ubicaciones';    
 
+  
  // Cargar las locations al actualizar la pagina
  useEffect(() => {
   loadLocations(user.id);  
-}, []); 
+}, [user.id]); 
 
   return (
     <>
