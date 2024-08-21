@@ -62,9 +62,9 @@ export const DashboardProvider = ({ children }) => {
   };
 
   // Función para cargar todos los datos al mismo tiempo si es necesario
-  // const loadAllData = async () => {
-  //   await Promise.all([loadLocations(), loadDataloggers(), loadUsers(), loadChannels(), loadAlarms()]);
-  // };
+   const loadAllData = async (userId) => {
+     await Promise.all([loadLocations(userId), loadDataloggers(userId), loadUsers(userId), loadChannels(userId), loadAlarms(userId)]);
+   };
 
   return (
     <DashboardContext.Provider
@@ -79,7 +79,7 @@ export const DashboardProvider = ({ children }) => {
         loadUsers,
         loadChannels,
         loadAlarms,
-        // loadAllData
+        loadAllData
       }}
     >
       {children}

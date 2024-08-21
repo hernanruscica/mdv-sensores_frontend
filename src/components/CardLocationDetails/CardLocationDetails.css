@@ -1,28 +1,50 @@
-.location-card {
+.card-location-details {
     display: flex;
     width: 100%;
     max-width: 800px;
-    background-color: #f5f5f5;
+    background-color: #EDEFF0;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+    font-family: "Roboto", sans-serif;
   }
   
-  .location-image {
-    width: 40%;
+  .location-details__container {
+    width: 35%;    
+  }
+
+  .location-details__container__image {
+    width: 100%;    
+    height: auto;
     object-fit: cover;
+    object-position: center;
   }
   
-  .location-info {
-    width: 60%;
+  .location-details__info {
+    width: 65%;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-location-details__info__title{
+    font-family: "Montserrat", sans-serif;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 1em;
+  }  
+
+  .dataloggersByLocation{
+
+  }
+  .card-locatin-details__btn-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
   }
   
-  h2 {
-    color: #333;
-    margin-top: 0;
-  }
   
   .dataloggers, .alarms {
     display: flex;

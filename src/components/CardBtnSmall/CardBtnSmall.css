@@ -7,6 +7,7 @@
     background-color: #F6B510;
     padding: 8px 15px;
     border-radius: 20px;
+    display: inline-block;
 }
 .card-categories-info__description__link:hover{
     background-color: #d39b0e;
