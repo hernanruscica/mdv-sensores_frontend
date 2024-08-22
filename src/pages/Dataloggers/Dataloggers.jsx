@@ -19,7 +19,7 @@ const Dataloggers = () => {
       await loadUsers(user.id);
       await loadChannels(user.id);
       await loadAlarms(user.id)
-      //console.log(dataloggers, channels, alarms);
+      //console.log(alarms);
       }
       loadData();
   }, [user.id]);  

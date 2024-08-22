@@ -11,6 +11,8 @@ export const DashboardProvider = ({ children }) => {
   const [usersLS, setUsersLS] = useEncryptedLocalStorageState('users', null);
   const [channelsLS, setChannelsLS] = useEncryptedLocalStorageState('channels', null);
   const [alarmsLS, setAlarmsLS] = useEncryptedLocalStorageState('alarms', null);
+
+  const [alarmsLocationLS, setAlarmsLocationLS] = useEncryptedLocalStorageState('alarms', null);
   
   const apiClient = createApiClient();
 
@@ -60,10 +62,20 @@ export const DashboardProvider = ({ children }) => {
       console.error('Failed to load alarms:', error);
     }
   };
+  //setAlarmsLocationLS   ///api/alarms/bylocation/34
+  const loadAlarmsLocation = async (locationId) => {
+    try {
+      const response = await apiClient.get(`/api/alarms/bylocation/${locationId}`);
+      const responseAlarms = response.data.alarms?.filter(alarm => alarm.estado == 1) || []; 
+      setAlarmsLocationLS(responseAlarms);      
+    } catch (error) {
+      console.error('Failed to load alarms:', error);
+    }
+  };
 
   // Función para cargar todos los datos al mismo tiempo si es necesario
-   const loadAllData = async (userId) => {
-     await Promise.all([loadLocations(userId), loadDataloggers(userId), loadUsers(userId), loadChannels(userId), loadAlarms(userId)]);
+   const loadAllData = async (userId, locationId) => {
+     await Promise.all([loadLocations(userId), loadDataloggers(userId), loadUsers(userId), loadChannels(userId), loadAlarms(userId), loadAlarmsLocation(locationId)]);     
    };
 
   return (
@@ -74,11 +86,13 @@ export const DashboardProvider = ({ children }) => {
         users: usersLS,
         channels: channelsLS,
         alarms: alarmsLS,
+        alarmsLocation: alarmsLocationLS, //alarmsLocation, loadAlarmsLocation
         loadLocations,
         loadDataloggers,
         loadUsers,
         loadChannels,
         loadAlarms,
+        loadAlarmsLocation,
         loadAllData
       }}
     >
