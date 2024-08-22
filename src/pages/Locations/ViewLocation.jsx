@@ -10,7 +10,6 @@ import CardLocationDetails from "../../components/CardLocationDetails/CardLocati
 import CardDataloggerInfo from "../../components/CardDataloggerInfo/CardDataloggerInfo";
 import ButtonsBar from '../../components/ButtonsBar/ButtonsBar'
 
-//import "./Dataloggers.css";
 
 const ViewLocation = () => {  
   const { user } = useAuth();

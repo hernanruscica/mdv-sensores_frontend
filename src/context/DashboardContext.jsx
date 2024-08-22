@@ -11,8 +11,7 @@ export const DashboardProvider = ({ children }) => {
   const [usersLS, setUsersLS] = useEncryptedLocalStorageState('users', null);
   const [channelsLS, setChannelsLS] = useEncryptedLocalStorageState('channels', null);
   const [alarmsLS, setAlarmsLS] = useEncryptedLocalStorageState('alarms', null);
-
-  const [alarmsLocationLS, setAlarmsLocationLS] = useEncryptedLocalStorageState('alarms', null);
+  const [alarmsLocationLS, setAlarmsLocationLS] = useEncryptedLocalStorageState('alarmsLocation', null);
   
   const apiClient = createApiClient();
 
