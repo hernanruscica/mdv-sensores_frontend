@@ -7,7 +7,9 @@ import { Title1 } from "../../components/Title1/Title1";
 import { Title2 } from "../../components/Title2/Title2";
 import Breadcumb from "../../components/Breadcumb/Breadcumb";
 import CardDataloggerDetails from "../../components/CardDataloggerDetails/CardDataloggerDetails";
+import CardChannelInfo from '../../components/CardChannelInfo/CardChannelInfo.jsx';
 import ButtonsBar from '../../components/ButtonsBar/ButtonsBar.jsx';
+import EntityTable from "../../components/EntityTable/EntityTable.jsx";
 
 const ViewDatalogger = () => {
   const apiClient = createApiClient();
@@ -17,7 +19,7 @@ const ViewDatalogger = () => {
   const [loading, setLoading] = useState(true);
   const [currentDatalogger, setCurrentDatalogger] = useState(null);
   const [channelsByCurrentDatalogger, setChannelsByCurrentDatalogger] = useState([]);
-  const [alarmssByCurrentDatalogger, setAlarmsByCurrentDatalogger] = useState([]);
+  const [alarmsByCurrentDatalogger, setAlarmsByCurrentDatalogger] = useState([]);
 
   const loadCurrentDataloggerInfo = async (dataloggerId) => {
     try {
@@ -27,6 +29,12 @@ const ViewDatalogger = () => {
       console.error("Error loading datalogger info:", error);
     }
   }
+
+  const columns = [
+    { header: 'NOMBRE', key: 'nombre' },
+    { header: 'CANAL', key: 'canal_nombre' },
+    { header: 'VALOR', key: 'max' },
+  ];
 
   useEffect(() => {
     const loadData = async () => {
@@ -56,6 +64,7 @@ const ViewDatalogger = () => {
     return <div>Cargando...</div>;
   }
 
+//console.log(alarmsByCurrentDatalogger)
   return (
     <>
       <Title1
@@ -66,7 +75,7 @@ const ViewDatalogger = () => {
       <CardDataloggerDetails
         datalogger={currentDatalogger}
         channels={channelsByCurrentDatalogger}
-        alarms={alarmssByCurrentDatalogger}
+        alarms={alarmsByCurrentDatalogger}
       />
       <Title2
         type="canales"
@@ -76,10 +85,32 @@ const ViewDatalogger = () => {
         itemsName="canales"
         itemsQty={channelsByCurrentDatalogger.length}
       />
+      
+      <section className="cards-container" key="channels">   
+        { channelsByCurrentDatalogger.map((channel) => {
+          const currentAlarmsByChannel = alarmsByCurrentDatalogger.filter(alarm => alarm.canal_id == channel.canal_id);
+          //console.log(currentAlarmsByChannel);
+          return(
+          <CardChannelInfo    
+            key={`channel_${channel.canal_id}`}                   
+            title="canales"
+            channel={channel}    
+            alarms={currentAlarmsByChannel}        
+          />)
+          })
+        }
+      </section >
+      
+
       <Title2
         type="alarmas"
         text={`Alarmas programadas en "${currentDatalogger?.nombre || ''}"`}
       />
+      <EntityTable 
+        data={alarmsByCurrentDatalogger} 
+        columns={columns} 
+        entityType="alarmas"
+      />  
     </>
   );
 };

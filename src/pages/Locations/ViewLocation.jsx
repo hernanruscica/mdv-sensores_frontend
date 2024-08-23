@@ -59,7 +59,7 @@ const ViewLocation = () => {
          {dataloggersByLocation.map((datalogger) => {
           const currentLocation = locations.find(location => location.ubicaciones_id == datalogger.ubicacion_id);
           const currentChannels = channels.filter(channel => channel.datalogger_id == datalogger.id);    
-          const currentAlarms = alarmsLocation.filter(alarm => alarm.datalogger_id == datalogger.id)      
+          const currentAlarms = alarmsLocation.filter(alarm => alarm.datalogger_id == datalogger.id);      
           return (
           <CardDataloggerInfo title='dataloggers' key={datalogger.id}
             name={datalogger.nombre} id={datalogger.id}  
