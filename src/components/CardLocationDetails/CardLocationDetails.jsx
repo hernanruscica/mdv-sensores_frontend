@@ -7,14 +7,14 @@ import BtnCallToAction from '../BtnCallToAction/BtnCallToAction';
 
 const CardLocationDetails = (props) => {
     //const {} = useDashboard();
-    const { id, type, locations, dataloggers, channels, alarms } = props;    
-    const location = locations.find(location => location.ubicaciones_id == id);
+    const { id, type, location, dataloggers, channels, alarms } = props;    
+    //const location = locations.find(location => location.ubicaciones_id == id);
             
     //const activeAlarms = alarms.filter(alarm => alarm.estado = '1');   
     const channelsByLocation = channels.filter(channel => channel.ubicaciones_id == id);
     const analogChannelsByLocationQty =  channelsByLocation.filter(channel => channel.nombre_columna.startsWith('a')).length; 
     const digitalChannelsByLocationQty =  channelsByLocation.filter(channel => channel.nombre_columna.startsWith('d')).length;    
-    //console.log(activeAlarms)   
+    //console.log(dataloggers)   
 
 
   return (    
@@ -32,13 +32,13 @@ const CardLocationDetails = (props) => {
         </h2>
         <p className="card-location-details__paragraph">
           <strong>Dataloggers conectados : </strong>
-          {dataloggers.map((datalogger) => (
+          {/* {dataloggers.map((datalogger) => (
             <CardBtnSmall
               title={datalogger.nombre}
               key={`datalogger-${datalogger.id}`}
               url={`${ENV.URL}/panel/datalogger/${datalogger.id}`}
             />
-          ))}
+          ))} */}
         </p>
         <p className="card-location-details__paragraph">
           {location.ubicaciones_descripcion}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from '../../context/AuthContext';
 import { useDashboard } from "../../context/DashboardContext";
 import { Title1 } from "../../components/Title1/Title1";
@@ -15,30 +15,48 @@ const ViewLocation = () => {
   const { user } = useAuth();
   const { locations, dataloggers, channels, alarms, alarmsLocation, loadAllData} = useDashboard();
   const { id } = useParams();
-  const dataloggersByLocation = dataloggers.filter(datalogger => datalogger.ubicacion_id == id); 
+  const [ loading, setLoading] = useState(true);
+  const [dataloggersByLocation, setDataloggersByLocation] = useState([]);
+  const [currentLocation, setCurrentLocation] = useState([]);  
   
+
   useEffect(() => {
     const loadData = async () => {
+      setLoading(true);
       await loadAllData(user.id, id);         
+      setDataloggersByLocation(dataloggers.filter(datalogger => datalogger.ubicacion_id == id)); 
+      setCurrentLocation(locations.find(location => location.ubicaciones_id == id)); 
+      setLoading(false);
     };
     loadData();
-  }, [user.id, id]) 
+  }, [user.id, id]);
+  
+  
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
+  
+  //console.log(currentLocation);
   return (
     <>
       <Title1     
         type="ubicaciones"   
-        text={locations.find(location => location.ubicaciones_id == id)?.ubicaciones_nombre || 'ubicacion no encontrada'}
+        text={currentLocation.ubicaciones_nombre}
       />
       <Breadcumb />
       {/* <UnderConstruction></UnderConstruction> */}
-      <CardLocationDetails id={id} type='ubicaciones' locations={locations} dataloggers={dataloggersByLocation} channels={channels} alarms={alarmsLocation} /> 
+      <CardLocationDetails id={id} type='ubicaciones' 
+          location={currentLocation} 
+          dataloggers={dataloggersByLocation} 
+          channels={channels} 
+          alarms={alarmsLocation} /> 
       <Title2 
         type="dataloggers"
         text="dataloggers en esta ubicacion"
       />
       <ButtonsBar itemsName='dataloggers' itemsQty={dataloggersByLocation?.length || 0}/>
-      <section className="cards-container">        
-        {dataloggersByLocation.map((datalogger) => {
+       <section className="cards-container">        
+         {dataloggersByLocation.map((datalogger) => {
           const currentLocation = locations.find(location => location.ubicaciones_id == datalogger.ubicacion_id);
           const currentChannels = channels.filter(channel => channel.datalogger_id == datalogger.id);    
           const currentAlarms = alarmsLocation.filter(alarm => alarm.datalogger_id == datalogger.id)      
@@ -49,8 +67,8 @@ const ViewLocation = () => {
             channels={currentChannels} 
             alarms={currentAlarms}/>
           )}
-        )}
-      </section>
+        )} 
+      </section> 
     </>
   );
 };
