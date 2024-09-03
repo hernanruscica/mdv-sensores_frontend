@@ -15,8 +15,9 @@ const ViewDatalogger = () => {
   const apiClient = createApiClient();
   const { id } = useParams();
   const { user } = useAuth();
-  const { channels, alarms, loadChannels, loadAlarms } = useDashboard();
+  const { channels, alarms, loadChannels, loadAlarms, dataFromDatalogger, loadDataFromDatalogger } = useDashboard();
   const [loading, setLoading] = useState(true);
+  const [loading02, setLoading02] = useState(true); 
   const [currentDatalogger, setCurrentDatalogger] = useState(null);
   const [channelsByCurrentDatalogger, setChannelsByCurrentDatalogger] = useState([]);
   const [alarmsByCurrentDatalogger, setAlarmsByCurrentDatalogger] = useState([]);
@@ -42,27 +43,34 @@ const ViewDatalogger = () => {
       await Promise.all([
         loadCurrentDataloggerInfo(id),
         loadChannels(user.id),
-        loadAlarms(user.id)
+        loadAlarms(user.id),      
       ]);
       setLoading(false);
     }
     loadData();
   }, [id, user.id]);
-
+  
   useEffect(() => {
+    const loadData = async () => {   
+      setLoading02(true);   
+      await loadDataFromDatalogger(currentDatalogger.nombre_tabla, 2880)      
+      setLoading02(false);
+    }
     if (currentDatalogger && channels.length > 0) {
       setChannelsByCurrentDatalogger(
         channels.filter(channel => channel.datalogger_id == currentDatalogger.id)
       );
       setAlarmsByCurrentDatalogger(
         alarms.filter(alarm => alarm.datalogger_id == currentDatalogger.id)
-      );
+      );  
+      loadData();
     }
-  }, [currentDatalogger, channels]);
-
-  if (loading) {
+  }, [currentDatalogger]);
+  
+  if (loading || loading02) {
     return <div>Cargando...</div>;
   }
+  // console.log(dataFromDatalogger);
 
 //console.log(alarmsByCurrentDatalogger)
   return (
@@ -94,7 +102,8 @@ const ViewDatalogger = () => {
           <CardChannelInfo    
             key={`channel_${channel.canal_id}`}                   
             title="canales"
-            channel={channel}    
+            channel={channel}
+            datalogger={currentDatalogger}    
             alarms={currentAlarmsByChannel}        
           />)
           })

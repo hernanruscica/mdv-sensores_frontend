@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import createApiClient from '../api/apiClient';
 import useEncryptedLocalStorageState from '../hooks/useEncryptedLocalStorageState';
 
@@ -12,6 +12,8 @@ export const DashboardProvider = ({ children }) => {
   const [channelsLS, setChannelsLS] = useEncryptedLocalStorageState('channels', null);
   const [alarmsLS, setAlarmsLS] = useEncryptedLocalStorageState('alarms', null);
   const [alarmsLocationLS, setAlarmsLocationLS] = useEncryptedLocalStorageState('alarmsLocation', null);
+
+  const [dataFromDatalogger, setDataFromDatalogger] = useState([]);
   
   const apiClient = createApiClient();
 
@@ -72,6 +74,17 @@ export const DashboardProvider = ({ children }) => {
     }
   };
 
+  //const [dataFromDatalogger, setDataFromDatalogger] = useState([]);
+  const loadDataFromDatalogger = async (table, periodMinutes) => {
+    try {
+      const response = await apiClient.get(`/api/data/${table}/${periodMinutes}`);
+      //console.log(response.data.data);
+      setDataFromDatalogger(response.data.data);
+    } catch (error) {
+      console.error('Failed to load alarms:', error);
+    }
+  }
+
   // Función para cargar todos los datos al mismo tiempo si es necesario
    const loadAllData = async (userId, locationId) => {
      await Promise.all([loadLocations(userId), loadDataloggers(userId), loadUsers(userId), loadChannels(userId), loadAlarms(userId), loadAlarmsLocation(locationId)]);     
@@ -85,13 +98,15 @@ export const DashboardProvider = ({ children }) => {
         users: usersLS,
         channels: channelsLS,
         alarms: alarmsLS,
-        alarmsLocation: alarmsLocationLS, //alarmsLocation, loadAlarmsLocation
+        alarmsLocation: alarmsLocationLS, 
+        dataFromDatalogger,
         loadLocations,
         loadDataloggers,
         loadUsers,
         loadChannels,
         loadAlarms,
         loadAlarmsLocation,
+        loadDataFromDatalogger,
         loadAllData
       }}
     >

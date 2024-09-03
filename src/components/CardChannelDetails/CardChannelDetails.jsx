@@ -9,7 +9,7 @@ const CardChannelDetails = (props) => {
     
     const { datalogger, channel, alarms } = props;    
       
-    console.log(channel)   
+    //console.log(channel)   
 
 
   return (    
