@@ -6,7 +6,8 @@
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.5);    
-  max-width: 500px;
+  max-width: 600px;
+  width: 48%;
   min-width: 320px;
  
   
