@@ -103,6 +103,7 @@ const DigitalPorcentageOn = (props) => {
                 data: seriesData
             }
             ]);
+            
             setLoading(false);
         }
     }, [data, hoursBackView])

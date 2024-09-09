@@ -1,21 +1,17 @@
 import React from 'react';
 import './CardLocationDetails.css';
-//import { useDashboard } from '../../context/DashboardContext';
 import { CardBtnSmall } from '../CardBtnSmall/CardBtnSmall';
 import { ENV } from "../../context/env";
 import BtnCallToAction from '../BtnCallToAction/BtnCallToAction';
+import { formatDate } from "../../utils/Dates/Dates.js";
 
 const CardLocationDetails = (props) => {
-    //const {} = useDashboard();
+    
     const { id, type, location, dataloggers, channels, alarms } = props;    
-    //const location = locations.find(location => location.ubicaciones_id == id);
-            
-    //const activeAlarms = alarms.filter(alarm => alarm.estado = '1');   
+     
     const channelsByLocation = channels.filter(channel => channel.ubicaciones_id == id);
     const analogChannelsByLocationQty =  channelsByLocation.filter(channel => channel.nombre_columna.startsWith('a')).length; 
     const digitalChannelsByLocationQty =  channelsByLocation.filter(channel => channel.nombre_columna.startsWith('d')).length;    
-    //console.log(dataloggers)   
-
 
   return (    
     <div className="card-location-details">
@@ -44,7 +40,7 @@ const CardLocationDetails = (props) => {
           {location.ubicaciones_descripcion}
         </p>
         <p className="card-location-details__paragraph">
-          <strong>Fecha de creacion : </strong>{location.fecha_creacion}
+          <strong>Creada el </strong>{formatDate(location.fecha_creacion, 'short')}
         </p>
         <p className="card-location-details__paragraph">
           <strong>canales conectados : </strong>{analogChannelsByLocationQty || 0} analogicos y {digitalChannelsByLocationQty || 0}  digitales

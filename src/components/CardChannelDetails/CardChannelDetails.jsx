@@ -4,6 +4,7 @@ import './CardChannelDetails.css';
 import { CardBtnSmall } from '../CardBtnSmall/CardBtnSmall';
 import { ENV } from "../../context/env";
 import BtnCallToAction from '../BtnCallToAction/BtnCallToAction';
+import { formatDate } from "../../utils/Dates/Dates.js";
 
 const CardChannelDetails = (props) => {
     
@@ -37,7 +38,7 @@ const CardChannelDetails = (props) => {
           {channel.canal_descripcion}
         </p>
         <p className="card-location-details__paragraph">
-          <strong>Fecha de creacion : {channel.fecha_creacion}</strong>
+          <strong>Creado el {formatDate(channel.fecha_creacion, 'short')}</strong>
         </p>                      
         <p className="card-location-details__paragraph">
             <strong>Alarmas programadas : </strong>          

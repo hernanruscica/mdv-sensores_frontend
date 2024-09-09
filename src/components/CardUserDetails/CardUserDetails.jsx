@@ -4,17 +4,13 @@ import './CardUserDetails.css';
 import { CardBtnSmall } from '../CardBtnSmall/CardBtnSmall';
 import { ENV } from "../../context/env";
 import BtnCallToAction from '../BtnCallToAction/BtnCallToAction';
+import { formatDate } from "../../utils/Dates/Dates.js";
 
 const CardUserDetails = (props) => {
     //const {} = useDashboard();
-    const { user, type, dataloggers, channels, alarms } = props;       
-            
-    //const activeAlarms = alarms.filter(alarm => alarm.estado = '1');   
-    //const channelsByLocation = channels.filter(channel => channel.ubicaciones_id == id);
-    // const analogChannelsByLocationQty =  channelsByLocation.filter(channel => channel.nombre_columna.startsWith('a')).length; 
-    // const digitalChannelsByLocationQty =  channelsByLocation.filter(channel => channel.nombre_columna.startsWith('d')).length;    
-    console.log(user)   
-
+    const { user, type, dataloggers, channels, alarms } = props;                   
+    
+    //console.log(user)   
 
    return (    
      <div className="card-location-details">
@@ -30,7 +26,7 @@ const CardUserDetails = (props) => {
          {`${user.nombre_1} ${user.apellido_1}`}
          </h2>         
          <p className="card-location-details__paragraph">
-           <strong>Fecha de creacion : </strong>{user.fecha_creacion}
+           <strong>Perfil creado el </strong>{formatDate(user.fecha_creacion, 'short')}
          </p>
          <p className="card-location-details__paragraph">
             <strong>Correo electronico : </strong> {user.email}

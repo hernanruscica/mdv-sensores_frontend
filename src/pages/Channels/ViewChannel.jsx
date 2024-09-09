@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from '../../context/AuthContext';
 import { Title1 } from "../../components/Title1/Title1";
+import { Title2 } from "../../components/Title2/Title2";
 import Breadcumb from "../../components/Breadcumb/Breadcumb";
 import { useParams } from "react-router-dom";
 import { useDashboard } from "../../context/DashboardContext";
 import CardChannelDetails from '../../components/CardChannelDetails/CardChannelDetails';
 import createApiClient from '../../api/apiClient';
 import DigitalPorcentageOn from "../../components/ApexCharts/DigitalPorcentageOn/DigitalPorcentageOn";
+import ButtonsBar from '../../components/ButtonsBar/ButtonsBar.jsx';
+import CardAlarmInfo from "../../components/CardAlarmInfo/CardAlarmInfo.jsx";
 
-//import "./Dataloggers.css";
+
+import "./viewchannel.css";
 
 const ViewChannel = () => {
   const apiClient = createApiClient(); 
@@ -42,7 +46,7 @@ const ViewChannel = () => {
       try {
         const response = await apiClient.get(`/api/data/getporcentages/${currentDatalogger.nombre_tabla}/${currentChannel.nombre_columna}/2880/${currentChannel.tiempo_a_promediar}`);
         const data = response.data.data;             
-        setDataChannel(data);                
+        setDataChannel(data);     
       } catch (error) {
         console.error("Error al cargar los datos:", error);
       } finally {
@@ -50,12 +54,14 @@ const ViewChannel = () => {
       }
     }
     if (!loading) {loadData();}
-  }, [currentChannel]);
+  }, [currentChannel, currentDatalogger]);
 
   if (loading) {
     return <div>Cargando...</div>;
   }
-  //console.log(currentChannel, currentDatalogger, currentAlarms);
+
+   
+  //console.log(dataChannel.map(data => data.porcentaje_encendido));
   return (
     <>
       <Title1     
@@ -63,7 +69,7 @@ const ViewChannel = () => {
         text={`Canal "${currentChannel.canal_nombre}" del datalogger "${currentDatalogger.nombre}"`}
       />
       <Breadcumb />
-      {/* <UnderConstruction></UnderConstruction> */}
+      
       <CardChannelDetails 
         channel={currentChannel}
         datalogger={currentDatalogger}
@@ -72,11 +78,36 @@ const ViewChannel = () => {
       {
         (loading2) 
         ? <div>Cargando...</div>
-        : <DigitalPorcentageOn 
+        : <div className="graphic-container">
+            <DigitalPorcentageOn 
             data={dataChannel}
-          />
-        
+            />
+          </div>       
+      }      
+        <Title2
+          type="alarmas"
+          text={`Alarmas activas para "${currentChannel?.canal_nombre || ''}"`}
+        />
+        <ButtonsBar
+          itemsName="alarmas"
+          itemsQty={currentAlarms.length}
+        />        
+      {
+        (currentAlarms.length > 0 && !loading2)
+      ? currentAlarms.map((alarm) => (
+        <CardAlarmInfo 
+          key={alarm.nombre + alarm.id}
+          title='alarmas'
+          name={alarm.nombre}
+          id={alarm.id}
+          alarm={alarm}
+          lastReadData={dataChannel[dataChannel.length-1]}          
+        />
+      ))
+      :
+        <div>No hay alarmas vigentes para este</div>
       }
+     
     </>
   );
 };

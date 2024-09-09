@@ -72,7 +72,7 @@ const ViewDatalogger = () => {
   }
   // console.log(dataFromDatalogger);
 
-//console.log(alarmsByCurrentDatalogger)
+  //console.log(alarmsByCurrentDatalogger)
   return (
     <>
       <Title1
@@ -115,11 +115,11 @@ const ViewDatalogger = () => {
         type="alarmas"
         text={`Alarmas programadas en "${currentDatalogger?.nombre || ''}"`}
       />
-      <EntityTable 
+       <EntityTable 
         data={alarmsByCurrentDatalogger} 
         columns={columns} 
         entityType="alarmas"
-      />  
+      />   
     </>
   );
 };

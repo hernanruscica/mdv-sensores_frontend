@@ -1,0 +1,82 @@
+/************       CardCategoriesInfo component starts           *******/
+.card-datalogger-info{
+    display: flex;
+    flex-direction: column;   
+    justify-content: space-between;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.5);    
+    max-width: 360px;
+    min-width: 320px;
+    
+}
+.card-datalogger-info__title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    background: linear-gradient(to bottom, #fbe2a2 0%, #f6b510 100%);
+}
+.card-datalogger-info__title__icon{
+    width: 20px;
+    height: auto;
+}
+.card-datalogger-info__title__text{
+    font-family: "Roboto", sans-serif;
+}
+
+.card-datalogger-info__description{
+    min-height: 200px;
+    background-color: #EDEFF0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;        
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px 10px;
+    color: #362702;
+}
+
+.card-datalogger-info__description__paragraph{
+    display: flex;
+    flex-direction: column;    
+    gap: 10px;
+    text-align: center;
+}
+
+
+.card-datalogger-info__btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+    background-color: #F6B510;
+}
+
+.card-datalogger-info__btn:hover{
+    background-color: #d39b0e;
+}
+
+.card-datalogger-info__btn{
+    text-decoration: none;
+}
+
+.card-datalogger-info__btn__img{
+    width: 25px;
+    height: auto;
+}
+
+.card-datalogger-info__btn__text{
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
+    color: #FFF;
+}
+/************       CardCategoriesInfo component ends            *******/
