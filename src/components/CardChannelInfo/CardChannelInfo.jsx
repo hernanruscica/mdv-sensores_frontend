@@ -6,34 +6,48 @@ import "./CardChannelInfo.css";
 import { CardBtnSmall } from "../CardBtnSmall/CardBtnSmall";
 import createApiClient from '../../api/apiClient';
 import DigitalPorcentageOn from "../ApexCharts/DigitalPorcentageOn/DigitalPorcentageOn";
+import AnalogData from "../ApexCharts/AnalogData/AnalogData";
 
 export const CardChannelInfo = (props) => {   
   const apiClient = createApiClient(); 
   const { title, channel, datalogger, alarms } = props;
   const [loading, setLoading] = useState(true);
   const [dataChannel, setDataChannel] = useState([]); 
+  const [channelType, setChannelType] = useState('digital');
   
   const currentPageIcon =
     ENV.ICONS.find(({ nameSection }) => nameSection === title) ||
     ENV.ICONS.find(({ nameSection }) => nameSection === "default");    
     
-  useEffect(() => {    
-    const loadDataFromChannel = async () => {      
-      setLoading(true);
-      try {
-        const response = await apiClient.get(`/api/data/getporcentages/${datalogger.nombre_tabla}/${channel.nombre_columna}/2880/${channel.tiempo_a_promediar}`);
-        const data = response.data.data;             
-        setDataChannel(data);                
-      } catch (error) {
-        console.error("Error al cargar los datos:", error);
-      } finally {
-        setLoading(false);
-      }
-    }; 
-
-    loadDataFromChannel();
-  }, [datalogger.nombre_tabla, channel.nombre_columna, channel.tiempo_a_promediar]);
+    useEffect(() => {
+      const loadDataFromChannel = async () => {
+        setLoading(true);
+        try {
+          const currentChannelType = channel.nombre_columna.startsWith('d') ? 'digital' : 'analog';
+          setChannelType(currentChannelType);
+    
+          let response;
+          if (currentChannelType === 'digital') {
+            response = await apiClient.get(`/api/data/getporcentages/${datalogger.nombre_tabla}/${channel.nombre_columna}/2880/${channel.tiempo_a_promediar}`);
+          } else {
+            response = await apiClient.get(`/api/data/getanalog/${datalogger.nombre_tabla}/${channel.nombre_columna}/2880`);
+          }
+    
+          const data = response.data.data;
+          setDataChannel(data);
+        } catch (error) {
+          console.error("Error al cargar los datos:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+    
+      loadDataFromChannel();
+    }, [datalogger.nombre_tabla, channel.nombre_columna]);
   
+  if (!loading && channelType == 'analog'){
+    console.log(channelType,dataChannel[0]);    
+  }
 
   return (
     <div className="card-datalogger-info">
@@ -65,18 +79,24 @@ export const CardChannelInfo = (props) => {
           </span>
         </p>        
       </div>
-      {(loading)
-      ? (<div>Cargando...</div>)
-      : (<div className="card-datalogger-info__graphic_container" >        
+      {loading ? (
+        <div>Cargando...</div>
+      ) : (
+        <div className="card-datalogger-info__graphic_container">
           {dataChannel.length > 0 ? (
-            <>              
+            channelType === 'digital' ? (
               <DigitalPorcentageOn data={dataChannel} />
-            </>
+            ) : (
+              <AnalogData 
+                data={dataChannel}
+                mult={channel.multiplicador}
+              />
+            )
           ) : (
             <p>No hay datos disponibles para mostrar en el gráfico.</p>
           )}
-        </div>)
-      } 
+        </div>
+      )}
       <Link to={`${ENV.URL}/panel/dataloggers/${channel.datalogger_id}/canales/${channel.canal_id}`} className="card-datalogger-info__btn">
         <img
           src={`${ENV.URL}/icons/eye-regular-white.svg`}

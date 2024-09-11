@@ -8,29 +8,33 @@ const DigitalPorcentageOn = (props) => {
     const [loading, setLoading] = useState(true);
     const [chartOptions, setChartOptions] = useState({});
     const [chartSeries, setChartSeries] = useState([]);
-    const [maxYValue, setMaxYValue] = useState(100);
-    const [minYValue, setMinYValue] = useState(0);
+    const [maxYValue, setMaxYValue] = useState(Math.max(...data.map(item => item.porcentaje_encendido)));
+    const [minYValue, setMinYValue] = useState(Math.min(...data.map(item => item.porcentaje_encendido)));
     const [hoursBackView, setHoursBackView] = useState(24);
+
 
     const handlerClickBtnZoom = (e) => {        
         const newhoursBackView = parseInt(e.target.dataset.hours);        
         setHoursBackView(newhoursBackView);
-    }
-
-    useEffect(() => {
+    }    
+    
+    useEffect(() => {        
         
         if (data && data.length > 0) {
             setLoading(true);
             const seriesData = data.map(item => ({
-            x: new Date(item.fecha).getTime(), // Convertir a timestamp
-            y: parseFloat(item.porcentaje_encendido) // Asegurar que sea un número
+                x: new Date(item.fecha).getTime(), // Convertir a timestamp
+                y: parseFloat(item.porcentaje_encendido) // Asegurar que sea un número
             })).filter(item => !isNaN(item.y)); // Filtrar valores no numéricos
             
+            //console.log(seriesData);
             const maxDate = new Date(seriesData[seriesData.length - 1].x);
-            const minDate = new Date(maxDate.getTime() - hoursBackView  * 60 * 60 * 1000);     
-            
+            const minDate = new Date(maxDate.getTime() - hoursBackView  * 60 * 60 * 1000);    
             setMaxYValue(Math.max(...seriesData.map(item => item.y)));
-            setMinYValue(Math.min(...seriesData.map(item => item.y)));        
+            setMinYValue(Math.min(...seriesData.map(item => item.y)));    
+            
+            
+
             setChartOptions({
                 chart: {
                 id: "basic-line",
@@ -107,6 +111,8 @@ const DigitalPorcentageOn = (props) => {
             setLoading(false);
         }
     }, [data, hoursBackView])
+
+   
 
     if (loading) {
         return(

@@ -1,0 +1,12 @@
+.card-datalogger-info__graphic_container__btn {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.card-datalogger-info__graphic_container__btn.active {
+    background-color: #815f09;
+    color: white;
+}

@@ -20,9 +20,6 @@ import Alarms from './pages/Alarms/Alarms.jsx';
 import ViewAlarm from './pages/Alarms/ViewAlarm.jsx';
 import PrivateRoute from './components/PrivateRoute';
 
-
-
-
 const App = () => {
   
   return (

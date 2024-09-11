@@ -7,12 +7,13 @@ import { useParams } from "react-router-dom";
 import { useDashboard } from "../../context/DashboardContext";
 import CardChannelDetails from '../../components/CardChannelDetails/CardChannelDetails';
 import createApiClient from '../../api/apiClient';
-import DigitalPorcentageOn from "../../components/ApexCharts/DigitalPorcentageOn/DigitalPorcentageOn";
+//import DigitalPorcentageOn from "../../components/ApexCharts/DigitalPorcentageOn/DigitalPorcentageOn";
 import ButtonsBar from '../../components/ButtonsBar/ButtonsBar.jsx';
 import CardAlarmInfo from "../../components/CardAlarmInfo/CardAlarmInfo.jsx";
+import CardChannelGraphic from "../../components/CardChannelGraphic/CardChannelGraphic.jsx";
 
 
-import "./viewchannel.css";
+//import "./viewchannel.css";
 
 const ViewChannel = () => {
   const apiClient = createApiClient(); 
@@ -26,6 +27,7 @@ const ViewChannel = () => {
   const [ currentAlarms, setCurrentAlarms] = useState([]);
   const [ dataChannel, setDataChannel] = useState([]);
 
+  const hoursBackView = 48;
 
   useEffect(() => {
     const loadData = async () =>{
@@ -44,7 +46,7 @@ const ViewChannel = () => {
     const loadData = async () => {
       setLoading2(true);
       try {
-        const response = await apiClient.get(`/api/data/getporcentages/${currentDatalogger.nombre_tabla}/${currentChannel.nombre_columna}/2880/${currentChannel.tiempo_a_promediar}`);
+        const response = await apiClient.get(`/api/data/getporcentages/${currentDatalogger.nombre_tabla}/${currentChannel.nombre_columna}/${hoursBackView*60}/${currentChannel.tiempo_a_promediar}`);
         const data = response.data.data;             
         setDataChannel(data);     
       } catch (error) {
@@ -55,6 +57,7 @@ const ViewChannel = () => {
     }
     if (!loading) {loadData();}
   }, [currentChannel, currentDatalogger]);
+
 
   if (loading) {
     return <div>Cargando...</div>;
@@ -78,11 +81,10 @@ const ViewChannel = () => {
       {
         (loading2) 
         ? <div>Cargando...</div>
-        : <div className="graphic-container">
-            <DigitalPorcentageOn 
-            data={dataChannel}
-            />
-          </div>       
+        : 
+         <CardChannelGraphic 
+            dataChannel= {dataChannel}
+         />      
       }      
         <Title2
           type="alarmas"
