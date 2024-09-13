@@ -16,17 +16,17 @@ const ViewAlarm = () => {
   const { user } = useAuth();
   const {alarms, loadAlarms} = useDashboard();
   const [currentAlarm, setCurrentAlarm] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentAlarmlogs, setCurrentAlarmlogs] = useState({});
 
   const apiClient = createApiClient();
 
   const columns = [
-    { header: 'FECHA Y HORA', key: 'nombre' },
-    { header: 'USUARIO', key: 'max' },
-    { header: 'EVENTO', key: 'max' },
-    { header: 'VALOR', key: 'canal_nombre' },
-    { header: 'VISTA', key: 'max' },
+    { header: 'FECHA Y HORA DE DISPARO', key: 'fecha_disparo' },
+    { header: 'USUARIO', key: 'email' },
+    { header: 'EVENTO', key: 'disparada' },
+    { header: 'VALOR', key: 'variables_valores' },
+    { header: 'VISTA', key: 'fecha_vista' },
   ];
 
   const loadCurrentAlarmlogs = async (alarmId) => {
@@ -44,7 +44,7 @@ const ViewAlarm = () => {
       setLoading(true);
       await loadAlarms(user.id);
       setCurrentAlarm(alarms.find(alarm => alarm.id == alarmId));
-      loadCurrentAlarmlogs(alarmId);
+      await loadCurrentAlarmlogs(alarmId);
       setLoading(false);
     }
     loadData();
@@ -53,7 +53,7 @@ const ViewAlarm = () => {
   if (loading){
     return (<div>Cargando ...</div>)
   }
-  console.log(currentAlarmlogs);
+  console.log(alarmId, currentAlarmlogs);
   return (
     <>
       <Title1     
@@ -66,7 +66,11 @@ const ViewAlarm = () => {
         type="historial"   
         text={`Historial de disparos y reseteos`}
       />
-      {/* <EntityTable /> */}
+       <EntityTable 
+        data={currentAlarmlogs} 
+        columns={columns}         
+        entityType="alarmas_logs"
+      /> 
     </>
   );
 };
