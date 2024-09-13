@@ -10,6 +10,7 @@ export const CardDataloggerInfo = (props) => {
     ENV.ICONS.find(({ nameSection }) => nameSection === title) ||
     ENV.ICONS.find(({ nameSection }) => nameSection === "default");
 
+  console.log(alarms[0]);
   return (
     <div className="card-datalogger-info">
       <div className="card-datalogger-info__title">
@@ -45,7 +46,7 @@ export const CardDataloggerInfo = (props) => {
             <CardBtnSmall
               key={`alarm-${alarm.id}`}
               title={alarm.nombre}
-              url={`${ENV.URL}/panel/alarmas/${alarm.id}`}
+              url={`${ENV.URL}/panel/dataloggers/${alarm.datalogger_id}/canales/${alarm.canal_id}/alarmas/${alarm.id}`}
             />                          
           ))}
         </p>

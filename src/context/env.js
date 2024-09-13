@@ -34,7 +34,11 @@ export const ENV = {
             {
                 nameSection: 'alarmas',
                 fileName: 'bell-regular.svg'
-            },           
+            },
+            {
+                nameSection: 'historial',
+                fileName: 'history-solid.svg'
+            },            
         ]
 };
 

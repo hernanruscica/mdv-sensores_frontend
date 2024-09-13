@@ -117,7 +117,7 @@ const ViewDatalogger = () => {
       />
        <EntityTable 
         data={alarmsByCurrentDatalogger} 
-        columns={columns} 
+        columns={columns}         
         entityType="alarmas"
       />   
     </>
