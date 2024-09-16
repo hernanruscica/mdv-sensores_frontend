@@ -43,6 +43,7 @@ const Breadcumb = () => {
             const foundAlarma = alarmas.find(a => a.id === parseInt(item));
             transformedItem = foundAlarma ? foundAlarma.nombre : item;
         }
+        //Falta hacer esto mismo para ubicaciones, y usuarios para mostrar los nombres, los iconos los muestra bien
 
         // Buscar el ícono correspondiente según el nombre de la sección (arr[index - 1])
         const foundIcon = icons.find(icon => icon.nameSection === arr[index ]);
@@ -86,7 +87,7 @@ const Breadcumb = () => {
 
   const namesBreadcumbArray = transformArray(fullPath, dataloggers, channels, alarms, ENV.ICONS);
   // console.log(fullPathCopy);
-   console.log(namesBreadcumbArray);
+   //console.log(namesBreadcumbArray);
   
   let currentPath = '';
   return (
