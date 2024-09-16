@@ -22,7 +22,7 @@ const ViewAlarm = () => {
   const apiClient = createApiClient();
 
   const columns = [
-    { header: 'FECHA Y HORA DE DISPARO', key: 'fecha_disparo' },
+    { header: 'DIA Y HORA DEL EVENTO', key: 'fecha_disparo' },
     { header: 'USUARIO', key: 'email' },
     { header: 'EVENTO', key: 'disparada' },
     { header: 'VALOR', key: 'variables_valores' },
@@ -53,7 +53,7 @@ const ViewAlarm = () => {
   if (loading){
     return (<div>Cargando ...</div>)
   }
-  console.log(alarmId, currentAlarmlogs);
+  //console.log(alarmId, currentAlarmlogs);
   return (
     <>
       <Title1     

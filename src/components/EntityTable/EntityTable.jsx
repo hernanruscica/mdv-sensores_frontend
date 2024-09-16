@@ -1,9 +1,31 @@
 import React from 'react'; 
 import './EntityTable.css'; 
 import BtnCallToAction from '../BtnCallToAction/BtnCallToAction'; 
+import {formatDate} from '../../utils/Dates/Dates';
  
 const EntityTable = ({ data, columns, entityType }) => { 
-  console.log(data); 
+  //prepare data
+  let preparedData = null;
+  if (entityType == "alarmas_logs") {
+    preparedData = data.map((item) => {
+
+      const jsonString = item.variables_valores;      
+      const formatted = jsonString.replace(/{"porcentaje_encendido":([\d.]+)}/, 'Porcentaje encendido = $1 %');        
+
+     //console.log(formatted)
+      return {
+        ...item, 
+        disparada: item.disparada == 1 ? 'Disparo' : 'Reset',  
+        fecha_disparo: formatDate(item.fecha_disparo, 'long'),
+        fecha_vista: item.fecha_vista == "2024-01-01T00:00:00.000Z" ? 'No vista' : formatDate(item.fecha_vista, 'long'),
+        variables_valores: formatted,
+      }
+    });
+    //console.log(preparedData[0]); 
+  }else{
+    preparedData = data;
+  }
+
   return ( 
     <div className="table-container"> 
       <table className="entity-table"> 
@@ -16,7 +38,7 @@ const EntityTable = ({ data, columns, entityType }) => {
           </tr> 
         </thead> 
         <tbody> 
-          {data.map((item, rowIndex) => { 
+          {preparedData.map((item, rowIndex) => { 
             const urlPrefix = entityType === 'alarmas'  
               ? `panel/dataloggers/${item.datalogger_id}/canales/${item.canal_id}/`  
               : 'panel/';   

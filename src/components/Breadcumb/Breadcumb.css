@@ -10,6 +10,7 @@
     flex-direction: row;   
     align-items: center;    
     justify-content: flex-start;
+    padding-left: 1em;
     flex-wrap: wrap;
     background-color: #EDEFF0;    
 }
@@ -25,7 +26,7 @@
     color: #F6B510;
     font-weight: 700;
     letter-spacing: 0.01em;
-    padding-left: 0.5em;
+    padding: 16px 8px;
 }
 .breadcumb-btn:hover{
     background-color: #F6B510;
