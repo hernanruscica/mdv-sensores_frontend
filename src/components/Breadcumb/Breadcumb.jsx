@@ -119,7 +119,7 @@ const Breadcumb = () => {
 
             currentPath = currentPath + item.path + '/';
             const isLastIndex = (index == array.length - 1 ) ;
-            console.log(isLastIndex)
+            //console.log(isLastIndex)
 
             return (
               (!isLastIndex)

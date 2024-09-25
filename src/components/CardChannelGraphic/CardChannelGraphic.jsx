@@ -3,17 +3,20 @@ import DigitalPorcentageOn from '../ApexCharts/DigitalPorcentageOn/DigitalPorcen
 import './CardChannelGraphic.css';
 
 const CardChannelGraphic = (props) => {
-    const {dataChannel} = props;
+    const {dataChannel, currentChannel} = props;
 
     useEffect(() => {
-        console.log(dataChannel)
+        //console.log(dataChannel)
     }, [])
   return (
-    <div className="graphic-container">
-            <DigitalPorcentageOn 
-                data={dataChannel}                
-            />
-          </div>  
+    <>
+      <div className="graphic-container">        
+        <DigitalPorcentageOn 
+            data={dataChannel}          
+            currentChannel={currentChannel}      
+        />
+      </div>  
+    </>
   )
 }
 

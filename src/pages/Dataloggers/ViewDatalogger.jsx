@@ -72,7 +72,7 @@ const ViewDatalogger = () => {
   }
   // console.log(dataFromDatalogger);
 
-  console.log(alarmsByCurrentDatalogger)
+  //console.log(alarmsByCurrentDatalogger)
   return (
     <>
       <Title1

@@ -27,7 +27,7 @@ const ViewChannel = () => {
   const [ currentAlarms, setCurrentAlarms] = useState([]);
   const [ dataChannel, setDataChannel] = useState([]);
 
-  const hoursBackView = 48;
+  const hoursBackView = 120;
 
   useEffect(() => {
     const loadData = async () =>{
@@ -63,7 +63,7 @@ const ViewChannel = () => {
     return <div>Cargando...</div>;
   }
 
-   
+   console.log(currentChannel);
   //console.log(dataChannel.map(data => data.porcentaje_encendido));
   return (
     <>
@@ -84,6 +84,7 @@ const ViewChannel = () => {
         : 
          <CardChannelGraphic 
             dataChannel= {dataChannel}
+            currentChannel = {currentChannel}
          />      
       }      
         <Title2

@@ -15,6 +15,9 @@ export const CardChannelInfo = (props) => {
   const [dataChannel, setDataChannel] = useState([]); 
   const [channelType, setChannelType] = useState('digital');
   
+  const hoursBackView = 120;
+  const minutesBackView = hoursBackView * 60;
+
   const currentPageIcon =
     ENV.ICONS.find(({ nameSection }) => nameSection === title) ||
     ENV.ICONS.find(({ nameSection }) => nameSection === "default");    
@@ -28,9 +31,9 @@ export const CardChannelInfo = (props) => {
     
           let response;
           if (currentChannelType === 'digital') {
-            response = await apiClient.get(`/api/data/getporcentages/${datalogger.nombre_tabla}/${channel.nombre_columna}/2880/${channel.tiempo_a_promediar}`);
+            response = await apiClient.get(`/api/data/getporcentages/${datalogger.nombre_tabla}/${channel.nombre_columna}/${minutesBackView}/${channel.tiempo_a_promediar}`);
           } else {
-            response = await apiClient.get(`/api/data/getanalog/${datalogger.nombre_tabla}/${channel.nombre_columna}/2880`);
+            response = await apiClient.get(`/api/data/getanalog/${datalogger.nombre_tabla}/${channel.nombre_columna}/${minutesBackView}`);
           }
     
           const data = response.data.data;
@@ -46,7 +49,7 @@ export const CardChannelInfo = (props) => {
     }, [datalogger.nombre_tabla, channel.nombre_columna]);
   
   if (!loading && channelType == 'analog'){
-    console.log(channelType,dataChannel[0]);    
+    //console.log(channelType,dataChannel[0]);    
   }
 
   return (
@@ -85,7 +88,9 @@ export const CardChannelInfo = (props) => {
         <div className="card-datalogger-info__graphic_container">
           {dataChannel.length > 0 ? (
             channelType === 'digital' ? (
-              <DigitalPorcentageOn data={dataChannel} />
+              <DigitalPorcentageOn 
+                data={dataChannel}
+                currentChannel={channel} />
             ) : (
               <AnalogData 
                 data={dataChannel}

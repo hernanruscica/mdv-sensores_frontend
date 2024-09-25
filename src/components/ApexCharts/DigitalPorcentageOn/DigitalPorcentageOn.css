@@ -10,3 +10,10 @@
     background-color: #815f09;
     color: white;
 }
+
+.card-datalogger-info__graphic_container__paragraph{
+    display: flex;
+    flex-direction: row;   
+    flex-wrap: wrap;     
+    padding: 0.5em;
+}
