@@ -8,7 +8,7 @@ import { formatDate } from "../../utils/Dates/Dates.js";
 import { parseCondition, parseMultipleConditions } from '../../utils/AlarmConditions/AlarmConditions.js'
 
 export const CardAlarmInfo = (props) => {    
-  const { title, name, id, alarm, lastReadData, minRead, maxRead } = props;
+  const { title, name, id, alarm, channel, lastReadData, minRead, maxRead } = props;
   const currentPageIcon =
     ENV.ICONS.find(({ nameSection }) => nameSection === title) ||
     ENV.ICONS.find(({ nameSection }) => nameSection === "default");
@@ -16,7 +16,7 @@ export const CardAlarmInfo = (props) => {
 
     //console.log(parseMultipleConditions("(d1_porc_encendido > 0) and (d1_porc_encendido < 80)")); works
     const boundsValues = parseMultipleConditions(alarm.condicion);
-    console.log(boundsValues);
+    //console.log(channel);
     //console.log(lastReadData, alarm);
 
   return (
@@ -46,7 +46,7 @@ export const CardAlarmInfo = (props) => {
             alarmMin={boundsValues.porcentaje_encendido.min}/>
         </div>        
       </div>
-      <Link to={`${ENV.URL}/panel/alarmas/${id}`} className="card-datalogger-info__btn">
+      <Link to={`${ENV.URL}/panel/dataloggers/${channel.datalogger_id}/canales/${channel.canal_id}/alarmas/${id}`} className="card-datalogger-info__btn">
         <img
           src={`${ENV.URL}/icons/eye-regular-white.svg`}
           alt="icono de la ver categoria"

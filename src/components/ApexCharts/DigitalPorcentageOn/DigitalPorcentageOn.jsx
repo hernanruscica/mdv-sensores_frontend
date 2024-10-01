@@ -45,6 +45,23 @@ const DigitalPorcentageOn = (props) => {
             setMinYValue(minY);
             setAvgValue(avg);
 
+            const failsRegisters = data.filter(element => element.tiempo_total >= 900);
+            console.log(failsRegisters[0].fecha);
+            console.log(new Date(failsRegisters[0].fecha).getTime())
+
+            const failsRegisterArray = failsRegisters.map((register) => {
+                return {
+                            x: new Date(register.fecha).getTime(), // Línea de fecha de corte
+                            borderColor: '#FF4560',
+                            label: {
+                                borderColor: '#FF4560',
+                                style: { color: '#fff', background: '#FF4560' },
+                                text: 'Fallo datos',
+                            }
+                        }
+                
+            })
+
             // Mantener las opciones originales pero añadir la línea de promedio
             setChartOptions({
                 chart: {
@@ -103,7 +120,8 @@ const DigitalPorcentageOn = (props) => {
                                 text: 'AVG',
                             }
                         }
-                    ]
+                    ],
+                    xaxis: failsRegisterArray ? failsRegisterArray : []
                 }
             });
 
@@ -120,7 +138,8 @@ const DigitalPorcentageOn = (props) => {
         return <div>cargando...</div>;
     }
 
-    console.log(currentChannel)
+   
+   //console.log(data[0]);
 
     return (
         <>

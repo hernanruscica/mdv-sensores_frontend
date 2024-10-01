@@ -63,7 +63,7 @@ const ViewChannel = () => {
     return <div>Cargando...</div>;
   }
 
-   console.log(currentChannel);
+   //console.log(currentChannel);
   //console.log(dataChannel.map(data => data.porcentaje_encendido));
   return (
     <>
@@ -104,6 +104,7 @@ const ViewChannel = () => {
           name={alarm.nombre}
           id={alarm.id}
           alarm={alarm}
+          channel={currentChannel}
           lastReadData={dataChannel[dataChannel.length-1]}          
         />
       ))
