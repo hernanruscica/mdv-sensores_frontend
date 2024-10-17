@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
-    base: mode === 'production' ? 'https://mdv-monitoreo-remoto-frontend.onrender.com' : '/',
+    base: mode === 'production' ? 'https://mdv-sensores-frontend.vercel.app' : '/',
   };
 });
