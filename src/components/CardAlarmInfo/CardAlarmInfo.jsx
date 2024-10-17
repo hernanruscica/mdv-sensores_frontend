@@ -40,10 +40,18 @@ export const CardAlarmInfo = (props) => {
           Condicion: {alarm.condicion}              
         </p>
         <div className="card-datalogger-info__description__paragraph">
-          {/* Grafico de relojito  {lastReadData[alarm.nombre_variables]}  */}
-          <Gauge currentValue={lastReadData[alarm.nombre_variables]} 
-            alarmMax={boundsValues.porcentaje_encendido.max} 
-            alarmMin={boundsValues.porcentaje_encendido.min}/>
+
+
+          {/* Grafico de relojito  {lastReadData[alarm.nombre_variables]}  
+          lo carga si la alarma es de porcentaje de encendido o si corresponde */}
+          {(alarm.tipo_alarma == "PORCENTAJE_ENCENDIDO")
+          ? (<Gauge currentValue={lastReadData[alarm.nombre_variables]} 
+              alarmMax={boundsValues.porcentaje_encendido.max} 
+              alarmMin={boundsValues.porcentaje_encendido.min}
+            />)
+          : <strong>Mostrar algo ilustrativo</strong>
+          }
+
         </div>        
       </div>
       <Link to={`${ENV.URL}/panel/dataloggers/${channel.datalogger_id}/canales/${channel.canal_id}/alarmas/${id}`} className="card-datalogger-info__btn">
