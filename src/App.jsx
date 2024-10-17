@@ -19,13 +19,17 @@ import ViewDatalogger from './pages/Dataloggers/ViewDatalogger.jsx';
 import Alarms from './pages/Alarms/Alarms.jsx';
 import ViewAlarm from './pages/Alarms/ViewAlarm.jsx';
 import PrivateRoute from './components/PrivateRoute';
+import {ENV} from './context/env.js';
+
+
 
 const App = () => {
   
+
   return (
     <AuthProvider>
       <DashboardProvider>
-        <Router>
+        <Router basename={ENV.VITE_APP_URL}>
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
