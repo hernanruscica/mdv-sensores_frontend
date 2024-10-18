@@ -38,7 +38,11 @@ const CardChannelDetails = (props) => {
           {channel.canal_descripcion}
         </p>
         <p className="card-location-details__paragraph">
-          <strong>Creado el {formatDate(channel.fecha_creacion, 'short')}</strong>
+          {/* <strong>Creado el {formatDate(channel.fecha_creacion, 'short')}</strong><br/> */}
+          <span>          
+            Total horas de uso: <strong>{Math.ceil(channel.horas_uso)}</strong> Hs.<br/> 
+            Con datos desde <strong>{formatDate(channel.fecha_inicio, 'short')}</strong>                
+          </span>
         </p>                      
         <p className="card-location-details__paragraph">
             <strong>Alarmas programadas : </strong>          

@@ -7,6 +7,7 @@ import { CardBtnSmall } from "../CardBtnSmall/CardBtnSmall";
 import createApiClient from '../../api/apiClient';
 import DigitalPorcentageOn from "../ApexCharts/DigitalPorcentageOn/DigitalPorcentageOn";
 import AnalogData from "../ApexCharts/AnalogData/AnalogData";
+import {formatDate} from '../../utils/Dates/Dates';
 
 export const CardChannelInfo = (props) => {   
   const apiClient = createApiClient(); 
@@ -52,6 +53,8 @@ export const CardChannelInfo = (props) => {
     //console.log(channelType,dataChannel[0]);    
   }
 
+  console.log(channel);
+  
   return (
     <div className="card-datalogger-info">
       <div className="card-datalogger-info__title">
@@ -80,8 +83,13 @@ export const CardChannelInfo = (props) => {
               :
               <strong>No tiene alarmas</strong>}
           </span>
+          <span>          
+            Total horas de uso: <strong>{Math.ceil(channel.horas_uso)}</strong> Hs.<br/> 
+            Con datos desde <strong>{formatDate(channel.fecha_inicio, 'short')}</strong>                
+          </span>
         </p>        
       </div>
+      
       {loading ? (
         <div>Cargando...</div>
       ) : (

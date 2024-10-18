@@ -2,17 +2,17 @@ import React, {useEffect, useState} from 'react'
 import './Breadcumb.css';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {ENV} from '../../context/env.js';
-import { useAuth } from '../../context/AuthContext.jsx';
+//import { useAuth } from '../../context/AuthContext.jsx';
 import { useDashboard } from '../../context/DashboardContext.jsx';
 
 const Breadcumb = () => {
   const location = useLocation();  
   const fullPath =  location.pathname.split('/').filter(path => path !== '');  
 
-  const {user} = useAuth();
-  const { dataloggers, channels, alarms, loadDataloggers, loadChannels, loadAlarms } = useDashboard();
-  const [loading, setLoading] = useState(true);
-
+  //const {user} = useAuth();
+  const { dataloggers, channels, alarms, locations, users, loadDataloggers, loadChannels, loadAlarms } = useDashboard();
+  //const [loading, setLoading] = useState(true);
+/*
   useEffect(() => {
     const  loadData = async  () => {
         setLoading(true);
@@ -23,9 +23,9 @@ const Breadcumb = () => {
     }
     loadData();
   }, [user])
+*/
 
-
-  function transformArray(inputArray, dataloggers, canales, alarmas, icons) {
+  function transformArray(inputArray, dataloggers, canales, alarmas, ubicaciones, usuarios, icons) {
     return inputArray.map((item, index, arr) => {
         let transformedItem = item; // Inicialmente, el item no transformado
         let icon = null; // Inicialmente, no hay icono
@@ -44,6 +44,14 @@ const Breadcumb = () => {
             transformedItem = foundAlarma ? foundAlarma.nombre : item;
         }
         //Falta hacer esto mismo para ubicaciones, y usuarios para mostrar los nombres, los iconos los muestra bien
+        if (arr[index - 1] === "ubicaciones") {
+          const foundUbicacion = ubicaciones.find(a => a.ubicaciones_id === parseInt(item));
+          transformedItem = foundUbicacion ? foundUbicacion.ubicaciones_nombre : item;
+        }
+        if (arr[index - 1] === "usuarios") {
+          const foundUsuario = usuarios.find(a => a.usuarios_id === parseInt(item));
+          transformedItem = foundUsuario ? foundUsuario.usuario_nom_apell : item;
+        }
 
         // Buscar el ícono correspondiente según el nombre de la sección (arr[index - 1])
         const foundIcon = icons.find(icon => icon.nameSection === arr[index ]);
@@ -81,13 +89,13 @@ const Breadcumb = () => {
         </button>        
     );
 
+    /*
   if (loading) {
     return ( <div>Cargando ...</div>);
   }
-
-  const namesBreadcumbArray = transformArray(fullPath, dataloggers, channels, alarms, ENV.ICONS);
-  // console.log(fullPathCopy);
-   //console.log(namesBreadcumbArray);
+  */
+  const namesBreadcumbArray = transformArray(fullPath, dataloggers, channels, alarms, locations, users, ENV.ICONS);
+    //console.log(locations, users)
   
   let currentPath = '';
   return (
