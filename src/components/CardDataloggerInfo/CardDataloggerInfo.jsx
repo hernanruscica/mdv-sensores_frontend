@@ -10,7 +10,7 @@ export const CardDataloggerInfo = (props) => {
     ENV.ICONS.find(({ nameSection }) => nameSection === title) ||
     ENV.ICONS.find(({ nameSection }) => nameSection === "default");
 
-  console.log(alarms[0]);
+  
   return (
     <div className="card-datalogger-info">
       <div className="card-datalogger-info__title">

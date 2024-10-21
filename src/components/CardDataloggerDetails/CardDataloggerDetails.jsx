@@ -16,7 +16,7 @@ const CardDataloggerDetails = (props) => {
   return (    
     <div className="card-location-details">
       <div className="location-details__container">
-        <img src={`https://mdv-sensores-rltk.onrender.com/images/${datalogger.foto}`} 
+        <img src={`${ENV.IMAGES_URL}/${datalogger.foto}`} 
           className='location-details__container__image'
           alt={`Foto de ${datalogger.nombre}`}
           title={`Foto de ${datalogger.nombre}`} 

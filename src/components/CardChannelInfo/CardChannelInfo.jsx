@@ -50,10 +50,10 @@ export const CardChannelInfo = (props) => {
     }, [datalogger.nombre_tabla, channel.nombre_columna]);
   
   if (!loading && channelType == 'analog'){
-    //console.log(channelType,dataChannel[0]);    
+    //If this time is a analog channel  
   }
 
-  console.log(channel);
+  
   
   return (
     <div className="card-datalogger-info">

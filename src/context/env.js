@@ -2,6 +2,7 @@
 
 export const ENV = {
     URL: import.meta.env.VITE_APP_URL,    
+    IMAGES_URL: import.meta.env.VITE_IMAGE_REPOSITORY_URL,
     ICONS: [
             {
                 nameSection: 'default',

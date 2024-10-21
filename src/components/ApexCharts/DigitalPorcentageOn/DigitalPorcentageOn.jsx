@@ -46,8 +46,8 @@ const DigitalPorcentageOn = (props) => {
             setAvgValue(avg);
 
             const failsRegisters = data.filter(element => element.tiempo_total >= 900);
-            console.log(failsRegisters[0].fecha);
-            console.log(new Date(failsRegisters[0].fecha).getTime())
+            // console.log(failsRegisters[0].fecha);
+            // console.log(new Date(failsRegisters[0].fecha).getTime())
 
             const failsRegisterArray = failsRegisters.map((register) => {
                 return {

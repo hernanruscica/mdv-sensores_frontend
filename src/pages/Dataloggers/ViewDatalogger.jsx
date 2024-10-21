@@ -70,9 +70,7 @@ const ViewDatalogger = () => {
   if (loading || loading02) {
     return <div>Cargando...</div>;
   }
-  // console.log(dataFromDatalogger);
-
-  //console.log(alarmsByCurrentDatalogger)
+  
   return (
     <>
       <Title1
@@ -96,8 +94,7 @@ const ViewDatalogger = () => {
       
       <section className="cards-container" key="channels">   
         { channelsByCurrentDatalogger.map((channel) => {
-          const currentAlarmsByChannel = alarmsByCurrentDatalogger.filter(alarm => alarm.canal_id == channel.canal_id);
-          //console.log(currentAlarmsByChannel);
+          const currentAlarmsByChannel = alarmsByCurrentDatalogger.filter(alarm => alarm.canal_id == channel.canal_id);          
           return(
           <CardChannelInfo    
             key={`channel_${channel.canal_id}`}                   
