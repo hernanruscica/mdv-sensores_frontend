@@ -22,6 +22,8 @@ export const CardChannelInfo = (props) => {
   const currentPageIcon =
     ENV.ICONS.find(({ nameSection }) => nameSection === title) ||
     ENV.ICONS.find(({ nameSection }) => nameSection === "default");    
+
+    
     
     useEffect(() => {
       const loadDataFromChannel = async () => {
@@ -32,9 +34,9 @@ export const CardChannelInfo = (props) => {
     
           let response;
           if (currentChannelType === 'digital') {
-            response = await apiClient.get(`/api/data/getporcentages/${datalogger.nombre_tabla}/${channel.nombre_columna}/${minutesBackView}/${channel.tiempo_a_promediar}`);
+            response = await apiClient.get(`/api/data/getporcentages/${channel.nombre_tabla}/${channel.nombre_columna}/${minutesBackView}/${channel.tiempo_a_promediar}`);
           } else {
-            response = await apiClient.get(`/api/data/getanalog/${datalogger.nombre_tabla}/${channel.nombre_columna}/${minutesBackView}`);
+            response = await apiClient.get(`/api/data/getanalog/${channel.nombre_tabla}/${channel.nombre_columna}/${minutesBackView}`);
           }
     
           const data = response.data.data;
@@ -53,7 +55,7 @@ export const CardChannelInfo = (props) => {
     //If this time is a analog channel  
   }
 
-  
+  // console.log(datalogger)
   
   return (
     <div className="card-datalogger-info">
@@ -66,7 +68,7 @@ export const CardChannelInfo = (props) => {
         <span className="card-datalogger-info__title__text">{channel.canal_nombre}</span>
       </div>      
       <div className="card-channel-info__description">
-        <img src={`https://mdv-sensores-rltk.onrender.com/images/${channel.foto}`} 
+        <img src={`${ENV.IMAGES_URL}/${channel.foto}`} 
           className='card-datalogger-info__container__image'
           alt={`Foto de ${channel.canal_nombre}`}
           title={`Foto de ${channel.canal_nombre}`} 
@@ -78,7 +80,7 @@ export const CardChannelInfo = (props) => {
               <CardBtnSmall
                 key={`alarm-${channel.canal_id}`}
                 title={`Ver ${alarms.length} alarmas`}
-                url={`${ENV.URL}/panel/alarmas/canales/${channel.canal_id}`}
+                url={`${ENV.URL}/panel/dataloggers/${datalogger.id}/canales/${channel.canal_id}/alarmas`}
               />                 
               :
               <strong>No tiene alarmas</strong>}

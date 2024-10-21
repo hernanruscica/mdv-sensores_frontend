@@ -43,6 +43,7 @@ const App = () => {
               <Route path="/panel/dataloggers" element={<PrivateRoute ><Dataloggers /></PrivateRoute>} />          
               <Route path="/panel/dataloggers/:id" element={<PrivateRoute ><ViewDatalogger /></PrivateRoute>} />    
               <Route path="/panel/dataloggers/:id/canales" element={<PrivateRoute ><Channels /></PrivateRoute>} />    
+              <Route path="/panel/dataloggers/:id/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />   
               <Route path="/panel/dataloggers/:id/canales/:channelId" element={<PrivateRoute ><ViewChannel /></PrivateRoute>} /> 
               <Route path="/panel/dataloggers/:id/canales/:channelId/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />      
               <Route path="/panel/dataloggers/:id/canales/:channelId/alarmas/:alarmId" element={<PrivateRoute ><ViewAlarm /></PrivateRoute>} />   

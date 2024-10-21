@@ -62,9 +62,7 @@ const ViewChannel = () => {
   if (loading) {
     return <div>Cargando...</div>;
   }
-
-   //console.log(currentChannel);
-  //console.log(dataChannel.map(data => data.porcentaje_encendido));
+   
   return (
     <>
       <Title1     

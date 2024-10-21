@@ -15,7 +15,7 @@ const ViewDatalogger = () => {
   const apiClient = createApiClient();
   const { id } = useParams();
   const { user } = useAuth();
-  const { channels, alarms, loadChannels, loadAlarms, dataFromDatalogger, loadDataFromDatalogger } = useDashboard();
+  const { channels, alarms, loadChannels, loadAlarms, loadDataFromDatalogger } = useDashboard();
   const [loading, setLoading] = useState(true);
   const [loading02, setLoading02] = useState(true); 
   const [currentDatalogger, setCurrentDatalogger] = useState(null);

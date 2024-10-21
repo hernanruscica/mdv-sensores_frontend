@@ -53,7 +53,9 @@ const ViewAlarm = () => {
   if (loading){
     return (<div>Cargando ...</div>)
   }
-  //console.log(alarmId, currentAlarmlogs);
+
+  console.log(currentAlarm);
+  
   return (
     <>
       <Title1     

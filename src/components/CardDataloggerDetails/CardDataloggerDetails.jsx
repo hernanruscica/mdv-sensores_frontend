@@ -42,7 +42,7 @@ const CardDataloggerDetails = (props) => {
              (<CardBtnSmall
                title={`Ver ${alarms.length} alarmas`}
                key={`ver_alarmas_ubicacion_${datalogger.id}`}
-               url={`${ENV.URL}/panel/alarmas/dataloggers/${datalogger.id}`}
+               url={`${ENV.URL}/panel/dataloggers/${datalogger.id}/alarmas`}
              />  ) :
              ("no hay alarmas")       
              }

@@ -73,7 +73,7 @@ const Breadcumb = () => {
 
     const navigate = useNavigate();
     const handleBack = (event) => {
-        //console.log("back");
+        
         event.preventDefault();
         navigate(-1);
       };
@@ -95,7 +95,7 @@ const Breadcumb = () => {
   }
   */
   const namesBreadcumbArray = transformArray(fullPath, dataloggers, channels, alarms, locations, users, ENV.ICONS);
-    //console.log(locations, users)
+   
   
   let currentPath = '';
   return (
@@ -127,7 +127,7 @@ const Breadcumb = () => {
 
             currentPath = currentPath + item.path + '/';
             const isLastIndex = (index == array.length - 1 ) ;
-            //console.log(isLastIndex)
+           
 
             return (
               (!isLastIndex)

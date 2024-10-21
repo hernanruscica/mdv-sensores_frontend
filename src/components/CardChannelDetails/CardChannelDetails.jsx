@@ -16,7 +16,7 @@ const CardChannelDetails = (props) => {
   return (    
     <div className="card-location-details">
       <div className="location-details__container">
-        <img src={`https://mdv-sensores-rltk.onrender.com/images/${channel.foto}`} 
+        <img src={`${ENV.IMAGES_URL}/${channel.foto}`} 
           className='location-details__container__image'
           alt={`Foto de ${channel.canal_nombre}`}
           title={`Foto de ${channel.canal_nombre}`} 
@@ -50,8 +50,8 @@ const CardChannelDetails = (props) => {
              (alarms.length > 0) ?
              (<CardBtnSmall
                title={`Ver ${alarms.length} alarmas`}
-               key={`ver_alarmas_canal_${channel.id}`}
-               url={`${ENV.URL}/panel/alarmas/canales/${channel.id}`}
+               key={`ver_alarmas_canal_${channel.id}`}               
+               url={`${ENV.URL}/panel/dataloggers/${datalogger.id}/canales/${channel.canal_id}/alarmas`}
              />  ) :
              ("no hay alarmas")       
              }

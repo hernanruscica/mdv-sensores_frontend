@@ -12,7 +12,7 @@ const EntityTable = ({ data, columns, entityType }) => {
       const jsonString = item.variables_valores;      
       const formatted = jsonString.replace(/{"porcentaje_encendido":([\d.]+)}/, 'Porcentaje encendido = $1 %');        
 
-     //console.log(formatted)
+     
       return {
         ...item, 
         disparada: item.disparada == 1 ? 'Disparo' : 'Reset',  
@@ -21,7 +21,7 @@ const EntityTable = ({ data, columns, entityType }) => {
         variables_valores: formatted,
       }
     });
-    //console.log(preparedData[0]); 
+   
   }else{
     preparedData = data;
   }
