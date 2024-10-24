@@ -11,6 +11,7 @@ import CardUserDetails from '../../components/CardUserDetails/CardUserDetails.js
 import CardLocationInfo from "../../components/CardLocationInfo/CardLocationInfo.jsx";
 import ButtonsBar from '../../components/ButtonsBar/ButtonsBar.jsx';
 
+
 //import "./Dataloggers.css";
 
 const ViewUser = (props) => {

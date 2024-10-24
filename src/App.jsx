@@ -20,6 +20,7 @@ import Alarms from './pages/Alarms/Alarms.jsx';
 import ViewAlarm from './pages/Alarms/ViewAlarm.jsx';
 import PrivateRoute from './components/PrivateRoute';
 import {ENV} from './context/env.js';
+import EditPage from './pages/EditPage/EditPage.jsx';
 
 
 
@@ -35,18 +36,29 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/inicio" element={<Login />} />
               <Route path="/panel" element={<PrivateRoute ><Dashboard /></PrivateRoute>} />
+
               <Route path="/panel/usuarios" element={<PrivateRoute ><Users /></PrivateRoute>} />
               <Route path="/panel/usuarios/:id" element={<PrivateRoute ><ViewUser /></PrivateRoute>} />
+              <Route path="/panel/usuarios/:id/edicion" element={<PrivateRoute ><EditPage /></PrivateRoute>} />
+
               <Route path="/panel/ubicaciones" element={<PrivateRoute ><Locations /></PrivateRoute>} />       
-              <Route path="/panel/ubicaciones/:id" element={<PrivateRoute ><ViewLocation /></PrivateRoute>} />     
-              <Route path="/panel/usuarios/:id" element={<PrivateRoute ><ViewUser /></PrivateRoute>} />    
+              <Route path="/panel/ubicaciones/:id" element={<PrivateRoute ><ViewLocation /></PrivateRoute>} />                       
+              <Route path="/panel/ubicaciones/:id/edicion" element={<PrivateRoute ><EditPage /></PrivateRoute>} />
+
               <Route path="/panel/dataloggers" element={<PrivateRoute ><Dataloggers /></PrivateRoute>} />          
-              <Route path="/panel/dataloggers/:id" element={<PrivateRoute ><ViewDatalogger /></PrivateRoute>} />    
+              <Route path="/panel/dataloggers/:id" element={<PrivateRoute ><ViewDatalogger /></PrivateRoute>} />   
+              <Route path="/panel/dataloggers/:id/edicion" element={<PrivateRoute ><EditPage /></PrivateRoute>} />              
+
               <Route path="/panel/dataloggers/:id/canales" element={<PrivateRoute ><Channels /></PrivateRoute>} />    
-              <Route path="/panel/dataloggers/:id/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />   
               <Route path="/panel/dataloggers/:id/canales/:channelId" element={<PrivateRoute ><ViewChannel /></PrivateRoute>} /> 
+              <Route path="/panel/dataloggers/:id/canales/:channelId/edicion" element={<PrivateRoute ><EditPage /></PrivateRoute>} /> 
+
+              <Route path="/panel/dataloggers/:id/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />   
               <Route path="/panel/dataloggers/:id/canales/:channelId/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />      
               <Route path="/panel/dataloggers/:id/canales/:channelId/alarmas/:alarmId" element={<PrivateRoute ><ViewAlarm /></PrivateRoute>} />   
+              <Route path="/panel/dataloggers/:id/canales/:channelId/alarmas/:alarmId/edicion" element={<PrivateRoute ><EditPage /></PrivateRoute>} />   
+
+              
           </Routes>
         </Router>
       </DashboardProvider>

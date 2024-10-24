@@ -39,7 +39,11 @@ export const ENV = {
             {
                 nameSection: 'historial',
                 fileName: 'history-solid.svg'
-            },            
+            },      
+            {
+                nameSection: 'edicion',
+                fileName: 'edit-regular.svg'
+            },        
         ]
 };
 

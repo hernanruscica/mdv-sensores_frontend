@@ -9,21 +9,8 @@ const Breadcumb = () => {
   const location = useLocation();  
   const fullPath =  location.pathname.split('/').filter(path => path !== '');  
 
-  //const {user} = useAuth();
-  const { dataloggers, channels, alarms, locations, users, loadDataloggers, loadChannels, loadAlarms } = useDashboard();
-  //const [loading, setLoading] = useState(true);
-/*
-  useEffect(() => {
-    const  loadData = async  () => {
-        setLoading(true);
-        await loadDataloggers(user.id);
-        await loadChannels(user.id);
-        await loadAlarms(user.id);
-        setLoading(false);
-    }
-    loadData();
-  }, [user])
-*/
+ 
+  const { dataloggers, channels, alarms, locations, users  } = useDashboard(); 
 
   function transformArray(inputArray, dataloggers, canales, alarmas, ubicaciones, usuarios, icons) {
     return inputArray.map((item, index, arr) => {
@@ -52,6 +39,7 @@ const Breadcumb = () => {
           const foundUsuario = usuarios.find(a => a.usuarios_id === parseInt(item));
           transformedItem = foundUsuario ? foundUsuario.usuario_nom_apell : item;
         }
+        
 
         // Buscar el ícono correspondiente según el nombre de la sección (arr[index - 1])
         const foundIcon = icons.find(icon => icon.nameSection === arr[index ]);

@@ -15,7 +15,7 @@ const CardUserDetails = (props) => {
    return (    
      <div className="card-location-details">
        <div className="location-details__container">
-         <img src={`https://mdv-sensores-rltk.onrender.com/images/${user.foto}`} 
+         <img src={`${ENV.IMAGES_URL}/${user.foto}`} 
            className='location-details__container__image'
            alt={`Foto de ${user.nombre_1} ${user.apellido_1}`}
            title={`Foto de ${user.nombre_1} ${user.apellido_1}`} 
@@ -45,7 +45,7 @@ const CardUserDetails = (props) => {
            </p>
            <div className="card-locatin-details__btn-container">
            {/* text, icon, type, url, onClick */}
-             <BtnCallToAction text="editar" icon='edit-regular.svg' url={`${ENV.URL}/panel/ubicaciones/`}/>
+             <BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/usuarios/${user.id}/edicion`}/>
              <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' type="danger"/>
            </div>
        </div>

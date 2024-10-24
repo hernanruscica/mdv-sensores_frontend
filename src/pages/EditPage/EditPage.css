@@ -1,0 +1,22 @@
+.login-container{
+    display: flex;
+    flex-direction: column;    
+}
+.login-form{
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    background-color: #EDEFF0;
+    padding: 1em;
+    border-radius: 20px;
+}
+input, button{
+    padding: 0.5em 1em;
+    border: none;
+    font-size: 1.2em;
+}
+button{
+    background-color: #f6b510;
+    font-weight: 700;
+}
