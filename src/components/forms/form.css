@@ -1,0 +1,59 @@
+.form{
+    width: 100%;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.form_input_group{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2em;
+    padding: 0.5em 0;    
+}
+
+.form_input{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    min-width: 300px;
+    gap: 0.2em;    
+}
+
+.form_input>label {
+    cursor: pointer;
+}
+
+.form_input>input, .form_input>textarea, .form_input>select{
+    
+    width: 100%;
+    padding: 10px 20px 10px 10px; /* Add padding to make room for the icon */
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+      
+}
+
+.form_btn{
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    width:fit-content;
+    margin: '0 auto';
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.form_input_condition{
+    width: 30%
+}
+
+

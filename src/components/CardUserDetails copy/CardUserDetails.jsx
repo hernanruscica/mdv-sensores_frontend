@@ -1,9 +1,9 @@
 import React from 'react';
 import './CardUserDetails.css';
 //import { useDashboard } from '../../context/DashboardContext';
-import { CardBtnSmall } from '../CardBtnSmall/CardBtnSmall';
-import { ENV } from "../../context/env";
-import BtnCallToAction from '../BtnCallToAction/BtnCallToAction';
+import { CardBtnSmall } from '../CardBtnSmall/CardBtnSmall.jsx';
+import { ENV } from "../../context/env.js";
+import BtnCallToAction from '../BtnCallToAction/BtnCallToAction.jsx';
 import { formatDate } from "../../utils/Dates/Dates.js";
 
 const CardUserDetails = (props) => {
@@ -13,25 +13,25 @@ const CardUserDetails = (props) => {
     //console.log(user)   
 
    return (    
-     <div className="card-user-details">
-       <div className="user-details__container">
+     <div className="card-location-details">
+       <div className="location-details__container">
          <img src={`${ENV.IMAGES_URL}/${user.foto}`} 
-           className='user-details__container__image'
+           className='location-details__container__image'
            alt={`Foto de ${user.nombre_1} ${user.apellido_1}`}
            title={`Foto de ${user.nombre_1} ${user.apellido_1}`} 
          />
        </div>
-       <div className="user-details__info">
-         <h2 className="card-user-details__info__title">        
+       <div className="location-details__info">
+         <h2 className="card-location-details__info__title">        
          {`${user.nombre_1} ${user.apellido_1}`}
          </h2>         
-         <p className="card-user-details__paragraph">
+         <p className="card-location-details__paragraph">
            <strong>Perfil creado el </strong>{formatDate(user.fecha_creacion, 'short')}
          </p>
-         <p className="card-user-details__paragraph">
+         <p className="card-location-details__paragraph">
             <strong>Correo electronico : </strong> {user.email}
           </p>
-         <p className="card-user-details__paragraph">
+         <p className="card-location-details__paragraph">
              <strong>Alarmas programadas : </strong>          
               {
               (alarms.length > 0) ?
@@ -43,7 +43,7 @@ const CardUserDetails = (props) => {
               ("no hay alarmas")       
               }
            </p>
-           <div className="card-location-details__btn-container">
+           <div className="card-locatin-details__btn-container">
            {/* text, icon, type, url, onClick */}
              <BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/usuarios/${user.id}/edicion`}/>
              <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' type="danger"/>

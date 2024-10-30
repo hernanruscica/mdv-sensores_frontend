@@ -1,5 +1,6 @@
-.card-location-details {
+.card-alarm-details {
     display: flex;
+     flex-direction: column; 
     width: 100%;
     max-width: 800px;    
     background-color: #EDEFF0;
@@ -9,37 +10,40 @@
     font-family: "Roboto", sans-serif;
   }
   
-  .location-details__container {
-    width: 35%;    
+  .alarm-details__container {
+    width: 100%;    
   }
 
-  .location-details__container__image {
+  .alarm-details__container__image {
     width: 100%;    
     max-height: 300px;
     object-fit: cover;
     object-position: center;
   }
   
-  .location-details__info {
+  .alarm-details__info {
     width: 100%;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.5em;
   }
-  .card-location-details__info__title{
+  .card-alarm-details__info__title{
     font-family: "Montserrat", sans-serif;
     font-size: 24px;
     text-transform: uppercase;
-    margin-bottom: 1em;
+    margin: 1em;
   }  
 
-  .dataloggersByLocation{
-
+  .card-alarm-details__paragraph{
+    line-height: 2em;
+    text-align: left;
   }
-  .card-locatin-details__btn-container{
+
+  
+  .card-alarm-details__btn-container{
     display: flex;
     flex-direction: row;
     width: 100%;

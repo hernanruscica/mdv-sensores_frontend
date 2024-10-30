@@ -144,7 +144,7 @@ const DigitalPorcentageOn = (props) => {
     return (
         <>
             <p className="card-datalogger-info__graphic_container__paragraph">
-            {`Grafico del canal "${currentChannel.canal_nombre}". Cada punto del grafico integra los valores de las lecturas de los ultimos ${currentChannel.tiempo_a_promediar} minutos.`}
+            {`Grafico del canal "${currentChannel.nombre}". Cada punto del grafico integra los valores de las lecturas de los ultimos ${currentChannel.tiempo_a_promediar} minutos.`}
             </p>
             <Chart 
                 className="apexcharts-canvas"

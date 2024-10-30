@@ -9,26 +9,34 @@ import { useParams } from "react-router-dom";
 import CardLocationDetails from "../../components/CardLocationDetails/CardLocationDetails";
 import CardDataloggerInfo from "../../components/CardDataloggerInfo/CardDataloggerInfo";
 import ButtonsBar from '../../components/ButtonsBar/ButtonsBar'
+import createApiClient from '../../api/apiClient.js' ;
 
 
 const ViewLocation = () => {  
   const { user } = useAuth();
-  const { locations, dataloggers, channels, alarms, alarmsLocation, loadAllData} = useDashboard();
+  const { locations, dataloggers, channels, alarmsLocation} = useDashboard();
   const { id } = useParams();
-  const [ loading, setLoading] = useState(true);
+  const [ loading, setLoading] = useState(false);
   const [dataloggersByLocation, setDataloggersByLocation] = useState([]);
   const [currentLocation, setCurrentLocation] = useState([]);  
+
+  const apiClient = createApiClient();
+
+  const loadCurrentlocationData = async (id) => {
+    try{
+      const response = await apiClient.get(`/api/locations/${id}`);      
+      setCurrentLocation(response.data.location);
+    }catch(error){
+      console.log(`failed to load current location data`, error);
+    }
+  }
   
 
   useEffect(() => {
-    const loadData = async () => {
-      setLoading(true);
-      await loadAllData(user.id, id);         
-      setDataloggersByLocation(dataloggers.filter(datalogger => datalogger.ubicacion_id == id)); 
-      setCurrentLocation(locations.find(location => location.ubicaciones_id == id)); 
-      setLoading(false);
-    };
-    loadData();
+    setLoading(true);
+    loadCurrentlocationData(id);
+    setDataloggersByLocation(dataloggers.filter(datalogger => datalogger.ubicacion_id == id));     
+    setLoading(false);
   }, [user.id, id]);
   
   
@@ -41,7 +49,7 @@ const ViewLocation = () => {
     <>
       <Title1     
         type="ubicaciones"   
-        text={currentLocation.ubicaciones_nombre}
+        text={currentLocation.nombre}
       />
       <Breadcumb />
       {/* <UnderConstruction></UnderConstruction> */}

@@ -32,9 +32,11 @@ const ViewChannel = () => {
   useEffect(() => {
     const loadData = async () =>{
       setLoading(true);
-      await loadChannels(user.id);
-      await loadAlarms(user.id);
-      setCurrentChannel(channels.find(channel => channel.canal_id == channelId));
+       await loadChannels(user.id);
+       await loadAlarms(user.id);
+      const response = await apiClient.get(`/api/channels/${channelId}`);      
+      
+      setCurrentChannel(response.data.channel);
       setCurrentDatalogger(dataloggers.find(datalogger => datalogger.id == id));
       setCurrentAlarms(alarms.filter(alarm => alarm.canal_id == channelId));
       setLoading(false);
@@ -62,12 +64,13 @@ const ViewChannel = () => {
   if (loading) {
     return <div>Cargando...</div>;
   }
+  console.log(currentChannel);
    
   return (
     <>
       <Title1     
         type="canales"   
-        text={`Canal "${currentChannel.canal_nombre}" del datalogger "${currentDatalogger.nombre}"`}
+        text={`Canal "${currentChannel.nombre}" del datalogger "${currentDatalogger.nombre}"`}
       />
       <Breadcumb />
       

@@ -13,28 +13,32 @@ const CardLocationDetails = (props) => {
     const analogChannelsByLocationQty =  channelsByLocation.filter(channel => channel.nombre_columna.startsWith('a')).length; 
     const digitalChannelsByLocationQty =  channelsByLocation.filter(channel => channel.nombre_columna.startsWith('d')).length;    
 
+    console.log(dataloggers);
   return (    
     <div className="card-location-details">
       <div className="location-details__container">
-        <img src={`${ENV.IMAGES_URL}/${location.ubicaciones_foto}`} 
+        <img src={`${ENV.IMAGES_URL}/${location.foto}`} 
           className='location-details__container__image'
-          alt={`Foto de ${location.ubicaciones_nombre}`}
-          title={`Foto de ${location.ubicaciones_nombre}`} 
+          alt={`Foto de ${location.nombre}`}
+          title={`Foto de ${location.nombre}`} 
         />
       </div>
       <div className="location-details__info">
         <h2 className="card-location-details__info__title">        
-          {location.ubicaciones_nombre}
+          {location.nombre}
         </h2>
         <p className="card-location-details__paragraph">
+          {location.descripcion}
+        </p>
+        <p className="card-location-details__paragraph">
           <strong>Dataloggers conectados : </strong>
-          {/* {dataloggers.map((datalogger) => (
+          {dataloggers.map((datalogger) => (
             <CardBtnSmall
               title={datalogger.nombre}
               key={`datalogger-${datalogger.id}`}
-              url={`${ENV.URL}/panel/datalogger/${datalogger.id}`}
+              url={`${ENV.URL}/panel/dataloggers/${datalogger.id}`}
             />
-          ))} */}
+          ))}
         </p>
         <p className="card-location-details__paragraph">
           {location.ubicaciones_descripcion}

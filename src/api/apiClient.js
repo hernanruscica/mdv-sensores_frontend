@@ -1,21 +1,22 @@
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
+//import { useAuth } from '../context/AuthContext';
+import useEncryptedLocalStorageState from '../hooks/useEncryptedLocalStorageState';
 
 const createApiClient = (contentType) => {  
+  const [tokenLS] = useEncryptedLocalStorageState('token', null);
   
-  const  token  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzIsImlhdCI6MTcyOTcyNTczOSwiZXhwIjoxNzMyMzE3NzM5fQ.flpmJaBQVhFwuLN-GaE9pZL8uu6OdR70Rh5Oz3xlp9Y'  
-  
+    
   let defaultHeaders = null;
   try {
     
     // Definir headers predeterminados 'application/json'
     defaultHeaders = {
       'Content-Type': contentType ? contentType : 'application/json',
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${tokenLS}`
     };
-    console.log(defaultHeaders)
+    
   } catch (error) {    
-    token = null;
+    
     console.log(error)
   }
 

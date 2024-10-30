@@ -22,6 +22,9 @@ import PrivateRoute from './components/PrivateRoute';
 import {ENV} from './context/env.js';
 import EditPage from './pages/EditPage/EditPage.jsx';
 
+import Modal from 'react-modal';     
+Modal.setAppElement('#root'); 
+
 
 
 const App = () => {

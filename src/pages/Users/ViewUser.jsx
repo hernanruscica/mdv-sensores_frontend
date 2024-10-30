@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from '../../context/AuthContext';
+
 import { useDashboard } from "../../context/DashboardContext.jsx";
 import { Title1 } from "../../components/Title1/Title1";
 import { Title2 } from "../../components/Title2/Title2.jsx";
 import Breadcumb from "../../components/Breadcumb/Breadcumb";
 import { useParams } from "react-router-dom";
-import UnderConstruction from "../../components/UnderConstruction/UnderConstruction.jsx";
+
 import createApiClient from '../../api/apiClient.js' ;
 import CardUserDetails from '../../components/CardUserDetails/CardUserDetails.jsx';
 import CardLocationInfo from "../../components/CardLocationInfo/CardLocationInfo.jsx";
@@ -14,10 +14,10 @@ import ButtonsBar from '../../components/ButtonsBar/ButtonsBar.jsx';
 
 //import "./Dataloggers.css";
 
-const ViewUser = (props) => {
+const ViewUser = () => {
   
-  const { user } = useAuth();
-  const { users, locations, dataloggers, channels, alarms, loadAlarms, loadLocations} = useDashboard();
+  
+  const {  locations, dataloggers, channels, alarms, loadUsers, loadAlarms, loadLocations} = useDashboard();
   const { id } = useParams();
   const [ currentUser, setCurrentUser] = useState([]);  
   const [ loading, setLoading] = useState(true);
@@ -38,6 +38,7 @@ const ViewUser = (props) => {
       await loadCurrentUserData(id);              
       await loadAlarms(id); 
       await loadLocations(id); 
+      await loadUsers(id);
       setLoading(false);
     }
     loadData();
@@ -46,7 +47,7 @@ const ViewUser = (props) => {
  
 
   if (loading ) {   
-    console.log(locations)
+    //console.log(locations)
     return <div>Cargando...</div>;
   }  
 

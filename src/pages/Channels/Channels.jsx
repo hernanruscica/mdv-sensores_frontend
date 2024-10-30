@@ -1,4 +1,4 @@
-import React from "react";
+  
 //import { useAuth } from '../context/AuthContext';
 
 import Breadcumb from "../../components/Breadcumb/Breadcumb.jsx";
@@ -12,21 +12,24 @@ import { useLocation } from 'react-router-dom';
 
 
 
-const Channels = () => {
-  
+const Channels = () => {  
+
 
   const location = useLocation();  
   const fullPath =  location.pathname.split('/').filter(path => path !== '');    
   
   const { dataloggers, channels, alarms } = useDashboard();
 
-
   const indexDataloggerIdPath = fullPath.indexOf('dataloggers') + 1;
   const dataloggerId = fullPath[indexDataloggerIdPath];
 
+
+  
   const currentDatalogger = dataloggers.filter(datalogger => datalogger.id == dataloggerId);
   const currentChannels = channels.filter(channel => channel.datalogger_id == dataloggerId)
   const currentAlarms = alarms.filter(alarm => alarm.datalogger_id == dataloggerId);
+
+
 
   return (
     <>

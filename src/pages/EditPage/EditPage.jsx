@@ -27,7 +27,7 @@ const EditPage = () => {
   const fullPath =  location.pathname.split('/').filter(path => path !== '');  
   
   const { id, channelId, alarmId } = useParams(); // Obtenemos el nombre de la entidad y el ID desde la URL  
-  //console.log(id, channelId, alarmId, fullPath);
+  console.log(`dataloggerId: ${id} channelId: ${channelId} alarmId: ${alarmId}`);
  
   const entityNames = {
     usuarios: 'users',
@@ -57,6 +57,8 @@ const EditPage = () => {
 
   const FormComponent = formComponents[entity];
 
+  console.log(currentId)
+
   return (
     <>    
     <Title1
@@ -65,7 +67,12 @@ const EditPage = () => {
       />
       <Breadcumb /> 
 
-    <FormComponent id={ currentId}/>
+    <FormComponent 
+      id={Number.parseInt(currentId)}
+      dataloggerId={id || null}
+      channelId={channelId || null}
+      alarmId={alarmId || null}    
+    />
 
     </>     
     

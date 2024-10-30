@@ -5,17 +5,19 @@ import Breadcumb from "../../components/Breadcumb/Breadcumb";
 import { useParams } from "react-router-dom";
 //import UnderConstruction from "../../components/UnderConstruction/UnderConstruction"; 
 import { useDashboard } from "../../context/DashboardContext";
+import { useAuth } from "../../context/AuthContext.jsx";
 import { Title2 } from "../../components/Title2/Title2";
 import EntityTable from "../../components/EntityTable/EntityTable.jsx";
 import createApiClient from "../../api/apiClient";
 import CardAlarmDetails from '../../components/CardAlarmDetails/CardAlarmDetails.jsx';
 
+
 //import "./Dataloggers.css";
 
 const ViewAlarm = () => {
-  const { alarmId } = useParams();
-  
-  const {alarms, dataloggers, channels} = useDashboard();
+  const { id : dataloggerId, alarmId, channelId } = useParams();
+  const {user} = useAuth();
+  const {alarms, dataloggers, channels, loadAlarms} = useDashboard();
   const [currentAlarm, setCurrentAlarm] = useState({});
   const [currentDatalogger, setCurrentDatalogger] = useState({});
   const [currentChannel, setCurrentChannel] = useState({});
@@ -42,32 +44,31 @@ const ViewAlarm = () => {
     }
   }
 
-  const loadCurrentEntities = async (alarmId) => {
-    
-    setCurrentDatalogger(dataloggers.find(datalogger => datalogger.id == currentAlarm.datalogger_id));
-    setCurrentChannel(channels.find(channel => channel.canal_id == currentAlarm.canal_id));
+  const loadCurrentAlarm = async (alarmId) => {    
+    const response = await apiClient.get(`/api/alarms/${alarmId}`);
+    setCurrentAlarm(response.data.alarm);
   }
 
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
-      //await loadAlarms(user.id);
-      setCurrentAlarm(alarms.find(alarm => alarm.id == alarmId));
-      setCurrentDatalogger(dataloggers.find(datalogger => datalogger.id == currentAlarm.datalogger_id));
-      setCurrentChannel(channels.find(channel => channel.canal_id == currentAlarm.canal_id));
-      //await loadCurrentEntities(alarmId);
-
+      await loadAlarms(user.id);
+      await loadCurrentAlarm(alarmId);
       await loadCurrentAlarmlogs(alarmId);
       setLoading(false);
     }
     loadData();
+    //setCurrentAlarm(alarms.find(alarm => alarm.id == alarmId));
+    setCurrentDatalogger(dataloggers.find(datalogger => datalogger.id == dataloggerId));
+    setCurrentChannel(channels.find(channel => channel.canal_id == channelId));
+    //await loadCurrentEntities(alarmId);
   }, [alarmId]);
 
   if (loading){
     return (<div>Cargando ...</div>)
   }
 
-  //console.log(currentChannel);
+  console.log(currentChannel);
   
   return (
     <>
@@ -79,8 +80,8 @@ const ViewAlarm = () => {
 
        <CardAlarmDetails 
         alarm = {currentAlarm}      
-        datalogger = {dataloggers.find(datalogger => datalogger.id == currentAlarm.datalogger_id)}
-        channel = {channels.find(channel => channel.canal_id == currentAlarm.canal_id)}
+        datalogger = {currentDatalogger}
+        channel = {currentChannel}
       />  
       
       <Title2     
