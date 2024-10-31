@@ -5,15 +5,20 @@ import "./CardAlarmInfo.css";
 
 import Gauge from "../Gauge/Gauge.jsx";
 import { formatDate } from "../../utils/Dates/Dates.js";
-import { parseCondition, parseMultipleConditions } from '../../utils/AlarmConditions/AlarmConditions.js'
+
 
 export const CardAlarmInfo = (props) => {    
-  const { title, name, id, alarm, channel, lastReadData, minRead, maxRead } = props;
+  const { title, name, id, alarm, channel, lastReadData } = props;
   const currentPageIcon =
     ENV.ICONS.find(({ nameSection }) => nameSection === title) ||
     ENV.ICONS.find(({ nameSection }) => nameSection === "default");
     
-    const boundsValues = parseMultipleConditions(alarm.condicion);  
+    
+  const conditionOperator = alarm.condicion.split(" ")[1];
+  const conditionValue = alarm.condicion.split(" ")[2];
+  //console.log(conditionOperator, conditionValue)
+  const max = (conditionOperator.includes(">")) ? conditionValue : 100;
+  const min = (conditionOperator.includes("<")) ? conditionValue : 0;
 
   return (
     <div className="card-datalogger-info">
@@ -42,8 +47,8 @@ export const CardAlarmInfo = (props) => {
           lo carga si la alarma es de porcentaje de encendido o si corresponde */}
           {(alarm.tipo_alarma == "PORCENTAJE_ENCENDIDO")
           ? (<Gauge currentValue={lastReadData[alarm.nombre_variables]} 
-              alarmMax={boundsValues.porcentaje_encendido.max} 
-              alarmMin={boundsValues.porcentaje_encendido.min}
+              alarmMax={max} 
+              alarmMin={min}
             />)
           : <strong>Mostrar algo ilustrativo</strong>
           }
