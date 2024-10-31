@@ -122,7 +122,7 @@ function LocationForm({ id }) {
             />
           </div>
           <div className="form_input">
-            <label htmlFor="email" l>
+            <label htmlFor="email" >
               Email:
             </label>
             <input

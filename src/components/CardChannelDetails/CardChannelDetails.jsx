@@ -13,7 +13,7 @@ const CardChannelDetails = (props) => {
       
     const horas_uso = Math.ceil(channels.find(ch=> ch.canal_id == channel.id).horas_uso);
     const desde = formatDate(channels.find(ch=> ch.canal_id == channel.id).fecha_inicio, 'short')
-    console.log(horas_uso)   
+   
 
 
   return (    

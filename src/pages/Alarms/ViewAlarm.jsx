@@ -67,8 +67,6 @@ const ViewAlarm = () => {
   if (loading){
     return (<div>Cargando ...</div>)
   }
-
-  console.log(currentChannel);
   
   return (
     <>

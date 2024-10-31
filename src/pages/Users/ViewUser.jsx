@@ -17,9 +17,10 @@ import ButtonsBar from '../../components/ButtonsBar/ButtonsBar.jsx';
 const ViewUser = () => {
   
   
-  const {  locations, dataloggers, channels, alarms, loadUsers, loadAlarms, loadLocations} = useDashboard();
+  const {  dataloggers, channels, alarms } = useDashboard();
   const { id } = useParams();
   const [ currentUser, setCurrentUser] = useState([]);  
+  const [ currentUserLocations, setCurrentUserLocations] = useState([]);  
   const [ loading, setLoading] = useState(true);
   const apiClient = createApiClient();
 
@@ -27,6 +28,9 @@ const ViewUser = () => {
     try{
       const response = await apiClient.get(`/api/users/${userId}`);
       setCurrentUser(response.data.user);
+      ///api/locationsusers/locationsbyuser/32
+      const response2 = await apiClient.get(`/api/locationsusers/locationsbyuser/${userId}`)      
+      setCurrentUserLocations(response2.data.locationUserData);
     }catch(error){
       console.log(`failed to load current user data`, error);
     }
@@ -36,9 +40,7 @@ const ViewUser = () => {
     const loadData = async () => {
       setLoading(true);
       await loadCurrentUserData(id);              
-      await loadAlarms(id); 
-      await loadLocations(id); 
-      await loadUsers(id);
+      
       setLoading(false);
     }
     loadData();
@@ -59,12 +61,10 @@ const ViewUser = () => {
         text={`Perfil de ${currentUser?.nombre_1 || ''}`}
       />
       <Breadcumb />
-      {/* <p>{alarms.length}</p> 
-      const { id, type, locations, dataloggers, channels, alarms } = props;    
-      */}
+            
       <CardUserDetails user={currentUser} 
           type="usuarios"
-          locations={locations}
+          locations={currentUserLocations}
           dataloggers={dataloggers}
           channels={channels}
           alarms={alarms}
@@ -75,10 +75,10 @@ const ViewUser = () => {
         />
         <ButtonsBar 
         itemsName="ubicaciones"
-        itemsQty={locations.length}
+        itemsQty={currentUserLocations.length}
         />
         <section className="cards-container">
-        {locations.map((location) => (
+        {currentUserLocations.map((location) => (
           <CardLocationInfo type='ubicaciones' 
             key={location.ubicaciones_id}
             locationData={location}             

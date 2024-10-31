@@ -123,7 +123,7 @@ function DataloggerForm({ id }) {
             />
           </div>
           <div className="form_input">
-            <label htmlFor="direccion_mac" l>
+            <label htmlFor="direccion_mac" >
               Direccion MAC:
             </label>
             <input

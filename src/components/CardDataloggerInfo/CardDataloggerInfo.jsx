@@ -32,27 +32,40 @@ export const CardDataloggerInfo = (props) => {
           />
         </p>
         <p className="card-datalogger-info__description__paragraph">
-          <span>Canales conectados :</span>          
-          {channels.map((channel) => (            
-            <CardBtnSmall
-              key={`channel-${channel.canal_id}`}
-              title={channel.canal_nombre}///panel/dataloggers/:id/canales/:id
-              url={`${ENV.URL}/panel/dataloggers/${id}/canales/${channel.canal_id}`}
-            />                          
-          ))}
-        </p>
+          <span>Canales conectados :</span>
+          {
+          (channels.length > 0) 
+          ? channels.map((channel) => (
+              <CardBtnSmall
+                key={`channel-${channel.canal_id}`}
+                title={channel.canal_nombre} ///panel/dataloggers/:id/canales/:id
+                url={`${ENV.URL}/panel/dataloggers/${id}/canales/${channel.canal_id}`}
+              />
+          ))
+          : (<span>No tiene</span>)}
+        </p>        
+        
         <p className="card-datalogger-info__description__paragraph">
-          <span>Alarmas vigentes :</span>          
-          {alarms.map((alarm) => (            
-            <CardBtnSmall
-              key={`alarm-${alarm.id}`}
-              title={alarm.nombre}
-              url={`${ENV.URL}/panel/dataloggers/${alarm.datalogger_id}/canales/${alarm.canal_id}/alarmas/${alarm.id}`}
-            />                          
-          ))}
+          <span>Alarmas vigentes :</span>
+          {
+          (alarms.length > 0) 
+          ? alarms.map((alarm) => (
+              <CardBtnSmall
+                key={`alarm-${alarm.id}`}
+                title={alarm.nombre}
+                url={`${ENV.URL}/panel/dataloggers/${alarm.datalogger_id}/canales/${alarm.canal_id}/alarmas/${alarm.id}`}
+              />
+            ))
+          : (<span> No tiene.</span>)  
+        }
         </p>
+        
+
       </div>
-      <Link to={`${ENV.URL}/panel/dataloggers/${id}`} className="card-datalogger-info__btn">
+      <Link
+        to={`${ENV.URL}/panel/dataloggers/${id}`}
+        className="card-datalogger-info__btn"
+      >
         <img
           src={`${ENV.URL}/icons/eye-regular-white.svg`}
           alt="icono de la ver categoria"

@@ -126,7 +126,7 @@ function UserForm({ id }) {
             />
           </div>
           <div className="form_input">
-            <label htmlFor="apellido_2" l>
+            <label htmlFor="apellido_2" >
               Apellido 2:
             </label>
             <input

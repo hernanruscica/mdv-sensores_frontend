@@ -31,7 +31,7 @@ const CardAlarmDetails = (props) => {
             <CardBtnSmall
             title={channel.canal_nombre}
             key={`ver_canal_${channel.id}`}
-            url={`${ENV.URL}/panel/dataloggers/${datalogger.id}/canales/${channel.id}`}
+            url={`${ENV.URL}/panel/dataloggers/${datalogger.id}/canales/${channel.canal_id}`}
           />           
         </p>
         <p className="card-alarm-details__paragraph">
@@ -47,8 +47,11 @@ const CardAlarmDetails = (props) => {
         
           <div className="card-alarm-details__btn-container">
           {/* text, icon, type, url, onClick */}
-            <BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/dataloggers/${datalogger.id}/canales/${channel.canal_id}/alarmas/${alarm.id}/edicion`}/>
-            <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' type="danger"/>
+            <BtnCallToAction text="editar" icon='edit-regular.svg' 
+              url={`panel/dataloggers/${datalogger.id}/canales/${channel.canal_id}/alarmas/${alarm.id}/edicion`}/>
+            <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' 
+              url={`panel/dataloggers/${datalogger.id}/canales/${channel.canal_id}/alarmas/${alarm.id}/eliminacion`}
+              type="danger"/>
           </div>
       </div>
       

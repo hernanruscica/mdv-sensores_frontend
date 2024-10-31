@@ -14,10 +14,11 @@ import createApiClient from '../../api/apiClient.js' ;
 
 const ViewLocation = () => {  
   const { user } = useAuth();
-  const { locations, dataloggers, channels, alarmsLocation} = useDashboard();
+  const { locations, dataloggers, channels, alarms, loadLocations} = useDashboard();
   const { id } = useParams();
   const [ loading, setLoading] = useState(false);
   const [dataloggersByLocation, setDataloggersByLocation] = useState([]);
+  //const [currentAlarms, setCurrentAlarms] = useState([]);
   const [currentLocation, setCurrentLocation] = useState([]);  
 
   const apiClient = createApiClient();
@@ -26,25 +27,33 @@ const ViewLocation = () => {
     try{
       const response = await apiClient.get(`/api/locations/${id}`);      
       setCurrentLocation(response.data.location);
+      
+      
     }catch(error){
       console.log(`failed to load current location data`, error);
     }
-  }
-  
+  }  
 
   useEffect(() => {
     setLoading(true);
-    loadCurrentlocationData(id);
-    setDataloggersByLocation(dataloggers.filter(datalogger => datalogger.ubicacion_id == id));     
+    setDataloggersByLocation(dataloggers.filter(datalogger => datalogger.ubicacion_id == id));   
+
+    loadLocations(user.id);
+    loadCurrentlocationData(id);    
+    
+    // const dataloggerIds = dataloggersByLocation.map(datalogger => datalogger.id);
+    // setCurrentAlarms(alarms.filter(alarm => dataloggerIds.includes(alarm.datalogger_id)))
     setLoading(false);
   }, [user.id, id]);
   
   
   if (loading) {
     return <div>Cargando...</div>;
-  }
+  }    
   
-  //console.log(currentLocation);
+  const dataloggerIds = dataloggersByLocation.map(datalogger => datalogger.id);  
+  const currentAlarms = alarms.filter(alarm => dataloggerIds.includes(alarm.datalogger_id)); 
+ 
   return (
     <>
       <Title1     
@@ -57,7 +66,7 @@ const ViewLocation = () => {
           location={currentLocation} 
           dataloggers={dataloggersByLocation} 
           channels={channels} 
-          alarms={alarmsLocation} /> 
+          alarms={currentAlarms} /> 
       <Title2 
         type="dataloggers"
         text="dataloggers en esta ubicacion"
@@ -67,7 +76,7 @@ const ViewLocation = () => {
          {dataloggersByLocation.map((datalogger) => {
           const currentLocation = locations.find(location => location.ubicaciones_id == datalogger.ubicacion_id);
           const currentChannels = channels.filter(channel => channel.datalogger_id == datalogger.id);    
-          const currentAlarms = alarmsLocation.filter(alarm => alarm.datalogger_id == datalogger.id);      
+          
           return (
           <CardDataloggerInfo title='dataloggers' key={datalogger.id}
             name={datalogger.nombre} id={datalogger.id}  

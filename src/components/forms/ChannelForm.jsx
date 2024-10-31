@@ -125,7 +125,7 @@ function ChannelForm({ id, dataloggerId }) {
             />
           </div>
           <div className="form_input">
-            <label htmlFor="tiempo_a_promediar" l>
+            <label htmlFor="tiempo_a_promediar" >
                 Tiempo a promediar (min):
             </label>
             <input
@@ -139,7 +139,7 @@ function ChannelForm({ id, dataloggerId }) {
         </div>
         <div className="form_input_group">
         <div className="form_input">
-            <label htmlFor="multiplicador" l>
+            <label htmlFor="multiplicador" >
                 Multiplicador:
             </label>
             <input

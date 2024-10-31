@@ -91,9 +91,6 @@ function AlarmForm({ id, dataloggerId, channelId }) {
     return <div>Cargando ...</div>;
   }  
   
-  //console.log(JSON.stringify(alarm), comparsionOperator, comparsionValue)
-  console.log(comparsionVariable, comparsionOperator, comparsionValue);
-
   return (
     <>
       <form onSubmit={handleSubmit} className="form">
@@ -116,7 +113,7 @@ function AlarmForm({ id, dataloggerId, channelId }) {
               id="tipo_alarma"
               value={alarm.tipo_alarma}
               onChange={handleChange}
-              disabled="true"
+              disabled
             />
           </div>
         </div>
@@ -140,7 +137,7 @@ function AlarmForm({ id, dataloggerId, channelId }) {
               name="condicion"
               id="condicion"
               value={alarm.condicion}
-              disabled="true"
+              disabled
             />
           </div>
 

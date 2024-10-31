@@ -12,12 +12,8 @@ export const CardAlarmInfo = (props) => {
   const currentPageIcon =
     ENV.ICONS.find(({ nameSection }) => nameSection === title) ||
     ENV.ICONS.find(({ nameSection }) => nameSection === "default");
-
-
-    //console.log(parseMultipleConditions("(d1_porc_encendido > 0) and (d1_porc_encendido < 80)")); works
-    const boundsValues = parseMultipleConditions(alarm.condicion);
-    //console.log(channel);
-    //console.log(lastReadData, alarm);
+    
+    const boundsValues = parseMultipleConditions(alarm.condicion);  
 
   return (
     <div className="card-datalogger-info">
@@ -54,7 +50,7 @@ export const CardAlarmInfo = (props) => {
 
         </div>        
       </div>
-      <Link to={`${ENV.URL}/panel/dataloggers/${channel.datalogger_id}/canales/${channel.canal_id}/alarmas/${id}`} className="card-datalogger-info__btn">
+      <Link to={`${ENV.URL}/panel/dataloggers/${channel.datalogger_id}/canales/${channel.id}/alarmas/${id}`} className="card-datalogger-info__btn">
         <img
           src={`${ENV.URL}/icons/eye-regular-white.svg`}
           alt="icono de la ver categoria"

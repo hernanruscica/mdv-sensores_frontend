@@ -13,7 +13,7 @@ const CardLocationDetails = (props) => {
     const analogChannelsByLocationQty =  channelsByLocation.filter(channel => channel.nombre_columna.startsWith('a')).length; 
     const digitalChannelsByLocationQty =  channelsByLocation.filter(channel => channel.nombre_columna.startsWith('d')).length;    
 
-    console.log(dataloggers);
+    //console.log(dataloggers);
   return (    
     <div className="card-location-details">
       <div className="location-details__container">
