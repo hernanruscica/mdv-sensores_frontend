@@ -1,7 +1,7 @@
-.card-location-details {
+.card-location-details{
     display: flex;
     width: 100%;
-    max-width: 800px;
+    
     background-color: #EDEFF0;
     border-radius: 10px;
     overflow: hidden;
@@ -9,8 +9,8 @@
     font-family: "Roboto", sans-serif;
   }
   
-  .location-details__container {
-    width: 35%;    
+  .card-location-details__container{
+    width: 30%;    
   }
 
   .location-details__container__image {
@@ -20,8 +20,8 @@
     object-position: center;
   }
   
-  .location-details__info {
-    width: 65%;
+  .card-location-details__info{
+    width: 70%;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -30,12 +30,9 @@
     font-family: "Montserrat", sans-serif;
     font-size: 24px;
     text-transform: uppercase;
-    margin-bottom: 1em;
+    margin: 0.5em 0;
   }  
-
-  .dataloggersByLocation{
-
-  }
+  
   .card-locatin-details__btn-container{
     display: flex;
     flex-direction: row;

@@ -85,12 +85,13 @@ const ViewChannel = () => {
         : 
          <CardChannelGraphic 
             dataChannel= {dataChannel}
-            currentChannel = {currentChannel}
+            currentChannelName = {currentChannel.nombre}
+            currentChannelTimeProm = {currentChannel.tiempo_a_promediar}
          />      
       }      
         <Title2
           type="alarmas"
-          text={`Alarmas activas para "${currentChannel?.canal_nombre || ''}"`}
+          text={`Alarmas activas para el canal "${currentChannel?.nombre || ''}"`}
         />
         <ButtonsBar
           itemsName="alarmas"

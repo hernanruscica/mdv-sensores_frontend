@@ -10,7 +10,7 @@ const calculateAverage = (data, attributeName) => {
 };
 
 const DigitalPorcentageOn = (props) => {
-    const { data, currentChannel } = props;
+    const { data, currentChannelName, currentChannelTimeProm } = props;
     const [loading, setLoading] = useState(true);
     const [chartOptions, setChartOptions] = useState({});
     const [chartSeries, setChartSeries] = useState([]);
@@ -144,7 +144,7 @@ const DigitalPorcentageOn = (props) => {
     return (
         <>
             <p className="card-datalogger-info__graphic_container__paragraph">
-            {`Grafico del canal "${currentChannel.canal_nombre}". Cada punto del grafico integra los valores de las lecturas de los ultimos ${currentChannel.tiempo_a_promediar} minutos.`}
+            {`Grafico del canal "${currentChannelName}". Cada punto del grafico integra los valores de las lecturas de los ultimos ${currentChannelTimeProm} minutos.`}
             </p>
             <Chart 
                 className="apexcharts-canvas"

@@ -100,7 +100,9 @@ export const CardChannelInfo = (props) => {
             channelType === 'digital' ? (
               <DigitalPorcentageOn 
                 data={dataChannel}
-                currentChannel={channel} />
+                currentChannelName = {channel.canal_nombre}
+                currentChannelTimeProm = {channel.tiempo_a_promediar}
+                />
             ) : (
               <AnalogData 
                 data={dataChannel}

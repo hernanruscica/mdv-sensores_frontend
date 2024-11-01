@@ -16,19 +16,25 @@ const CardLocationDetails = (props) => {
     //console.log(dataloggers);
   return (    
     <div className="card-location-details">
-      <div className="location-details__container">
+      <div className="card-location-details__container">
         <img src={`${ENV.IMAGES_URL}/${location.foto}`} 
           className='location-details__container__image'
           alt={`Foto de ${location.nombre}`}
           title={`Foto de ${location.nombre}`} 
         />
       </div>
-      <div className="location-details__info">
+      <div className="card-location-details__info">
         <h2 className="card-location-details__info__title">        
           {location.nombre}
         </h2>
         <p className="card-location-details__paragraph">
           {location.descripcion}
+        </p>
+        <p className="card-location-details__paragraph">
+        <strong>Direción: </strong>{`${location.calle} ${location.numero}`}
+        </p>
+        <p className="card-location-details__paragraph">
+        <strong>Telefono: </strong>{location.telefono} - <strong>Correo: </strong> {location.email}
         </p>
         <p className="card-location-details__paragraph">
           <strong>Dataloggers conectados : </strong>
