@@ -10,6 +10,7 @@ import CardDataloggerDetails from "../../components/CardDataloggerDetails/CardDa
 import CardChannelInfo from '../../components/CardChannelInfo/CardChannelInfo.jsx';
 import ButtonsBar from '../../components/ButtonsBar/ButtonsBar.jsx';
 import EntityTable from "../../components/EntityTable/EntityTable.jsx";
+import { ENV } from "../../context/env.js";
 
 const ViewDatalogger = () => {
   const apiClient = createApiClient();
@@ -36,6 +37,10 @@ const ViewDatalogger = () => {
     { header: 'CANAL', key: 'canal_nombre' },
     { header: 'VALOR', key: 'max' },
   ];
+
+  const channelsIcon =
+    ENV.ICONS.find(({ nameSection }) => nameSection === 'canales') ||
+    ENV.ICONS.find(({ nameSection }) => nameSection === "default");    
 
   useEffect(() => {
     const loadData = async () => {
@@ -101,7 +106,8 @@ const ViewDatalogger = () => {
             title="canales"
             channel={channel}
             datalogger={currentDatalogger}    
-            alarms={currentAlarmsByChannel}        
+            alarms={currentAlarmsByChannel}     
+            iconSrc = {`/icons/${channelsIcon.fileName}`}   
           />)
           })
         }

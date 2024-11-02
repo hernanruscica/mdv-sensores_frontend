@@ -1,48 +1,43 @@
-/************       CardCategoriesInfo component starts           *******/
-.card-datalogger-info{
+.card-channel-info{
   display: flex;
   flex-direction: column;   
   justify-content: space-between;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.5);    
-  max-width: 600px;
   width: 48%;
-  min-width: 320px;
- 
+  min-width: 375px;  
+}
+
+.card-channels-info__description{
+  display: flex;
+  flex-direction: row;  
+  width: 100%;
   
 }
-.card-datalogger-info__title{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 0;
-  font-family: "Montserrat", sans-serif;
-  font-size: 20px;
-  text-transform: uppercase;
-  background: linear-gradient(to bottom, #fbe2a2 0%, #f6b510 100%);
-}
-.card-datalogger-info__title__icon{
-  width: 20px;
-  height: auto;
-}
-.card-datalogger-info__title__text{
-  font-family: "Roboto", sans-serif;
-}
-.card-channel-info__description{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
 
+.card-channels-info__container{
+  width: 48%;
+  min-width: 150px;
 }
+
+.card-channels-info__container__image{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-channel-info__description__paragraph{
+  width: 48%;
+  min-width: 150px;
+}
+
 
 .apexcharts-canvas {
   width: 100% !important;
   padding: 1.4em 0;
 }
-.card-datalogger-info__container__image{
+.card-channel-info__container__image{
   width: 50%;
   height: 50%;
   max-height: 200px;
@@ -50,7 +45,7 @@
   object-position: center;
 }
 
-.card-datalogger-info__description{
+.card-channel-info__description{
   min-height: 200px;
   background-color: #EDEFF0;
   display: flex;
@@ -62,7 +57,7 @@
   color: #362702;
 }
 
-.card-datalogger-info__description__paragraph{
+.card-channel-info__description__paragraph{
   display: flex;
   flex-direction: column;    
   justify-content: space-around;
@@ -70,13 +65,13 @@
   text-align: center;
 }
 
-.card-datalogger-info__graphic_container{
+.card-channel-info__graphic_container{
   display: flex;
   flex-direction: column;
   padding: 1.4em 0;
 }
 
-.card-datalogger-info__graphic_container__paragraph{
+.card-channel-info__graphic_container__paragraph{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -84,7 +79,7 @@
   gap: 1em;  
 }
 
-.card-datalogger-info__btn{
+/* .card-channel-info__btn{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -94,37 +89,37 @@
   background-color: #F6B510;
 }
 
-.card-datalogger-info__btn:hover{
+.card-channel-info__btn:hover{
   background-color: #d39b0e;
 }
 
-.card-datalogger-info__btn{
+.card-channel-info__btn{
   text-decoration: none;
 }
 
-.card-datalogger-info__btn__img{
+.card-channel-info__btn__img{
   width: 25px;
   height: auto;
 }
 
-.card-datalogger-info__btn__text{
+.card-channel-info__btn__text{
   text-transform: uppercase;
   font-size: 20px;
   font-weight: 700;
   color: #FFF;
 }
 
-.card-datalogger-info__graphic_container__btn{
+.card-channel-info__graphic_container__btn{
   font-size: 1em;
     text-decoration: none;
     text-transform: capitalize;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: 1px;
     color: #362702;
     background-color: #F6B510;
-    padding: 6px 12px;
+    padding: 6px;
     border-radius: 20px;
     display: inline-block;
     cursor: pointer;
-}
+} */
 /************       CardCategoriesInfo component ends            *******/

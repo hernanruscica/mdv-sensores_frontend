@@ -1,27 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import { ENV } from "../../context/env";
 import "./CardDataloggerInfo.css";
 import { CardBtnSmall } from "../CardBtnSmall/CardBtnSmall";
+import CardTitle from "../cardsCommon/cardTitle/cardTitle";
+import CardList from "../cardsCommon/cardList/CardList";
+import CardLinkButton from "../cardsCommon/cardLinkButton/CardLinkButton";
 
 export const CardDataloggerInfo = (props) => {    
-  const { title, name, id, location, channels, alarms } = props;
-  const currentPageIcon =
-    ENV.ICONS.find(({ nameSection }) => nameSection === title) ||
-    ENV.ICONS.find(({ nameSection }) => nameSection === "default");
+  const { name, id, location, channels, alarms, iconSrc } = props;
 
-    //console.log(alarms);
-  
   return (
-    <div className="card-datalogger-info">
-      <div className="card-datalogger-info__title">
-        <img
-          src={`${ENV.URL}/icons/${currentPageIcon.fileName}`}
-          alt="icono de la categoria"
-          className="card-datalogger-info__title__icon"
-        />
-        <span className="card-datalogger-info__title__text">{name}</span>
-      </div>
+    <div className="card-datalogger-info">      
+      <CardTitle 
+        iconSrc={iconSrc}
+        text={name}
+      />
       <div className="card-datalogger-info__description">
         <p className="card-datalogger-info__description__paragraph">
           <span>Instalado en :</span>
@@ -32,47 +24,29 @@ export const CardDataloggerInfo = (props) => {
           />
         </p>
         <p className="card-datalogger-info__description__paragraph">
-          <span>Canales conectados :</span>
-          {
-          (channels.length > 0) 
-          ? channels.map((channel) => (
-              <CardBtnSmall
-                key={`channel-${channel.canal_id}`}
-                title={channel.canal_nombre} ///panel/dataloggers/:id/canales/:id
-                url={`${ENV.URL}/panel/dataloggers/${id}/canales/${channel.canal_id}`}
-              />
-          ))
-          : (<span>No tiene</span>)}
-        </p>        
-        
+          <span>Canales conectados :</span>          
+          <CardList 
+            items={channels}
+            getKey={(channel) => `channel-${channel.canal_id}`}
+            getTitle={(channel => channel.canal_nombre)}
+            getUrl={channel => `/panel/dataloggers/${id}/canales/${channel.canal_id}`}
+            emptyMessage={'No tiene'}
+          />
+        </p>   
         <p className="card-datalogger-info__description__paragraph">
           <span>Alarmas vigentes :</span>
-          {
-          (alarms.length > 0) 
-          ? alarms.map((alarm) => (
-              <CardBtnSmall
-                key={`alarm-${alarm.id}`}
-                title={alarm.nombre}
-                url={`${ENV.URL}/panel/dataloggers/${alarm.datalogger_id}/canales/${alarm.canal_id}/alarmas/${alarm.id}`}
-              />
-            ))
-          : (<span> No tiene.</span>)  
-        }
+          <CardList
+            items={alarms}
+            getKey={(alarm) => `alarm-${alarm.id}`}
+            getTitle={(alarm) => alarm.nombre}
+            getUrl={(alarm) => `/panel/dataloggers/${alarm.datalogger_id}/canales/${alarm.canal_id}/alarmas/${alarm.id}`}
+            emptyMessage="No tiene"
+          />
         </p>
-        
-
       </div>
-      <Link
-        to={`${ENV.URL}/panel/dataloggers/${id}`}
-        className="card-datalogger-info__btn"
-      >
-        <img
-          src={`${ENV.URL}/icons/eye-regular-white.svg`}
-          alt="icono de la ver categoria"
-          className="card-datalogger-info__btn__img"
-        />
-        <span className="card-datalogger-info__btn__text">Ver todo</span>
-      </Link>
+      <CardLinkButton 
+        url={`${ENV.URL}/panel/dataloggers/${id}`}
+      />      
     </div>
   );
 };

@@ -46,9 +46,7 @@ const DigitalPorcentageOn = (props) => {
             setAvgValue(avg);
 
             const failsRegisters = data.filter(element => element.tiempo_total >= 900);
-            // console.log(failsRegisters[0].fecha);
-            // console.log(new Date(failsRegisters[0].fecha).getTime())
-
+            
             const failsRegisterArray = failsRegisters.map((register) => {
                 return {
                             x: new Date(register.fecha).getTime(), // Línea de fecha de corte
@@ -143,7 +141,7 @@ const DigitalPorcentageOn = (props) => {
 
     return (
         <>
-            <p className="card-datalogger-info__graphic_container__paragraph">
+            <p className="card-channel-info__graphic_container__paragraph">
             {`Grafico del canal "${currentChannelName}". Cada punto del grafico integra los valores de las lecturas de los ultimos ${currentChannelTimeProm} minutos.`}
             </p>
             <Chart 
@@ -153,56 +151,56 @@ const DigitalPorcentageOn = (props) => {
                 type="line"
                 height={300}
             />            
-            <p className="card-datalogger-info__graphic_container__paragraph">
+            <p className="card-channel-info__graphic_container__paragraph">
                 <strong>Ver últimas: </strong> 
                 <button 
                     onClick={handlerClickBtnZoom}
                     data-hours="1"
-                    className={`card-datalogger-info__graphic_container__btn ${hoursBackView === 1 ? 'active' : ''}`}>
-                    1 Hora
+                    className={`card-channel-info__graphic_container__btn ${hoursBackView === 1 ? 'active' : ''}`}>
+                    1 Hr
                 </button>
                 <button 
                     onClick={handlerClickBtnZoom}
                     data-hours="12"
-                    className={`card-datalogger-info__graphic_container__btn ${hoursBackView === 12 ? 'active' : ''}`}>
-                    12 Horas
+                    className={`card-channel-info__graphic_container__btn ${hoursBackView === 12 ? 'active' : ''}`}>
+                    12 Hrs
                 </button>
                 <button 
                     onClick={handlerClickBtnZoom}
                     data-hours="24"
-                    className={`card-datalogger-info__graphic_container__btn ${hoursBackView === 24 ? 'active' : ''}`}>
-                    24 Horas
+                    className={`card-channel-info__graphic_container__btn ${hoursBackView === 24 ? 'active' : ''}`}>
+                    24 Hrs
                 </button>
                 <button 
                     onClick={handlerClickBtnZoom}
                     data-hours="48"
-                    className={`card-datalogger-info__graphic_container__btn ${hoursBackView === 48 ? 'active' : ''}`}>
+                    className={`card-channel-info__graphic_container__btn ${hoursBackView === 48 ? 'active' : ''}`}>
                     2 Días
                 </button>
                 <button 
                     onClick={handlerClickBtnZoom}
                     data-hours="72"
-                    className={`card-datalogger-info__graphic_container__btn ${hoursBackView === 72 ? 'active' : ''}`}>
+                    className={`card-channel-info__graphic_container__btn ${hoursBackView === 72 ? 'active' : ''}`}>
                     3 Días
                 </button>
                 <button 
                     onClick={handlerClickBtnZoom}
                     data-hours="96"
-                    className={`card-datalogger-info__graphic_container__btn ${hoursBackView === 96 ? 'active' : ''}`}>
+                    className={`card-channel-info__graphic_container__btn ${hoursBackView === 96 ? 'active' : ''}`}>
                     4 Días
                 </button>
                 <button 
                     onClick={handlerClickBtnZoom}
                     data-hours="120"
-                    className={`card-datalogger-info__graphic_container__btn ${hoursBackView === 120 ? 'active' : ''}`}>
+                    className={`card-channel-info__graphic_container__btn ${hoursBackView === 120 ? 'active' : ''}`}>
                     5 Días
                 </button>    
             </p>
-            <p className="card-datalogger-info__graphic_container__paragraph">
+            <p className="card-channel-info__graphic_container__paragraph">
                 <span><strong>Máximo: </strong> {`${maxYValue}%`}</span>
                 <span><strong>Promedio: </strong> {`${avgValue}%`}</span>
                 <span><strong>Mínimo: </strong> {`${minYValue}%`}</span>
-                <span>{` de las ultimas ${hoursBackView} horas`}</span>
+                <span>{` de las ultimas ${hoursBackView.toString()} horas`}</span>
             </p>
         </>
     );

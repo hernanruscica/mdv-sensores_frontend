@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { ENV } from "../../context/env";
+import CardLinkButton from "../cardsCommon/cardLinkButton/CardLinkButton";
+
 import "./CardCategoriesInfo.css";
 import { CardBtnSmall } from "../CardBtnSmall/CardBtnSmall";
 
@@ -8,15 +8,13 @@ import { CardBtnSmall } from "../CardBtnSmall/CardBtnSmall";
 
 
 export const CardCategoriesInfo = (props) => {    
-  const { title, itemsQty } = props;
-  const currentPageIcon =
-    ENV.ICONS.find(({ nameSection }) => nameSection === title) ||
-    ENV.ICONS.find(({ nameSection }) => nameSection === "default");
+  const { title, itemsQty, iconSrc } = props;
+
   return (
     <div className="card-categories-info">
       <div className="card-categories-info__title">
         <img
-          src={`${ENV.URL}/icons/${currentPageIcon.fileName}`}
+          src={iconSrc}
           alt="icono de la categoria"
           className="card-categories-info__title__icon"
         />
@@ -34,14 +32,9 @@ export const CardCategoriesInfo = (props) => {
             url={`${title}/agregar`} 
         />
       </div>
-      <Link to={`${ENV.URL}/panel/${title}`} className="card-categories-info__btn">
-        <img
-          src={`${ENV.URL}/icons/eye-regular-white.svg`}
-          alt="icono de la ver categoria"
-          className="card-categories-info__btn__img"
-        />
-        <span className="card-categories-info__btn__text">Ver todo</span>
-      </Link>
+      <CardLinkButton 
+        url={`/panel/${title}`}
+      />     
     </div>
   );
 };

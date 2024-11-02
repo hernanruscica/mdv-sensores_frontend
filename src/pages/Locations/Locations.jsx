@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-//import { Link } from "react-router-dom";
+import { ENV } from "../../context/env.js";
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useDashboard } from '../../context/DashboardContext.jsx';
 import { Title1 } from "../../components/Title1/Title1.jsx";
@@ -12,12 +12,13 @@ import CardLocationInfo from '../../components/CardLocationInfo/CardLocationInfo
 
 const Locations = () => {
   const { user } = useAuth();
-  const {locations, loadLocations, dataloggers, loadDataloggers} = useDashboard();
+  const {locations, loadLocations, dataloggers} = useDashboard();
+  const title = 'Ubicaciones';      
 
-  const title = 'Ubicaciones';    
+  const currentPageIcon =
+  ENV.ICONS.find(({ nameSection }) => nameSection === 'ubicaciones') ||
+  ENV.ICONS.find(({ nameSection }) => nameSection === "default");
 
-  
- // Cargar las locations al actualizar la pagina
  useEffect(() => {
   loadLocations(user.id);  
 }, [user.id]); 
@@ -36,6 +37,7 @@ const Locations = () => {
             key={location.ubicaciones_id}
             locationData={location}             
             dataloggers={dataloggers}
+            iconSrc={`/icons/${currentPageIcon.fileName}`}
           />
         ))}
       </section>

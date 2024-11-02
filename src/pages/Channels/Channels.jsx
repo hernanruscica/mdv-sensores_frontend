@@ -9,6 +9,7 @@ import CardChannelInfo from "../../components/CardChannelInfo/CardChannelInfo.js
 
 import { useDashboard } from '../../context/DashboardContext';
 import { useLocation } from 'react-router-dom';
+import { ENV } from "../../context/env.js";
 
 
 
@@ -28,6 +29,10 @@ const Channels = () => {
   const currentDatalogger = dataloggers.filter(datalogger => datalogger.id == dataloggerId);
   const currentChannels = channels.filter(channel => channel.datalogger_id == dataloggerId)
   const currentAlarms = alarms.filter(alarm => alarm.datalogger_id == dataloggerId);
+
+  const currentPageIcon =
+  ENV.ICONS.find(({ nameSection }) => nameSection === 'canales') ||
+  ENV.ICONS.find(({ nameSection }) => nameSection === "default");    
 
 
 
@@ -56,7 +61,8 @@ const Channels = () => {
             title="canales"
             channel={channel}
             datalogger={currentDatalogger[0]}    
-            alarms={currentAlarmsByChannel}        
+            alarms={currentAlarmsByChannel}
+            iconSrc={`/icons/${currentPageIcon.fileName}`}        
           />)
           })
         }

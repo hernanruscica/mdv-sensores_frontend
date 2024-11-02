@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from '../../context/AuthContext';
 import { Title1 } from "../../components/Title1/Title1";
 import { Title2 } from "../../components/Title2/Title2";
@@ -7,18 +7,16 @@ import { useParams } from "react-router-dom";
 import { useDashboard } from "../../context/DashboardContext";
 import CardChannelDetails from '../../components/CardChannelDetails/CardChannelDetails';
 import createApiClient from '../../api/apiClient';
-//import DigitalPorcentageOn from "../../components/ApexCharts/DigitalPorcentageOn/DigitalPorcentageOn";
 import ButtonsBar from '../../components/ButtonsBar/ButtonsBar.jsx';
 import CardAlarmInfo from "../../components/CardAlarmInfo/CardAlarmInfo.jsx";
 import CardChannelGraphic from "../../components/CardChannelGraphic/CardChannelGraphic.jsx";
+import { ENV } from "../../context/env.js";
 
-
-//import "./viewchannel.css";
 
 const ViewChannel = () => {
   const apiClient = createApiClient(); 
   const { user } = useAuth();
-  const { dataloggers, channels, alarms, loadChannels, loadAlarms } = useDashboard();
+  const { dataloggers, alarms, loadChannels, loadAlarms } = useDashboard();
   const { id, channelId} = useParams();
   const [ loading, setLoading] = useState(true);
   const [ loading2, setLoading2] = useState(true);
@@ -28,6 +26,10 @@ const ViewChannel = () => {
   const [ dataChannel, setDataChannel] = useState([]);
 
   const hoursBackView = 120;
+
+  const alarmIcon =
+  ENV.ICONS.find(({ nameSection }) => nameSection === 'alarmas') ||
+  ENV.ICONS.find(({ nameSection }) => nameSection === "default");
 
   useEffect(() => {
     const loadData = async () =>{
@@ -107,7 +109,8 @@ const ViewChannel = () => {
           id={alarm.id}
           alarm={alarm}
           channel={currentChannel}
-          lastReadData={dataChannel[dataChannel.length-1]}          
+          lastReadData={dataChannel[dataChannel.length-1]}   
+          iconSrc={`/icons/${alarmIcon.fileName}`}       
         />
       ))
       :

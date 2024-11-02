@@ -1,17 +1,18 @@
-.card-datalogger-info__graphic_container__btn {
+.card-channel-info__graphic_container__btn {
     padding: 5px 10px;
     margin: 0 5px;
     border: none;
-    background-color: lightgray;
+    background-color:#F6B510;
     cursor: pointer;
+    border-radius: 10px;
 }
 
-.card-datalogger-info__graphic_container__btn.active {
+.card-channel-info__graphic_container__btn.active {
     background-color: #815f09;
     color: white;
 }
 
-.card-datalogger-info__graphic_container__paragraph{
+.card-channel-info__graphic_container__paragraph{
     display: flex;
     flex-direction: row;   
     flex-wrap: wrap;     

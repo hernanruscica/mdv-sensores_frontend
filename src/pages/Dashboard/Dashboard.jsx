@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useDashboard } from "../../context/DashboardContext.jsx";
 import { Title1 } from "../../components/Title1/Title1";
-
+import { ENV } from "../../context/env";
 import Breadcumb from "../../components/Breadcumb/Breadcumb";
 import "./Dashboard.css";
 
@@ -10,7 +10,11 @@ import CardCategoriesInfo from "../../components/CardCategoriesInfo/CardCategori
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const { locations, loadLocations, dataloggers, loadDataloggers, users, loadUsers, channels, loadChannels, alarms, loadAlarms } = useDashboard();  
+  const { locations, loadLocations, dataloggers, loadDataloggers, users, loadUsers,  loadChannels,  loadAlarms } = useDashboard();  
+
+  const locationsIcon =   ENV.ICONS.find(({ nameSection }) => nameSection === 'ubicaciones') ||   ENV.ICONS.find(({ nameSection }) => nameSection === "default");
+  const usersIcon =   ENV.ICONS.find(({ nameSection }) => nameSection === 'usuarios') ||   ENV.ICONS.find(({ nameSection }) => nameSection === "default");
+  const dataloggersIcon =   ENV.ICONS.find(({ nameSection }) => nameSection === 'dataloggers') ||   ENV.ICONS.find(({ nameSection }) => nameSection === "default");
 
   // Cargar las locations al actualizar la pagina
   useEffect(() => {
@@ -23,11 +27,8 @@ const Dashboard = () => {
       //console.log(alarms);
       }
       loadData();
-  }, [user.id]); 
-
+  }, [user.id]);  
   
-
-
   return (
     <>
       <Title1 
@@ -36,9 +37,9 @@ const Dashboard = () => {
       />
       <Breadcumb />      
       <section className="cards-container">
-        <CardCategoriesInfo key="locations" title="ubicaciones" itemsQty={locations?.length || 0} />
-        <CardCategoriesInfo key="users" title="usuarios" itemsQty={users?.length || 0}/>
-        <CardCategoriesInfo key="dataloggers" title="dataloggers" itemsQty={dataloggers?.length || 0}/>
+        <CardCategoriesInfo key="locations" title="ubicaciones" itemsQty={locations?.length || 0} iconSrc={`/icons/${locationsIcon.fileName}`} />
+        <CardCategoriesInfo key="users" title="usuarios" itemsQty={users?.length || 0} iconSrc={`/icons/${usersIcon.fileName}`}/>
+        <CardCategoriesInfo key="dataloggers" title="dataloggers" itemsQty={dataloggers?.length || 0} iconSrc={`/icons/${dataloggersIcon.fileName}`}/>
       </section>      
     </>
   );
