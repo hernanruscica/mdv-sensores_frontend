@@ -8,7 +8,7 @@ import createApiClient from '../../api/apiClient';
 import DigitalPorcentageOn from "../ApexCharts/DigitalPorcentageOn/DigitalPorcentageOn";
 import AnalogData from "../ApexCharts/AnalogData/AnalogData";
 import {formatDate} from '../../utils/Dates/Dates';
-import CardTitle from "../CardsCommon/CardTitle/cardTitle.jsx";
+import CardTitle from "../CardsCommon/CardTitle/CardTitle.jsx";
 import CardLinkButton from "../CardsCommon/CardLinkButton/CardLinkButton.jsx";
 
 export const CardChannelInfo = (props) => {   

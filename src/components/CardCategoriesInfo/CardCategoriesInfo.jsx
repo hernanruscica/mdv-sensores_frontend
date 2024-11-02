@@ -3,7 +3,7 @@ import CardLinkButton from "../CardsCommon/CardLinkButton/CardLinkButton.jsx";
 
 import "./CardCategoriesInfo.css";
 import { CardBtnSmall } from "../CardBtnSmall/CardBtnSmall";
-
+import CardTitle from "../CardsCommon/CardTitle/CardTitle.jsx";
 
 
 
@@ -11,15 +11,11 @@ export const CardCategoriesInfo = (props) => {
   const { title, itemsQty, iconSrc } = props;
 
   return (
-    <div className="card-categories-info">
-      <div className="card-categories-info__title">
-        <img
-          src={iconSrc}
-          alt="icono de la categoria"
-          className="card-categories-info__title__icon"
-        />
-        <span className="card-categories-info__title__text">{title}</span>
-      </div>
+    <div className="card-categories-info">      
+      <CardTitle 
+        iconSrc={iconSrc}
+        text={title}
+      />
       <div className="card-categories-info__description">
         <p className="card-categories-info__description__paragraph">
           <strong>

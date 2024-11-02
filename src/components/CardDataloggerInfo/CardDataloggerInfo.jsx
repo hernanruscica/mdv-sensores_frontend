@@ -1,7 +1,7 @@
 import { ENV } from "../../context/env";
 import "./CardDataloggerInfo.css";
 import { CardBtnSmall } from "../CardBtnSmall/CardBtnSmall";
-import CardTitle from "../CardsCommon/CardTitle/cardTitle.jsx";
+import CardTitle from "../CardsCommon/CardTitle/CardTitle.jsx";
 import CardList from "../CardsCommon/CardList/CardList.jsx";
 import CardLinkButton from "../CardsCommon/CardLinkButton/CardLinkButton.jsx";
 
