@@ -1,9 +1,9 @@
 import { ENV } from "../../context/env";
 import "./CardDataloggerInfo.css";
 import { CardBtnSmall } from "../CardBtnSmall/CardBtnSmall";
-import CardTitle from "../cardsCommon/cardTitle/CardTitle.jsx";
-import CardList from "../cardsCommon/cardList/CardList.jsx";
-import CardLinkButton from "../cardsCommon/cardLinkButton/CardLinkButton.jsx";
+import CardTitle from "../CardsCommon/cardTitle/CardTitle.jsx";
+import CardList from "../CardsCommon/cardList/CardList.jsx";
+import CardLinkButton from "../CardsCommon/cardLinkButton/CardLinkButton.jsx";
 
 export const CardDataloggerInfo = (props) => {    
   const { name, id, location, channels, alarms, iconSrc } = props;
