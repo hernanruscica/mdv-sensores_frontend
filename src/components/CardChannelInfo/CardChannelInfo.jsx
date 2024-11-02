@@ -8,8 +8,9 @@ import createApiClient from '../../api/apiClient';
 import DigitalPorcentageOn from "../ApexCharts/DigitalPorcentageOn/DigitalPorcentageOn";
 import AnalogData from "../ApexCharts/AnalogData/AnalogData";
 import {formatDate} from '../../utils/Dates/Dates';
-import CardTitle from "../CardsCommon/CardTitle/CardTitle";
-import CardLinkButton from "../CardsCommon/CardLinkButton/CardLinkButton";
+
+import CardTitle from "../CardTitle/CardTitle";
+import CardLinkButton from "../CardLinkButton/CardLinkButton";
 
 export const CardChannelInfo = (props) => {   
   const apiClient = createApiClient(); 

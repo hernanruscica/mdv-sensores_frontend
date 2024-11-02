@@ -1,5 +1,5 @@
 
-import { CardBtnSmall } from "../../CardBtnSmall/CardBtnSmall";
+import { CardBtnSmall } from "../CardBtnSmall/CardBtnSmall";
 
 const CardList = ({ items, getKey, getTitle, getUrl, emptyMessage }) => (
   <>
