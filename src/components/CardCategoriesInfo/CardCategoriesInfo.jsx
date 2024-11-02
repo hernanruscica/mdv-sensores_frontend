@@ -1,9 +1,9 @@
 import React from "react";
-import CardLinkButton from "../CardsCommon/CardLinkButton/CardLinkButton.jsx";
 
 import "./CardCategoriesInfo.css";
 import { CardBtnSmall } from "../CardBtnSmall/CardBtnSmall";
-import CardTitle from "../CardsCommon/CardTitle/CardTitle.jsx";
+import CardTitle from "../CardsCommon/CardTitle/CardTitle";
+import CardLinkButton from "../CardsCommon/CardLinkButton/CardLinkButton";
 
 
 
