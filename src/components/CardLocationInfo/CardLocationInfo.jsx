@@ -1,8 +1,8 @@
 import "./CardLocationInfo.css";
 import { CardBtnSmall } from "../CardBtnSmall/CardBtnSmall";
-import CardTitle from "../cardsCommon/cardTitle/cardTitle";
-import CardList from "../cardsCommon/cardList/CardList";
-import CardLinkButton from "../cardsCommon/cardLinkButton/CardLinkButton";
+import CardTitle from "../CardsCommon/cardTitle/cardTitle";
+import CardList from "../CardsCommon/cardList/CardList";
+import CardLinkButton from "../CardsCommon/cardLinkButton/CardLinkButton";
 
 
 

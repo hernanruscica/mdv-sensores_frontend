@@ -1,5 +1,5 @@
 import React from "react";
-import CardLinkButton from "../cardsCommon/cardLinkButton/CardLinkButton";
+import CardLinkButton from "../CardsCommon/cardLinkButton/CardLinkButton.jsx";
 
 import "./CardCategoriesInfo.css";
 import { CardBtnSmall } from "../CardBtnSmall/CardBtnSmall";

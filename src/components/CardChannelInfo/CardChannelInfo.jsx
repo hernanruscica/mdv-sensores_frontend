@@ -9,7 +9,7 @@ import DigitalPorcentageOn from "../ApexCharts/DigitalPorcentageOn/DigitalPorcen
 import AnalogData from "../ApexCharts/AnalogData/AnalogData";
 import {formatDate} from '../../utils/Dates/Dates';
 import CardTitle from "../cardsCommon/cardTitle/cardTitle";
-import CardLinkButton from "../cardsCommon/cardLinkButton/CardLinkButton";
+import CardLinkButton from "../CardsCommon/cardLinkButton/CardLinkButton.jsx";
 
 export const CardChannelInfo = (props) => {   
   const apiClient = createApiClient(); 

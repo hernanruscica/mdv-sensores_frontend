@@ -4,8 +4,8 @@ import "./CardAlarmInfo.css";
 
 import Gauge from "../Gauge/Gauge.jsx";
 import { formatDate } from "../../utils/Dates/Dates.js";
-import CardTitle from "../cardsCommon/cardTitle/cardTitle.jsx";
-import CardLinkButton from "../cardsCommon/cardLinkButton/CardLinkButton.jsx";
+import CardTitle from "../CardsCommon/cardTitle/cardTitle.jsx";
+import CardLinkButton from "../CardsCommon/cardLinkButton/CardLinkButton.jsx";
 
 
 export const CardAlarmInfo = (props) => {    
