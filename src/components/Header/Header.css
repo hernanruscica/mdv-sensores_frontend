@@ -1,17 +1,28 @@
 header{
     width: 100%;
-    height: 120px;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     background-color: #fff;
-    box-shadow:  0px 4px 4px 0px rgba(0,0,0,0.25);;
+    box-shadow:  0px 4px 4px 0px rgba(0,0,0,0.25);
+    position: sticky;
+    top: 0;
+    left: 0
 }
 
 .header-img{
-    width: 100px;
+    width: 70px;
     height: auto;
+}
+.header-icon{
+    width: 25px;
+    height: auto;
+}
+
+.header-btn-icon{    
+    display: none;
 }
 
 .header-link{
@@ -26,14 +37,39 @@ header{
 .navbar{
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    gap: 4em;
+    gap: 2em;
+    position: static;
 }
 
+/*Mobile version*/
 @media (max-width: 600px) {
     .navbar{
-        display: none;
+        position: fixed;
+        top: 0px;
+        left: 100vw;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 4em;
+        padding: 2em;
+        background-color: rgba(245,245,245,0.95);
+        transition: left .5s ease-out;
+    }    
+
+    .navbar-show{
+        left: 0vw;
+        transition: left .5s ease-out;
+    }
+
+    .header-btn-icon{
+        background-color: inherit;
+        display: inline-block;
+        align-self: flex-end;
     }    
 }
 
@@ -65,3 +101,6 @@ header{
 .navbar-btn--danger{
     background-color: #DE6528;
 }
+
+
+/* agregados por chatgpt*/

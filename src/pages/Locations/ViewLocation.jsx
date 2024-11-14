@@ -49,7 +49,7 @@ const ViewLocation = () => {
     return <div>Cargando...</div>;
   }    
 
-  console.log(currentLocation)
+  //console.log(currentLocation)
   
   const dataloggerIds = dataloggersByLocation.map(datalogger => datalogger.id);  
   const currentAlarms = alarms.filter(alarm => dataloggerIds.includes(alarm.datalogger_id)); 
