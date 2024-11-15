@@ -2,6 +2,8 @@
 
 .Breadcumb-container{
     width: 100%;
+    border-bottom: 1px solid #1a1a1a;
+    
 }
 
 .breadcrumb{
@@ -19,6 +21,7 @@
     list-style-type: none;
     display: flex;
     align-items: center;
+    text-transform: uppercase;
     gap: 10px;    
     height: 100%;
 }
@@ -41,12 +44,35 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    text-transform: uppercase;
     gap: 5px;
     min-width: 100px;
     text-decoration: none;
     padding: 16px 8px;
+    color: #1a1a1a;   
+        
 }
 .breadcumb-icon{
     width: 25px;
     height: auto;
+}
+
+
+/*Mobile version*/
+@media (max-width: 600px) {
+    .breadcumb-item{
+        padding: 0.4em;
+    }
+    .breadcumb-btn{
+        border: 1px solid #757575;
+        border-radius: 20px;
+        padding: 8px;
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .breadcumb-separator-icon{
+        display: none;
+    }
+    .breadcumb-item-current{
+        
+    }
 }

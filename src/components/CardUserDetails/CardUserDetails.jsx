@@ -43,7 +43,7 @@ const CardUserDetails = (props) => {
               ("no hay alarmas")       
               }
            </p>
-           <div className="card-location-details__btn-container">
+           <div className="card-user-details__btn-container">
            {/* text, icon, type, url, onClick */}
              <BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/usuarios/${user.id}/edicion`}/>
              <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' type="danger"/>

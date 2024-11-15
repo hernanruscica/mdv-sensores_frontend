@@ -15,28 +15,28 @@ const CardLocationDetails = (props) => {
 
     //console.log(dataloggers);
   return (    
-    <div className="card-location-details">
-      <div className="card-location-details__container">
+    <div className="card_location_details">
+      <div className="card_location_details__container">
         <img src={`${ENV.IMAGES_URL}/${location.foto}`} 
           className='location-details__container__image'
           alt={`Foto de ${location.nombre}`}
           title={`Foto de ${location.nombre}`} 
         />
       </div>
-      <div className="card-location-details__info">
-        <h2 className="card-location-details__info__title">        
+      <div className="card_location_details__info">
+        <h2 className="card_location_details__info__title">        
           {location.nombre}
         </h2>
-        <p className="card-location-details__paragraph">
+        <p className="card_location_details__paragraph">
           {location.descripcion}
         </p>
-        <p className="card-location-details__paragraph">
+        <p className="card_location_details__paragraph">
         <strong>Direción: </strong>{`${location.calle} ${location.numero}`}
         </p>
-        <p className="card-location-details__paragraph">
+        <p className="card_location_details__paragraph">
         <strong>Telefono: </strong>{location.telefono} - <strong>Correo: </strong> {location.email}
         </p>
-        <p className="card-location-details__paragraph">
+        <p className="card_location_details__paragraph">
           <strong>Dataloggers conectados : </strong>
           {dataloggers.map((datalogger) => (
             <CardBtnSmall
@@ -46,16 +46,16 @@ const CardLocationDetails = (props) => {
             />
           ))}
         </p>
-        <p className="card-location-details__paragraph">
+        <p className="card_location_details__paragraph">
           {location.ubicaciones_descripcion}
         </p>
-        <p className="card-location-details__paragraph">
+        <p className="card_location_details__paragraph">
           <strong>Creada el </strong>{formatDate(location.fecha_creacion, 'short')}
         </p>
-        <p className="card-location-details__paragraph">
+        <p className="card_location_details__paragraph">
           <strong>canales conectados : </strong>{analogChannelsByLocationQty || 0} analogicos y {digitalChannelsByLocationQty || 0}  digitales
         </p>
-        <p className="card-location-details__paragraph">
+        <p className="card_location_details__paragraph">
             <strong>Alarmas programadas : </strong>          
              {
              (alarms.length > 0) ?
@@ -67,7 +67,7 @@ const CardLocationDetails = (props) => {
              ("no hay alarmas")       
              }
           </p>
-          <div className="card-locatin-details__btn-container">
+          <div className="card_location_details__btn-container">
           {/* text, icon, type, url, onClick */}
             <BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/ubicaciones/${id}/edicion`}/>
             <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' type="danger"/>

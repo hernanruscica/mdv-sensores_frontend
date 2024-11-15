@@ -27,7 +27,7 @@
   }
   
   .entity-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #e0e0e0;
   }
   
   .entity-table tbody tr:nth-child(odd) {
@@ -36,7 +36,7 @@
   
   .entity-table td {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    /* border-bottom: 1px solid #ddd; */
   }
   
   .view-button {
@@ -51,3 +51,26 @@
   .view-button:hover {
     background-color: #FF8C00;
   }
+
+  /*Mobile version*/
+  @media (max-width: 600px) {
+    .entity-table thead{
+      display: none;
+    }
+    .entity-table tr{
+      display: flex;
+      flex-direction: row;      
+      flex-wrap: wrap;
+      align-items: center;          
+      padding: 1.4em 0;
+      justify-content: flex-start;    
+
+    }
+    
+    .entity-table td {      
+      min-width: 40%;
+      width: fit-content;
+      padding: 0.25em;
+    }    
+    
+}

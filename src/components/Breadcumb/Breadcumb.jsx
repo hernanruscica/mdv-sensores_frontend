@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import './Breadcumb.css';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {ENV} from '../../context/env.js';
-//import { useAuth } from '../../context/AuthContext.jsx';
 import { useDashboard } from '../../context/DashboardContext.jsx';
 
 const Breadcumb = () => {
@@ -67,14 +66,14 @@ const Breadcumb = () => {
       };
       
       const LeftArrow = () => (
-        <button onClick={handleBack} className='breadcumb-btn'>
+        <a href="#" onClick={handleBack} className='breadcumb-btn'>
             <img 
                 src={`${ENV.URL}/icons/arrow-left-solid.svg`} 
                 alt="left arrow icon"  
                 className='breadcumb-icon'         
                 />
             <span>Atras</span>
-        </button>        
+        </a>        
     );
 
     /*

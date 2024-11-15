@@ -7,6 +7,10 @@
     width: 100%;
 }
 .title1-img{
-    width: 40px;
+    width: 30px;
     height: auto;
+}
+
+.title1-text{
+    font-size: 1.4em;
 }

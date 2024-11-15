@@ -5,12 +5,16 @@
     gap: 20px;
     padding: 0 30px;
     width: 100%;
+    margin: 2em 0;
 }
 .title2-img{
-    width: 34px;
+    width: 24px;
     height: auto;
 }
 h2{
     text-transform: capitalize;
     
+}
+.title2-text{
+    font-size: 1.2em;
 }

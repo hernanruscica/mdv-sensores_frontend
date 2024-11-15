@@ -1,7 +1,9 @@
-.card-location-details{
+.card_location_details{
     display: flex;
-    width: 100%;
-    
+    flex-direction: row;
+    align-items: center;
+    width: 90%;    
+    max-width: 700px;
     background-color: #EDEFF0;
     border-radius: 10px;
     overflow: hidden;
@@ -9,7 +11,7 @@
     font-family: "Roboto", sans-serif;
   }
   
-  .card-location-details__container{
+  .card_location_details__container{
     width: 30%;    
   }
 
@@ -20,20 +22,20 @@
     object-position: center;
   }
   
-  .card-location-details__info{
+  .card_location_details__info{
     width: 70%;
     padding: 20px;
     display: flex;
     flex-direction: column;
   }
-  .card-location-details__info__title{
+  .card_location_details__info__title{
     font-family: "Montserrat", sans-serif;
     font-size: 24px;
     text-transform: uppercase;
     margin: 0.5em 0;
   }  
   
-  .card-locatin-details__btn-container{
+  .card_location_details__btn-container{
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -84,4 +86,14 @@
   
   .delete-button {
     background-color: #FF6347;
+  }
+
+
+  @media (max-width: 600px) {
+    .card_location_details{
+      flex-direction: column;
+    }
+    .card_location_details__info, .card_location_details__container{
+      width: 100%;
+    }
   }

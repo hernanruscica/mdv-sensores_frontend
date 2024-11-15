@@ -17,19 +17,19 @@ const CardChannelDetails = (props) => {
 
 
   return (    
-    <div className="card-location-details">
-      <div className="location-details__container">
+    <div className="card-channel-details">
+      <div className="channel-details__container">
         <img src={`${ENV.IMAGES_URL}/${channel.foto}`} 
-          className='location-details__container__image'
+          className='channel-details__container__image'
           alt={`Foto de ${channel.nombre}`}
           title={`Foto de ${channel.nombre}`} 
         />
       </div>
-      <div className="location-details__info">
-        <h2 className="card-location-details__info__title">        
+      <div className="channel-details__info">
+        <h2 className="channel-details__info__title">        
           {channel.nombre}
         </h2>
-        <p className="card-location-details__paragraph">
+        <p className="channel-details__paragraph">
           <strong>Pertenece a: </strong>
           <CardBtnSmall
             title={datalogger.nombre}
@@ -37,17 +37,17 @@ const CardChannelDetails = (props) => {
             url={`${ENV.URL}/panel/dataloggers/${datalogger.id}`}
           />          
         </p>
-        <p className="card-location-details__paragraph">
+        <p className="channel-details__paragraph">
           {channel.descripcion}
         </p>
-        <p className="card-location-details__paragraph">
+        <p className="channel-details__paragraph">
           {/* <strong>Creado el {formatDate(channel.fecha_creacion, 'short')}</strong><br/> */}
           <span>          
             Total horas de uso: <strong>{horas_uso}</strong> Hs.<br/> 
             Con datos desde <strong>{desde}</strong>                
           </span>
         </p>                      
-        <p className="card-location-details__paragraph">
+        <p className="channel-details__paragraph">
             <strong>Alarmas programadas : </strong>          
              {
              (alarms.length > 0) ?
@@ -59,7 +59,7 @@ const CardChannelDetails = (props) => {
              ("no hay alarmas")       
              }
           </p>
-          <div className="card-locatin-details__btn-container">
+          <div className="channel-details__btn-container">
           {/* text, icon, type, url, onClick */}
             <BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/dataloggers/${datalogger.id}/canales/${channel.id}/edicion`}/>
             <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' url={`panel/dataloggers/${datalogger.id}/canales/${channel.id}/eliminacion`}

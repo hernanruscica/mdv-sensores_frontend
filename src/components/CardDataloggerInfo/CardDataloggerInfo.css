@@ -8,7 +8,7 @@
     box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.5);    
     max-width: 360px;
     min-width: 320px;
-    
+    width: 90%;
 }
 .card-datalogger-info__title{
     display: flex;
