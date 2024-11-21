@@ -65,7 +65,7 @@ export const DashboardProvider = ({ children }) => {
   };
   //setAlarmsLocationLS   ///api/alarms/bylocation/34
   const loadAlarmsLocation = async (locationId) => {
-    try {
+    try {      
       const response = await apiClient.get(`/api/alarms/bylocation/${locationId}`);
       const responseAlarms = response.data.alarms?.filter(alarm => alarm.estado == 1) || []; 
       setAlarmsLocationLS(responseAlarms);      

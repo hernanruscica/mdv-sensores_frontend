@@ -14,28 +14,28 @@ const CardDataloggerDetails = (props) => {
 
 
   return (    
-    <div className="card-location-details">
-      <div className="location-details__container">
+    <div className="card-datalogger-details">
+      <div className="datalogger-details__container">
         <img src={`${ENV.IMAGES_URL}/${datalogger.foto}`} 
-          className='location-details__container__image'
+          className='datalogger-details__container__image'
           alt={`Foto de ${datalogger.nombre}`}
           title={`Foto de ${datalogger.nombre}`} 
         />
       </div>
-      <div className="location-details__info">
-        <h2 className="card-location-details__info__title">        
+      <div className="datalogger-details__info">
+        <h2 className="card-datalogger-details__info__title">        
           {datalogger.nombre}
         </h2>
-        <p className="card-location-details__paragraph">
+        <p className="card-datalogger-details__paragraph">
           {datalogger.descripcion}
         </p>
-        <p className="card-location-details__paragraph">
+        <p className="card-datalogger-details__paragraph">
           <strong>Creado el </strong>{formatDate(datalogger.fecha_creacion, 'short')}
         </p>              
-        <p className="card-location-details__paragraph">
+        <p className="card-datalogger-details__paragraph">
           <strong>canales conectados : </strong>{analogChannelsByLocationQty || 0} analogicos y {digitalChannelsByLocationQty || 0}  digitales
         </p>
-        <p className="card-location-details__paragraph">
+        <p className="card-datalogger-details__paragraph">
             <strong>Alarmas programadas : </strong>          
              {
              (alarms.length > 0) ?
@@ -47,7 +47,7 @@ const CardDataloggerDetails = (props) => {
              ("no hay alarmas")       
              }
           </p>
-          <div className="card-locatin-details__btn-container">
+          <div className="card-datalogger-details__btn-container">
           {/* text, icon, type, url, onClick */}
             <BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/dataloggers/${datalogger.id}/edicion`}/>
             <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' type="danger"/>

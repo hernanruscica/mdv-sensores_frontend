@@ -10,7 +10,7 @@ import createApiClient from '../../api/apiClient.js' ;
 import CardUserDetails from '../../components/CardUserDetails/CardUserDetails.jsx';
 import CardLocationInfo from "../../components/CardLocationInfo/CardLocationInfo.jsx";
 import ButtonsBar from '../../components/ButtonsBar/ButtonsBar.jsx';
-
+import { ENV } from "../../context/env.js";
 
 //import "./Dataloggers.css";
 
@@ -23,6 +23,8 @@ const ViewUser = () => {
   const [ currentUserLocations, setCurrentUserLocations] = useState([]);  
   const [ loading, setLoading] = useState(true);
   const apiClient = createApiClient();
+
+  const locationIcon =   ENV.ICONS.find(({ nameSection }) => nameSection === 'ubicaciones') ||   ENV.ICONS.find(({ nameSection }) => nameSection === "default");
 
   const loadCurrentUserData = async (userId) => {
     try{
@@ -83,6 +85,7 @@ const ViewUser = () => {
             key={location.ubicaciones_id}
             locationData={location}             
             dataloggers={dataloggers}
+            iconSrc={`/icons/${locationIcon.fileName}`}
           />
         ))}
       </section>

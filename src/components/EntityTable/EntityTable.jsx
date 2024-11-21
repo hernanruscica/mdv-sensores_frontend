@@ -4,7 +4,8 @@ import BtnCallToAction from '../BtnCallToAction/BtnCallToAction';
 import {formatDate} from '../../utils/Dates/Dates';
  
 const EntityTable = ({ data, columns, entityType }) => { 
-  //prepare data
+  
+  
   let preparedData = null;
   if (entityType == "alarmas_logs") {
     preparedData = data.map((item) => {

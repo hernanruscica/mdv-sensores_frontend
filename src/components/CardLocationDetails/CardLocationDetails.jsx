@@ -62,7 +62,7 @@ const CardLocationDetails = (props) => {
              (<CardBtnSmall
                title={`Ver ${alarms.length} alarmas`}
                key={`ver_alarmas_ubicacion_${id}`}
-               url={`${ENV.URL}/panel/alarmas/ubicaciones/${id}`}
+               url={`${ENV.URL}/panel/ubicaciones/${id}/alarmas`}
              />  ) :
              ("no hay alarmas")       
              }

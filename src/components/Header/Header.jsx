@@ -29,7 +29,7 @@ const Header = () => {
             <Link to={`${ENV.URL}/panel`} className="header-link"  onClick={menuBtnHandler}>
               PANEL DE CONTROL
             </Link>
-            <Link to={`${ENV.URL}/panel/alarmas`} className="header-link"  onClick={menuBtnHandler}>
+            <Link to={`${ENV.URL}/panel/usuarios/${user.id}/alarmas`} className="header-link"  onClick={menuBtnHandler}>
               ALARMAS
             </Link>
             <Link to={`${ENV.URL}/panel/usuarios/${user.id}`} className="header-link"  onClick={menuBtnHandler}>

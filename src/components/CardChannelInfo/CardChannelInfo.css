@@ -6,7 +6,7 @@
   overflow: hidden;
   box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.5);    
   width: 48%;
-  min-width: 375px;  
+  min-width: 340px;  
 }
 
 .card-channels-info__description{
@@ -79,47 +79,15 @@
   gap: 1em;  
 }
 
-/* .card-channel-info__btn{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 0;
-  background-color: #F6B510;
+ /*Mobile version*/
+ @media (max-width: 600px) {
+  .card-channel-info{
+    width: 90%;
+  }
+  .card-channels-info__description{
+    flex-direction: column;
+  } 
+  .card-channels-info__container, .card-channel-info__description__paragraph{
+    width: 100%;
+ }
 }
-
-.card-channel-info__btn:hover{
-  background-color: #d39b0e;
-}
-
-.card-channel-info__btn{
-  text-decoration: none;
-}
-
-.card-channel-info__btn__img{
-  width: 25px;
-  height: auto;
-}
-
-.card-channel-info__btn__text{
-  text-transform: uppercase;
-  font-size: 20px;
-  font-weight: 700;
-  color: #FFF;
-}
-
-.card-channel-info__graphic_container__btn{
-  font-size: 1em;
-    text-decoration: none;
-    text-transform: capitalize;
-    font-weight: 500;
-    letter-spacing: 1px;
-    color: #362702;
-    background-color: #F6B510;
-    padding: 6px;
-    border-radius: 20px;
-    display: inline-block;
-    cursor: pointer;
-} */
-/************       CardCategoriesInfo component ends            *******/
