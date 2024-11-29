@@ -47,9 +47,9 @@ const Alarms = () => {
         setCurrentEntityName(currentDatalogger.nombre);
         setCurrentAlarms(alarms.filter(alarm => alarm.datalogger_id == dataloggerId));
         setColumns([
-          { header: 'NOMBRE', key: 'nombre' },
-          { header: 'CANAL', key: 'canal_nombre' },
-          { header: 'CONDICION', key: 'condicion' },
+          { header: 'NOMBRE', key: 'nombre', iconName: 'bell-regular.svg' },
+          { header: 'CANAL', key: 'canal_nombre', iconName: 'chart-line-solid.svg' },
+          { header: 'CONDICION', key: 'condicion', iconName: 'code-branch-solid.svg' },
         ]);
       }
     }
@@ -60,8 +60,8 @@ const Alarms = () => {
         setCurrentEntityName(currentChannel.canal_nombre);
         setCurrentAlarms(alarms.filter(alarm => alarm.canal_id == channelId));
         setColumns([
-          { header: 'NOMBRE', key: 'nombre' },
-          { header: 'CONDICION', key: 'condicion' },
+          { header: 'NOMBRE', key: 'nombre', iconName: 'bell-regular.svg' },
+          { header: 'CONDICION', key: 'condicion', iconName: 'code-branch-solid.svg' },
         ]);
       }
     };
@@ -72,9 +72,9 @@ const Alarms = () => {
         setCurrentEntityName(currentLocation.ubicaciones_nombre);
         setCurrentAlarms(alarmsLocation);
         setColumns([
-          { header: 'NOMBRE', key: 'nombre' },
-          { header: 'CANAL', key: 'nombre' },
-          { header: 'CONDICION', key: 'condicion' },
+          { header: 'NOMBRE', key: 'nombre', iconName: 'bell-regular.svg' },
+          { header: 'CANAL', key: 'nombre', iconName: 'chart-line-solid.svg' },
+          { header: 'CONDICION', key: 'condicion', iconName: 'code-branch-solid.svg' },
         ]);
       }
     };
@@ -83,9 +83,9 @@ const Alarms = () => {
       setCurrentEntityName(`${user.nombre_1} ${user.apellido_1}`);
       setCurrentAlarms(alarms);
       setColumns([
-        { header: 'NOMBRE', key: 'nombre' },
-        { header: 'CANAL', key: 'canal_nombre' },
-        { header: 'CONDICION', key: 'condicion' },
+        { header: 'NOMBRE', key: 'nombre', iconName: 'bell-regular.svg' },
+        { header: 'CANAL', key: 'canal_nombre', iconName: 'chart-line-solid.svg' },
+        { header: 'CONDICION', key: 'condicion', iconName: 'code-branch-solid.svg' },
       ]);
     }
     
@@ -100,7 +100,7 @@ const Alarms = () => {
   
  
   return (
-    <div>      
+    <>      
       <Title1
          type='alarmas'
          text={`Alarmas para ${currentEntityName} `}
@@ -115,39 +115,9 @@ const Alarms = () => {
          columns={columns}         
          entityType="alarmas"
        />    
-    </div>
+    </>
   );
 };
 
 export default Alarms;
 
-{/* 
-
-       <p>
-   {currentChannel !== undefined && currentChannel !== null ? (
-     <>
-       <span>Estas son las alarmas activas para el canal </span>
-       <strong>{currentChannel.canal_nombre}</strong>
-       <span> del datalogger </span>
-       <strong>{currentDatalogger.nombre}</strong>
-     </>
-   ) : (
-     <>
-       <span>Estas son las alarmas activas para el datalogger </span>
-       <strong>{currentDatalogger.nombre}</strong>
-     </>
-   )}
- </p>
-
-
-        
-      
-     </>
-    <div>
-      probando con el console.lgo
-    </div>
-  );
-};
-
-export default Alarms;
-*/}

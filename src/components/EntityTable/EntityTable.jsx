@@ -2,7 +2,8 @@ import React from 'react';
 import './EntityTable.css'; 
 import BtnCallToAction from '../BtnCallToAction/BtnCallToAction'; 
 import {formatDate} from '../../utils/Dates/Dates';
- 
+import { ENV } from '../../context/env'; 
+
 const EntityTable = ({ data, columns, entityType }) => { 
   
   
@@ -46,7 +47,10 @@ const EntityTable = ({ data, columns, entityType }) => {
             return ( 
               <tr key={rowIndex}> 
                 {columns.map((column, colIndex) => ( 
-                  <td key={colIndex}>{item[column.key] !== null ? item[column.key] : 0}</td> 
+                  <td key={colIndex} className='entity-table__data'>
+                    <img src={`${ENV.URL}/icons/${column.iconName}`} className='entity-table__data__icon' alt="test icon" title='test icon' />
+                    <span>{item[column.key] !== null ? item[column.key] : 0}</span>
+                  </td> 
                 ))}
                 {entityType !== 'alarmas_logs' && (
                   <td>                

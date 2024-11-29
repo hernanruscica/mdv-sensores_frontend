@@ -15,7 +15,7 @@
   .entity-table thead {
     background: linear-gradient(to bottom, #FFA500, #FF8C00);
   }
-  
+ 
   .entity-table th {
     padding: 15px 10px;
     text-align: left;
@@ -26,6 +26,7 @@
     background: linear-gradient(to bottom, #fbe2a2 0%, #f6b510 100%);
   }
   
+  
   .entity-table tbody tr:nth-child(even) {
     background-color: #e0e0e0;
   }
@@ -34,9 +35,15 @@
     background-color: #ffffff;
   }
   
-  .entity-table td {
-    padding: 10px;
-    /* border-bottom: 1px solid #ddd; */
+  .entity-table__data {
+    padding: 20px 10px;
+    
+  }
+
+  .entity-table__data__icon{
+    display: none;
+    width: 16px;
+    height: auto;
   }
   
   .view-button {
@@ -61,16 +68,26 @@
       display: flex;
       flex-direction: row;      
       flex-wrap: wrap;
-      align-items: center;          
-      padding: 1.4em 0;
+      align-items: center;    
+      gap: 0.5em;      
+      padding: 1.4em 0.6em;
       justify-content: flex-start;    
 
     }
     
-    .entity-table td {      
+    .entity-table__data {      
       min-width: 40%;
       width: fit-content;
       padding: 0.25em;
+      display: flex;
+      flex-direction: row;
+      align-items: center;      
+      column-gap: 0.2em;
     }    
+    .entity-table__data__icon{
+      display: block;
+      width: 16px;
+      height: auto;
+    }
     
 }

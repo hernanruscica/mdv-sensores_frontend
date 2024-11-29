@@ -44,6 +44,10 @@ export const ENV = {
                 nameSection: 'edicion',
                 fileName: 'edit-regular.svg'
             },        
+            {
+                nameSection: 'construccion',
+                fileName: 'person-digging-solid.svg'
+            },
         ]
 };
 

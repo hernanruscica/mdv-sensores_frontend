@@ -33,9 +33,9 @@ const ViewDatalogger = () => {
   }
 
   const columns = [
-    { header: 'NOMBRE', key: 'nombre' },
-    { header: 'CANAL', key: 'canal_nombre' },
-    { header: 'VALOR', key: 'max' },
+    { header: 'NOMBRE', key: 'nombre', iconName: 'bell-regular.svg' },
+    { header: 'CANAL', key: 'canal_nombre', iconName: 'chart-line-solid.svg' },
+    { header: 'CONDICION', key: 'condicion', iconName: 'code-branch-solid.svg' },
   ];
 
   const channelsIcon =

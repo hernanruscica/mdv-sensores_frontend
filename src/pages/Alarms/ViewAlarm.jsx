@@ -27,11 +27,11 @@ const ViewAlarm = () => {
   const apiClient = createApiClient();
 
   const columns = [
-    { header: 'DIA Y HORA DEL EVENTO', key: 'fecha_disparo' },
-    { header: 'USUARIO', key: 'email' },
-    { header: 'EVENTO', key: 'disparada' },
-    { header: 'VALOR', key: 'variables_valores' },
-    { header: 'VISTA', key: 'fecha_vista' },
+    { header: 'DIA Y HORA DEL EVENTO', key: 'fecha_disparo', iconName: 'clock-regular.svg' },
+    { header: 'USUARIO', key: 'email', iconName: 'envelope-regular.svg' },
+    { header: 'EVENTO', key: 'disparada', iconName: 'flag-regular.svg' },
+    { header: 'VALOR', key: 'variables_valores', iconName: 'code-branch-solid.svg' },
+    { header: 'VISTA', key: 'fecha_vista', iconName: 'eye-regular.svg' },
   ];
 
   const loadCurrentAlarmlogs = async (alarmId) => {
