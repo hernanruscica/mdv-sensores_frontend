@@ -1,0 +1,14 @@
+.page__maincontent{
+    width: 90%;
+}
+
+textarea {
+    width: 100%; /* Asegura que ocupe el ancho completo del contenedor */
+    max-width: 100%; /* Evita que exceda el contenedor */
+    height: 120px; /* Altura fija */
+    resize: none;
+    font-size: 1.4em;    
+    padding: 0.6em;
+    border-radius: 10px;
+  }
+  

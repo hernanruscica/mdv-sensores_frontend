@@ -6,6 +6,7 @@ import { AuthProvider } from './context/AuthContext.jsx';
 import { DashboardProvider } from './context/DashboardContext.jsx';
 import Header from './components/Header/Header';
 import Home from './pages/Home';
+import Contact from './pages/Contact/Contact';
 import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Users from './pages/Users/Users';
@@ -39,6 +40,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/inicio" element={<Login />} />
+            <Route path="/contacto" element={<Contact />} />
               <Route path="/panel" element={<PrivateRoute ><Dashboard /></PrivateRoute>} />
 
               <Route path="/panel/usuarios" element={<PrivateRoute ><Users /></PrivateRoute>} />

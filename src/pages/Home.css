@@ -1,0 +1,15 @@
+.page__maincontent{
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    row-gap: 1em;
+}
+.page__maincontent__p{
+    width: 100%;
+    text-align: left;
+    font-size: 1.2em;
+    font-weight: 300;
+    line-height: 1.4em;
+}

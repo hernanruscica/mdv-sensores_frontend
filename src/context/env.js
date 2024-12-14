@@ -48,6 +48,14 @@ export const ENV = {
                 nameSection: 'construccion',
                 fileName: 'person-digging-solid.svg'
             },
+            {
+                nameSection: 'inicio',
+                fileName: 'flag-checkered-solid.svg'
+            },
+            {
+                nameSection: 'contacto',
+                fileName: 'envelope-regular.svg'
+            },
         ]
 };
 

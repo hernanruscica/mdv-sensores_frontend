@@ -34,12 +34,17 @@ header{
     color: #362702;
 }
 
+.header-link-selected{
+    border-bottom: #000 solid 4px;
+}
+
 .navbar{
     width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 2em;
+    padding: 0 2em;
     position: static;
 }
 

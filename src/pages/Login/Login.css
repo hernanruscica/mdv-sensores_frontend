@@ -1,22 +1,51 @@
 .login-container{
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;   
+    row-gap: 2em; 
 }
-.login-form{
-    width: 320px;
+
+.login-container__title{    
+    font-size: 1.4em;
+    text-transform: uppercase;
+}
+
+.login__form{
+    width: 96%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     gap: 0.5em;
     background-color: #EDEFF0;
-    padding: 1em;
+    padding: 1.5em;
     border-radius: 20px;
+    box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.5); 
 }
 input, button{
     padding: 0.5em 1em;
     border: none;
     font-size: 1.2em;
+    border-radius: 10px;
 }
-button{
+
+.login__form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.2em;
+}
+
+.login__form__input-row{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.2em;
+}
+
+.login__form__label{
+    cursor: pointer;
+    font-size: 1em;    
+}
+
+.login__form__btn{
     background-color: #f6b510;
     font-weight: 700;
+    cursor: pointer;
 }
