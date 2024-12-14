@@ -7,6 +7,7 @@
   box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.5);    
   width: 48%;
   min-width: 340px;  
+  
 }
 
 .card-channels-info__description{
@@ -30,6 +31,13 @@
 .card-channel-info__description__paragraph{
   width: 48%;
   min-width: 150px;
+  line-height: 1.4em;
+  letter-spacing: 0.03em;  
+  padding: 0.5em 1em;
+}
+
+.card-channel-info__description__paragraph>span{  
+  text-align: left;
 }
 
 

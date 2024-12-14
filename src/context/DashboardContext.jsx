@@ -40,6 +40,7 @@ export const DashboardProvider = ({ children }) => {
   const loadUsers = async (userId) => {
     try {
       const response = await apiClient.get(`/api/users/byuser/${userId}`);
+      //console.log(response.data.users);
       setUsersLS(response.data.users);
     } catch (error) {
       console.error('Failed to load users:', error);

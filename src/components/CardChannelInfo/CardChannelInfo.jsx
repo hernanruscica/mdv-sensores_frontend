@@ -67,8 +67,8 @@ export const CardChannelInfo = (props) => {
           />
         </div>
         <p className="card-channel-info__description__paragraph">
-          {channel.canal_descripcion}
-          <span>Alarmas programadas : <br/>                       
+        <span>📝{channel.canal_descripcion}</span>
+        <span>⏰ Alarmas programadas : <br/>                       
             {(alarms?.length > 0) ?
               <CardBtnSmall
                 key={`alarm-${channel.canal_id}`}
@@ -79,7 +79,7 @@ export const CardChannelInfo = (props) => {
               <strong>No tiene alarmas</strong>}
           </span>
           <span>          
-            Total horas de uso: <strong>{Math.ceil(channel.horas_uso)}</strong> Hs.<br/> 
+          🕙 Total horas de uso: <strong>{Math.ceil(channel.horas_uso)}</strong> Hs. -  
             Con datos desde <strong>{formatDate(channel.fecha_inicio, 'short')}</strong>                
           </span>
         </p>        

@@ -38,6 +38,7 @@ const Locations = () => {
             locationData={location}             
             dataloggers={dataloggers}
             iconSrc={`/icons/${currentPageIcon.fileName}`}
+            currentUser={user}
           />
         ))}
       </section>

@@ -21,12 +21,19 @@
     object-fit: cover;
     object-position: center;
   }
+
+  .card_location_details__paragraph{
+    font-size: 1.1em;
+    letter-spacing: 0.03em;
+    line-height: 1.4em;
+  }
   
   .card_location_details__info{
     width: 70%;
     padding: 20px;
     display: flex;
     flex-direction: column;
+    row-gap: 0.3em;
   }
   .card_location_details__info__title{
     font-family: "Montserrat", sans-serif;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useDashboard } from "../../context/DashboardContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 import { Title1 } from "../../components/Title1/Title1";
 import { Title2 } from "../../components/Title2/Title2.jsx";
 import Breadcumb from "../../components/Breadcumb/Breadcumb";
@@ -17,12 +18,14 @@ import { ENV } from "../../context/env.js";
 const ViewUser = () => {
   
   
-  const {  dataloggers, channels, alarms } = useDashboard();
+  const {  users, dataloggers, channels, alarms } = useDashboard();
   const { id } = useParams();
-  const [ currentUser, setCurrentUser] = useState([]);  
+ 
   const [ currentUserLocations, setCurrentUserLocations] = useState([]);  
+  const [ currentUser, setCurrentUser] = useState({});  
   const [ loading, setLoading] = useState(true);
   const apiClient = createApiClient();
+  const {user} = useAuth();  
 
   const locationIcon =   ENV.ICONS.find(({ nameSection }) => nameSection === 'ubicaciones') ||   ENV.ICONS.find(({ nameSection }) => nameSection === "default");
 
@@ -30,7 +33,6 @@ const ViewUser = () => {
     try{
       const response = await apiClient.get(`/api/users/${userId}`);
       setCurrentUser(response.data.user);
-      ///api/locationsusers/locationsbyuser/32
       const response2 = await apiClient.get(`/api/locationsusers/locationsbyuser/${userId}`)      
       setCurrentUserLocations(response2.data.locationUserData);
     }catch(error){
@@ -41,8 +43,7 @@ const ViewUser = () => {
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
-      await loadCurrentUserData(id);              
-      
+      await loadCurrentUserData(id);                      
       setLoading(false);
     }
     loadData();
@@ -55,16 +56,16 @@ const ViewUser = () => {
     return <div>Cargando...</div>;
   }  
 
-
+console.log(user, currentUser)
   return (
     <>
       <Title1     
         type="usuarios"   
-        text={`Perfil de ${currentUser?.nombre_1 || ''}`}
+        text={`Perfil de ${user?.nombre_1 || ''}`}
       />
       <Breadcumb />
             
-      <CardUserDetails user={currentUser} 
+      <CardUserDetails currentUser={currentUser} 
           type="usuarios"
           locations={currentUserLocations}
           dataloggers={dataloggers}
@@ -85,6 +86,7 @@ const ViewUser = () => {
             key={location.ubicaciones_id}
             locationData={location}             
             dataloggers={dataloggers}
+            currentUser={currentUser}            
             iconSrc={`/icons/${locationIcon.fileName}`}
           />
         ))}

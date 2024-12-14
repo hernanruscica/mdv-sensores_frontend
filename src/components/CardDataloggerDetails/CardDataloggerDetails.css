@@ -19,12 +19,18 @@
     object-fit: cover;
     object-position: center;
   }
+  .datalogger-details__paragraph{
+    font-size: 1.1em;
+    letter-spacing: 0.03em;
+    line-height: 1.4em;
+  }
   
   .datalogger-details__info {
     width: 70%;
     padding: 20px;
     display: flex;
     flex-direction: column;
+    row-gap: 0.6em;
   }
   .card-datalogger-details__info__title{
     font-family: "Montserrat", sans-serif;

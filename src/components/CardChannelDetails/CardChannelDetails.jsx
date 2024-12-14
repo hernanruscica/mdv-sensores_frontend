@@ -5,6 +5,7 @@ import { CardBtnSmall } from '../CardBtnSmall/CardBtnSmall';
 import { ENV } from "../../context/env";
 import BtnCallToAction from '../BtnCallToAction/BtnCallToAction';
 import { formatDate } from "../../utils/Dates/Dates.js";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 const CardChannelDetails = (props) => {
     
@@ -13,7 +14,7 @@ const CardChannelDetails = (props) => {
       
     const horas_uso = Math.ceil(channels.find(ch=> ch.canal_id == channel.id).horas_uso);
     const desde = formatDate(channels.find(ch=> ch.canal_id == channel.id).fecha_inicio, 'short')
-   
+    const {user} = useAuth();
 
 
   return (    
@@ -21,8 +22,8 @@ const CardChannelDetails = (props) => {
       <div className="channel-details__container">
         <img src={`${ENV.IMAGES_URL}/${channel.foto}`} 
           className='channel-details__container__image'
-          alt={`Foto de ${channel.nombre}`}
-          title={`Foto de ${channel.nombre}`} 
+          alt={`Foto del canal ${channel.nombre}`}
+          title={`Canal ${channel.nombre}`} 
         />
       </div>
       <div className="channel-details__info">
@@ -30,7 +31,7 @@ const CardChannelDetails = (props) => {
           {channel.nombre}
         </h2>
         <p className="channel-details__paragraph">
-          <strong>Pertenece a: </strong>
+          <strong>Pertenece al datalogger : </strong>
           <CardBtnSmall
             title={datalogger.nombre}
             key={`ver_datalogger_${datalogger.id}`}
@@ -38,17 +39,16 @@ const CardChannelDetails = (props) => {
           />          
         </p>
         <p className="channel-details__paragraph">
-          {channel.descripcion}
+        📝 {channel.descripcion}
         </p>
         <p className="channel-details__paragraph">
           {/* <strong>Creado el {formatDate(channel.fecha_creacion, 'short')}</strong><br/> */}
           <span>          
-            Total horas de uso: <strong>{horas_uso}</strong> Hs.<br/> 
-            Con datos desde <strong>{desde}</strong>                
+          🕙Total horas de uso: <strong>{horas_uso}</strong> Hs. Con datos desde <strong>{desde}</strong>                
           </span>
         </p>                      
         <p className="channel-details__paragraph">
-            <strong>Alarmas programadas : </strong>          
+          ⏰<strong>Alarmas programadas : </strong>          
              {
              (alarms.length > 0) ?
              (<CardBtnSmall
@@ -62,8 +62,10 @@ const CardChannelDetails = (props) => {
           <div className="channel-details__btn-container">
           {/* text, icon, type, url, onClick */}
             <BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/dataloggers/${datalogger.id}/canales/${channel.id}/edicion`}/>
-            <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' url={`panel/dataloggers/${datalogger.id}/canales/${channel.id}/eliminacion`}
-            type="danger"/>
+            {(user.espropietario == 1)?
+            <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' url={`panel/dataloggers/${datalogger.id}/canales/${channel.id}/eliminacion`}type="danger"/>
+            : ''}
+            
           </div>
       </div>
       

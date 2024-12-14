@@ -19,7 +19,11 @@
     object-fit: cover;
     object-position: center;
   }
-  
+  .channel-details__paragraph{
+    font-size: 1.1em;
+    letter-spacing: 0.03em;
+    line-height: 1.4em;
+  }
   .channel-details__info {
     width: 70%;
     padding: 20px;
