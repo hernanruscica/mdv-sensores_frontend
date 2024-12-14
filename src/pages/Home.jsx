@@ -1,7 +1,7 @@
 
 import { useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Title1 } from '../components/Title1/Title1';
 import BtnCallToAction from '../components/BtnCallToAction/BtnCallToAction';
 

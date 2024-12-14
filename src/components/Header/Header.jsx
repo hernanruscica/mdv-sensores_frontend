@@ -8,14 +8,12 @@ import BtnCallToAction from "../BtnCallToAction/BtnCallToAction.jsx";
 
 const Header = () => {
   const { user, logout } = useAuth();
-  const [navbarVisible, setNavbarVisible] = useState(false);
-  const [optionSelected, setOptionSelected] = useState('inicio');
+  const [navbarVisible, setNavbarVisible] = useState(false);  
   const location = useLocation();  
 
-  const menuBtnHandler = (e) => {
-    console.log(location)
+  const menuBtnHandler = () => {    
     setNavbarVisible(!navbarVisible);
-    //setOptionSelected(e.target.id);
+    
   }
  //console.log(navbarVisible);
   return (

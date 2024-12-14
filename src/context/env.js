@@ -3,6 +3,7 @@
 export const ENV = {
     URL: import.meta.env.VITE_APP_URL,    
     IMAGES_URL: import.meta.env.VITE_IMAGE_REPOSITORY_URL,
+    JWT_SECRET: 'c3s4rH3rn4nRusc1c42023-*-*-MdV_S3Ns0r3S!"#$%&/()=?¡',
     ICONS: [
             {
                 nameSection: 'default',
