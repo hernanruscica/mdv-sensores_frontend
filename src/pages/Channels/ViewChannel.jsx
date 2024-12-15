@@ -11,6 +11,7 @@ import ButtonsBar from '../../components/ButtonsBar/ButtonsBar.jsx';
 import CardAlarmInfo from "../../components/CardAlarmInfo/CardAlarmInfo.jsx";
 import CardChannelGraphic from "../../components/CardChannelGraphic/CardChannelGraphic.jsx";
 import { ENV } from "../../context/env.js";
+import './viewchannel.css';
 
 
 const ViewChannel = () => {
@@ -24,6 +25,7 @@ const ViewChannel = () => {
   const [ currentDatalogger, setCurrentDatalogger] = useState([]);
   const [ currentAlarms, setCurrentAlarms] = useState([]);
   const [ dataChannel, setDataChannel] = useState([]);
+  const [ firstAlarmPorcentage, setFirstAlarmPorcentage] = useState(null);
 
   const hoursBackView = 120;
 
@@ -40,10 +42,12 @@ const ViewChannel = () => {
       
       setCurrentChannel(response.data.channel);
       setCurrentDatalogger(dataloggers.find(datalogger => datalogger.id == id));
-      setCurrentAlarms(alarms.filter(alarm => alarm.canal_id == channelId));
+      setCurrentAlarms(alarms.filter(alarm => alarm.canal_id == channelId));      
       setLoading(false);
     };
     loadData();
+    //console.log(currentAlarms,currentAlarms.find(alarm=>alarm.tipo_alarma == "PORCENTAJE_ENCENDIDO"))
+    
   }, [user.id, id]);
 
   useEffect(() => {
@@ -59,7 +63,10 @@ const ViewChannel = () => {
         setLoading2(false);
       }
     }
-    if (!loading) {loadData();}
+    if (!loading) {
+      loadData();
+      setFirstAlarmPorcentage(currentAlarms.find(alarm=>alarm.tipo_alarma == "PORCENTAJE_ENCENDIDO") );
+    }
   }, [currentChannel, currentDatalogger]);
 
 
@@ -67,7 +74,7 @@ const ViewChannel = () => {
     return <div>Cargando...</div>;
   }
   
-   
+  //console.log(firstAlarmPorcentage) 
   return (
     <>
       <Title1     
@@ -75,12 +82,38 @@ const ViewChannel = () => {
         text={`Canal "${currentChannel.nombre}" del datalogger "${currentDatalogger.nombre}"`}
       />
       <Breadcumb />
+      {
+         (currentAlarms.length > 0 &&  firstAlarmPorcentage  && !loading2)?
+        //  <p>{`hay alarmas del tipo '"PORCENTAJE_ENCENDIDO"'${firstAlarmPorcentage}`}</p>
+         <div className="channel-showcase-gauge-card-container">
+          
+            <CardChannelDetails 
+                channel={currentChannel}
+                datalogger={currentDatalogger}
+                alarms={currentAlarms}
+              />            
+          
+          
+            <CardAlarmInfo 
+                key={firstAlarmPorcentage.nombre + firstAlarmPorcentage.id}
+                title='alarmas'
+                name={firstAlarmPorcentage.nombre}
+                id={firstAlarmPorcentage.id}
+                alarm={firstAlarmPorcentage}
+                channel={currentChannel}
+                lastReadData={dataChannel[dataChannel.length-1]}   
+                iconSrc={`/icons/${alarmIcon.fileName}`}       
+              />
+          
+         </div>
+         : 
+         <CardChannelDetails 
+            channel={currentChannel}
+            datalogger={currentDatalogger}
+            alarms={currentAlarms}
+          />
+      }
       
-      <CardChannelDetails 
-        channel={currentChannel}
-        datalogger={currentDatalogger}
-        alarms={currentAlarms}
-      />
       {
         (loading2) 
         ? <div>Cargando...</div>

@@ -47,7 +47,9 @@ const CardUserDetails = (props) => {
            </p>
            <div className="card-user-details__btn-container">
            {/* text, icon, type, url, onClick */}
-             <BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/usuarios/${currentUser.id}/edicion`}/>
+             {(user.id == currentUser.id) 
+             ?<BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/usuarios/${currentUser.id}/edicion`}/>
+              : ''}
               
               {(user.espropietario == 1) ? <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' type="danger"/> : ''}
               
