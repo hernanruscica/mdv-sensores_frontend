@@ -61,9 +61,11 @@ const CardChannelDetails = (props) => {
           </p>
           <div className="channel-details__btn-container">
           {/* text, icon, type, url, onClick */}
-            <BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/dataloggers/${datalogger.id}/canales/${channel.id}/edicion`}/>
             {(user.espropietario == 1)?
-            <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' url={`panel/dataloggers/${datalogger.id}/canales/${channel.id}/eliminacion`}type="danger"/>
+            <>
+              <BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/dataloggers/${datalogger.id}/canales/${channel.id}/edicion`}/>
+              <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' url={`panel/dataloggers/${datalogger.id}/canales/${channel.id}/eliminacion`}type="danger"/>
+            </>
             : ''}
             
           </div>

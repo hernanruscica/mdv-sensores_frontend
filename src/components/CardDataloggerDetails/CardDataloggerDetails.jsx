@@ -50,9 +50,11 @@ const CardDataloggerDetails = (props) => {
           </p>
           <div className="datalogger-details__btn-container">
           {/* text, icon, type, url, onClick */}
-            <BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/dataloggers/${datalogger.id}/edicion`}/>
             {(user.espropietario == 1)?
-            <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' type="danger"/>
+            <>
+              <BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/dataloggers/${datalogger.id}/edicion`}/>
+              <BtnCallToAction text="eliminar" icon='trash-alt-regular.svg' type="danger"/>
+            </>
             : ''}
           </div>
       </div>
