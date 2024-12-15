@@ -47,7 +47,7 @@ const CardUserDetails = (props) => {
            </p>
            <div className="card-user-details__btn-container">
            {/* text, icon, type, url, onClick */}
-             {(user.id == currentUser.id) 
+             {(user.espropietario == 1 || user.id == currentUser.id) 
              ?<BtnCallToAction text="editar" icon='edit-regular.svg' url={`panel/usuarios/${currentUser.id}/edicion`}/>
               : ''}
               
