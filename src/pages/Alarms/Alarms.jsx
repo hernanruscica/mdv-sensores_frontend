@@ -6,11 +6,12 @@ import { Title1 } from '../../components/Title1/Title1';
 import { Title2 } from '../../components/Title2/Title2';
 import Breadcumb from '../../components/Breadcumb/Breadcumb';
 import EntityTable from '../../components/EntityTable/EntityTable';
+import createApiClient from '../../api/apiClient.js' ;
 
 const Alarms = () => {
   const location = useLocation();  
   const { dataloggerId, channelId, locationId, userId } = useParams();
-  const { dataloggers, channels, locations, alarms, alarmsLocation, loadAlarmsLocation } = useDashboard();
+  const { users, dataloggers, channels, locations, alarms, alarmsLocation, loadAlarmsLocation } = useDashboard();
   const { user } = useAuth();
 
   //console.log(dataloggerId == undefined);
@@ -20,6 +21,7 @@ const Alarms = () => {
   const [currentEntityName, setCurrentEntityName] = useState('');
   const [currentAlarms, setCurrentAlarms] = useState([]);
   const [loading, setLoading] = useState('true'); 
+  const apiClient = createApiClient();
 
   // Actualiza searchBy cuando cambia la ubicación
   useEffect(() => {
@@ -40,6 +42,10 @@ const Alarms = () => {
 
   // Actualiza currentAlarms y otras dependencias según searchBy
   useEffect(() => {    
+    const loadCurrentUserAlarms = async (userId) => {
+      const response = await apiClient.get(`/api/alarmusers/alarmsbyuser/${userId}`);
+      setCurrentAlarms(response.data.alarms);
+    }
     if (dataloggerId !== undefined && channelId === undefined) {
       const currentDatalogger = dataloggers.find(d => d.id == dataloggerId);
       //console.log('dataloggers', dataloggerId, currentDatalogger);         
@@ -79,9 +85,11 @@ const Alarms = () => {
       }
     };
     if (userId !== undefined) {
-      //console.log('usuarios')
-      setCurrentEntityName(`${user.nombre_1} ${user.apellido_1}`);
-      setCurrentAlarms(alarms);
+      const currentUser = users.find(user => user.usuarios_id == userId);      
+      //console.log(currentUser)
+      setCurrentEntityName(currentUser.usuario_nom_apell);      
+      loadCurrentUserAlarms(userId)
+
       setColumns([
         { header: 'NOMBRE', key: 'nombre', iconName: 'bell-regular.svg' },
         { header: 'CANAL', key: 'canal_nombre', iconName: 'chart-line-solid.svg' },

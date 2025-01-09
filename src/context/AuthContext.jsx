@@ -9,16 +9,15 @@ export const AuthProvider = ({ children }) => {
   const [userLS, setUserLS] = useEncryptedLocalStorageState('user', null);
   const [tokenLS, setTokenLS] = useEncryptedLocalStorageState('token', null);
   
+  
   const apiClient = createApiClient(); 
    
   // Manejar login
   const login = async (dni, password) => {
     try {
       const response = await apiClient.post('/api/users/login', { dni, password });     
-
       setUserLS({ ...response.data.user});
-      setTokenLS(response.data.token);
-
+      setTokenLS(response.data.token);      
       return response.data.user;
     } catch (error) {
       console.error('Login failed:', error);
@@ -30,11 +29,16 @@ export const AuthProvider = ({ children }) => {
   // Manejar logout
   const logout = () => {
     setUserLS(null);
-    setTokenLS(null);
+    setTokenLS(null);    
+  };
+
+  const addTokenLS = (token) => {    
+    setTokenLS(token);    
+    console.log("agregando el token al LS");
   };
 
   return (
-    <AuthContext.Provider value={{ user: userLS, token: tokenLS, login, logout }}>
+    <AuthContext.Provider value={{ user: userLS, token: tokenLS,  login, logout, addTokenLS }}>
       {children}
     </AuthContext.Provider>
   );

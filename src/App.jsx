@@ -14,6 +14,7 @@ import Dataloggers from './pages/Dataloggers/Dataloggers';
 import Channels from './pages/Channels/Channels.jsx';
 import ViewChannel from './pages/Channels/ViewChannel.jsx';
 import ViewUser from './pages/Users/ViewUser';
+import ActivateUser from './pages/Users/ActivateUser';
 import Locations from './pages/Locations/Locations';
 import ViewLocation from './pages/Locations/ViewLocation';
 import ViewDatalogger from './pages/Dataloggers/ViewDatalogger.jsx';
@@ -23,6 +24,7 @@ import PrivateRoute from './components/PrivateRoute';
 import {ENV} from './context/env.js';
 import EditPage from './pages/EditPage/EditPage.jsx';
 import { UnderConstruction } from './pages/UnderConstruction/UnderContruction.jsx';
+import  CreatePage  from './pages/CreatePage/CreatePage.jsx';
 
 import Modal from 'react-modal';     
 Modal.setAppElement('#root'); 
@@ -45,7 +47,8 @@ const App = () => {
 
               <Route path="/panel/usuarios" element={<PrivateRoute ><Users /></PrivateRoute>} />
               <Route path="/panel/usuarios/:id" element={<PrivateRoute ><ViewUser /></PrivateRoute>} />
-              <Route path="/panel/usuarios/agregar" element={<PrivateRoute ><UnderConstruction /></PrivateRoute>} />
+              <Route path="/panel/usuarios/agregar" element={<PrivateRoute ><CreatePage /></PrivateRoute>} />
+              <Route path="/panel/usuarios/activar/:token" element={<ActivateUser />}/>
               <Route path="/panel/usuarios/:id/edicion" element={<PrivateRoute ><EditPage /></PrivateRoute>} />
 
               <Route path="/panel/ubicaciones" element={<PrivateRoute ><Locations /></PrivateRoute>} />       

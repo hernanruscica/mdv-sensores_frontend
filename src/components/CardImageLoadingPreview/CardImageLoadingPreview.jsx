@@ -27,7 +27,7 @@ const CardImageLoadingPreview = (props) => {
            />
          ) : (
            <img
-             src={`${ENV.IMAGES_URL}/${imageFileName}`}
+             src={`${ENV.URL}/images/${imageFileName}`}
              alt="foto de perfil"
              title="foto de perfil"
              className="location-details__container__image"

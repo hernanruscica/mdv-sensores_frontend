@@ -10,7 +10,7 @@ import CardCategoriesInfo from "../../components/CardCategoriesInfo/CardCategori
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const { locations, loadLocations, dataloggers, loadDataloggers, users, loadUsers,  loadChannels,  loadAlarms } = useDashboard();  
+  const { locations, loadLocations, dataloggers, loadDataloggers, users, loadUsers,  loadChannels,  loadAlarms, loadUserLocation } = useDashboard();  
 
   const locationsIcon =   ENV.ICONS.find(({ nameSection }) => nameSection === 'ubicaciones') ||   ENV.ICONS.find(({ nameSection }) => nameSection === "default");
   const usersIcon =   ENV.ICONS.find(({ nameSection }) => nameSection === 'usuarios') ||   ENV.ICONS.find(({ nameSection }) => nameSection === "default");
@@ -24,6 +24,7 @@ const Dashboard = () => {
       await loadUsers(user.id);
       await loadChannels(user.id);
       await loadAlarms(user.id)
+      await loadUserLocation(user.id);
       //console.log(user.id, users);
       }
       loadData();

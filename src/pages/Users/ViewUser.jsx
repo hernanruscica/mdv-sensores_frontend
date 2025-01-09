@@ -18,11 +18,12 @@ import { ENV } from "../../context/env.js";
 const ViewUser = () => {
   
   
-  const {  users, dataloggers, channels, alarms } = useDashboard();
+  const {  users, dataloggers, channels } = useDashboard();
   const { id } = useParams();
  
-  const [ currentUserLocations, setCurrentUserLocations] = useState([]);  
   const [ currentUser, setCurrentUser] = useState({});  
+  const [ currentUserLocations, setCurrentUserLocations] = useState([]);  
+  const [ currentUserAlarms, setCurrentUserAlarms] = useState([]);  
   const [ loading, setLoading] = useState(true);
   const apiClient = createApiClient();
   const {user} = useAuth();  
@@ -35,6 +36,8 @@ const ViewUser = () => {
       setCurrentUser(response.data.user);
       const response2 = await apiClient.get(`/api/locationsusers/locationsbyuser/${userId}`)      
       setCurrentUserLocations(response2.data.locationUserData);
+      const response3 = await apiClient.get(`/api/alarmusers/alarmsbyuser/${userId}`);
+      setCurrentUserAlarms(response3.data.alarms);
     }catch(error){
       console.log(`failed to load current user data`, error);
     }
@@ -47,16 +50,14 @@ const ViewUser = () => {
       setLoading(false);
     }
     loadData();
-  }, [id]);    
-
- 
+  }, [id]);     
 
   if (loading ) {   
-    //console.log(locations)
+    
     return <div>Cargando...</div>;
   }  
 
-console.log(user, currentUser)
+
   return (
     <>
       <Title1     
@@ -70,7 +71,7 @@ console.log(user, currentUser)
           locations={currentUserLocations}
           dataloggers={dataloggers}
           channels={channels}
-          alarms={alarms}
+          alarms={currentUserAlarms}
           />
         <Title2 
         type="ubicaciones"   

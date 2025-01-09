@@ -12,6 +12,7 @@ export const DashboardProvider = ({ children }) => {
   const [channelsLS, setChannelsLS] = useEncryptedLocalStorageState('channels', null);
   const [alarmsLS, setAlarmsLS] = useEncryptedLocalStorageState('alarms', null);
   const [alarmsLocationLS, setAlarmsLocationLS] = useEncryptedLocalStorageState('alarmsLocation', null);
+  const [userLocationLS, setUserLocationLS] = useEncryptedLocalStorageState('userlocation', null);
 
   const [dataFromDatalogger, setDataFromDatalogger] = useState([]);
   
@@ -75,6 +76,32 @@ export const DashboardProvider = ({ children }) => {
     }
   };
 
+  const rolesLS = [
+    {id: 7,
+    nombre: "operario",
+    descripcion: "Operario de una ubicación, puede ver los dataloggers y canales de dicha ubicación.",
+    accion_id: 1},
+    {id: 8,
+    nombre: "administrador",
+    descripcion: "Administrador de una ubicación, puede crear, eliminar usuarios, asignar y desasignar alarmas.",
+    accion_id: 3},
+    {id: 9,
+    nombre: "propietario",
+    descripcion: "Usuario con todos los permisos sobre todas las ubicaciones y usuarios.",
+    accion_id: 3},
+    ]
+
+  const loadUserLocation = async (id) => {
+    try {
+      //console.log('loadUserLocation')
+      const response2 = await apiClient.get(`/api/locationsusers/locationsbyuser/${id}`);
+      console.log(response2.data.locationUserData)
+      setUserLocationLS(response2.data.locationUserData)
+    } catch (error) {
+      console.error('Failed to load userLocations:', error);
+    }
+  }
+
   //const [dataFromDatalogger, setDataFromDatalogger] = useState([]);
   const loadDataFromDatalogger = async (table, periodMinutes) => {
     try {
@@ -88,7 +115,7 @@ export const DashboardProvider = ({ children }) => {
 
   // Función para cargar todos los datos al mismo tiempo si es necesario
    const loadAllData = async (userId, locationId) => {
-     await Promise.all([loadLocations(userId), loadDataloggers(userId), loadUsers(userId), loadChannels(userId), loadAlarms(userId), loadAlarmsLocation(locationId)]);     
+     await Promise.all([loadLocations(userId), loadDataloggers(userId), loadUsers(userId), loadChannels(userId), loadAlarms(userId), loadAlarmsLocation(locationId), loadUserLocation(userId)]);     
    };
 
   return (
@@ -100,6 +127,8 @@ export const DashboardProvider = ({ children }) => {
         channels: channelsLS,
         alarms: alarmsLS,
         alarmsLocation: alarmsLocationLS, 
+        roles: rolesLS,
+        userLocation: userLocationLS,
         dataFromDatalogger,
         loadLocations,
         loadDataloggers,
@@ -108,6 +137,7 @@ export const DashboardProvider = ({ children }) => {
         loadAlarms,
         loadAlarmsLocation,
         loadDataFromDatalogger,
+        loadUserLocation,
         loadAllData
       }}
     >

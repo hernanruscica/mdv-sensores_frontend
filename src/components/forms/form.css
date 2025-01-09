@@ -28,6 +28,8 @@
 
 .form_input>label {
     cursor: pointer;
+    font-size: 18px;
+    text-transform: uppercase;
 }
 
 .form_input>input, .form_input>textarea, .form_input>select{
@@ -36,7 +38,7 @@
     padding: 10px 20px 10px 10px; /* Add padding to make room for the icon */
     font-size: 16px;
     font-family: "Roboto", sans-serif;
-    border: 1px solid #ccc;
+    border: 1px solid #646464;
     border-radius: 10px;
     box-sizing: border-box;
       
@@ -56,4 +58,34 @@
     width: 30%
 }
 
+.password-input-container{
+    display: flex;
+    flex-direction: row;
+    column-gap: 16px;
+}
+
+.password-input-container>input{
+    width: 80%;
+    max-width: 300px;
+    border: #646464 solid 1px;
+}
+
+.password-toggle-button{
+    padding: 6px 6px 0px 6px;
+    border: solid #222 1px;
+    background-color: #f3e3bb;
+    cursor: pointer;
+}
+
+.pass-btn-icon{
+    width: 25px;
+    height: auto;
+}
+
+.password-input-message{
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    
+}
 
