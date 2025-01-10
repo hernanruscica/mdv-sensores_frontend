@@ -65,8 +65,8 @@
 }
 
 .password-input-container>input{
-    width: 80%;
-    max-width: 300px;
+    width: 100%;
+    max-width: 340px;
     border: #646464 solid 1px;
 }
 

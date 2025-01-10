@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
 import createApiClient from "../../api/apiClient.js";
-
 import { useNavigate } from "react-router-dom";
-import CardImageLoadingPreview from "../CardImageLoadingPreview/CardImageLoadingPreview.jsx";
 import "./form.css";
-import { useDashboard } from "../../context/DashboardContext";
-import { useAuth } from '../../context/AuthContext.jsx'
 import { ENV } from "../../context/env";
-
 import Modal from "react-modal";
+
 Modal.setAppElement("#root");
 
 function ResetPassword({ userId }) {
@@ -20,8 +16,7 @@ function ResetPassword({ userId }) {
   const [hasNumber, setHasNumber] = useState(false);
   //const [hasSymbol, setHasSymbol] = useState(false);
   const [isLongEnough, setIsLongEnough] = useState(false);
-  const [showPassword, setShowPassword] = useState(false); // NUEVO ESTADO PARA VISIBILIDAD
- 
+  const [showPassword, setShowPassword] = useState(false); 
   const [loading, setLoading] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
@@ -37,7 +32,7 @@ function ResetPassword({ userId }) {
     setPassword2(e.target.value);
   };
 
-  const togglePasswordVisibility = () => { // NUEVA FUNCIÓN PARA TOGGLE
+  const togglePasswordVisibility = () => { 
     setShowPassword(!showPassword);
   };
 
@@ -75,10 +70,9 @@ function ResetPassword({ userId }) {
       return;
     }
 
-    // Aquí iría la lógica para cambiar la contraseña en el backend
+    // lógica para cambiar la contraseña en el backend
     const formData = new FormData();
-    formData.append("password", password);    
-    
+    formData.append("password", password);       
     const response = await apiClient.put(`/api/users/${userId}`, formData)
     
     if (response.status == 200)    {
@@ -99,7 +93,7 @@ function ResetPassword({ userId }) {
 
   const closeModal = () => {
     setModalIsOpen(false);
-    navigate(`/inicio`); // Comentado ya que no hay `user` definido en este componente
+    navigate(`/inicio`); 
   };
 
   return (

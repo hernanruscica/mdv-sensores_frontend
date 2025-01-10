@@ -41,17 +41,17 @@ const ActivateUser = () => {
     
     return <div>Cargando...</div>;
   }  
-  console.log(currentUser);
-
+  
   return (
-    <>
+    <main className='page__maincontent'>
       <Title1     
         type="usuarios"   
-        text={`Reseteo de contraseña para ${currentUser?.userName || ''} con D.N.I.: ${currentUser?.dni}`}
+        text={`Reseteo de contraseña`}
       />
+      <p className="page__maincontent__p">{`Reseteo de contraseña para ${currentUser?.userName || ''} con D.N.I.: ${currentUser?.dni}`}</p>
        <ResetPassword userId={currentUser.userId}/>       
       
-    </>
+    </main>
   );
 };
 

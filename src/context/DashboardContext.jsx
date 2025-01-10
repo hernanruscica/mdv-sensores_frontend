@@ -95,7 +95,7 @@ export const DashboardProvider = ({ children }) => {
     try {
       //console.log('loadUserLocation')
       const response2 = await apiClient.get(`/api/locationsusers/locationsbyuser/${id}`);
-      console.log(response2.data.locationUserData)
+      // console.log(response2.data.locationUserData)
       setUserLocationLS(response2.data.locationUserData)
     } catch (error) {
       console.error('Failed to load userLocations:', error);

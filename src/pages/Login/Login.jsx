@@ -33,11 +33,7 @@ const Login = () => {
         type='edicion'
       />
       <form onSubmit={handleSubmit} className='login__form'>
-      <p>Introduzca sus credenciales para ingresar a la aplicación.</p>
-      {/*       
-      <p>Por el periodo de pruebas, puede ingresar <strong>Cualquier dni y cualquier contraseña</strong></p>
-      <p>la seccion que tiene mas detalles por ahora es <strong>dataloggers</strong></p>
-       */}
+      <p>Introduzca sus credenciales para ingresar a la aplicación.</p>      
        <div className='login__form__input-row'>
           <label htmlFor="dni" className='login__form__label'>DNI.:</label>
           <input

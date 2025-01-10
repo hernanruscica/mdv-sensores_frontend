@@ -32,8 +32,7 @@ function CreateUserForm() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const navigate = useNavigate();
-  const {locations, roles, userLocation} = useDashboard();
-  const { user : currentUser } = useAuth();
+  const {locations, roles, userLocation} = useDashboard();  
   const [ selectedLocationRol, setSelectedLocationRol] = useState(7);
   const [ selectedLocation, setSelectedLocation] = useState(locations[0].ubicaciones_id);
   const [currentRoles, setCurrentRoles]  = useState(roles.filter(roles => roles.id < 8))
@@ -67,7 +66,7 @@ function CreateUserForm() {
     formData.append("email", user.email || "");
     formData.append("telefono", user.telefono || "");
     formData.append("dni", user.dni || "");
-    formData.append("password", user.password || "11111");
+    formData.append("password", user.password || "P4s5_W0rD*joD1d4+joD1d4_W0rD.P4s5");
     formData.append("estado", user.estado || "0");
     formData.append("direcciones_id", user.direcciones_id || "1");
     formData.append("foto", newImage || "default_avatar.png");
