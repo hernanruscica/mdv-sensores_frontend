@@ -15,6 +15,10 @@ const Header = () => {
     setNavbarVisible(!navbarVisible);
     
   }
+  const handlerLogOut = (e) => {
+    e.preventDefault();
+    logout();
+  }
  //console.log(navbarVisible);
   return (
     <header>
@@ -41,8 +45,8 @@ const Header = () => {
               text="Salir"
               icon="sign-out-alt-solid-white.svg"
               type="danger"
-              url=''
-              onClick={logout}
+              url='/'
+              onClick={handlerLogOut}
             />
           </nav>
           <button className="header-btn-icon" onClick={menuBtnHandler}>

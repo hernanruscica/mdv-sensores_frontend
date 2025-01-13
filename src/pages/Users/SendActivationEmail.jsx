@@ -69,7 +69,7 @@ const SendActivationEmail = () => {
         type="usuarios"
         text={`Olvido de contraseña`}
       />
-      <p className="page__maincontent__p">En esta página podrá solicitar un reenvio del correo electrónico de cambio de contraseña</p>
+      <p className="page__maincontent__p">📧 En esta página podrá solicitar un reenvio del correo electrónico de cambio de contraseña</p>
       <form onSubmit={handleSubmit} className="form">
         <div className="form_input_group">
           <div className="form_input">

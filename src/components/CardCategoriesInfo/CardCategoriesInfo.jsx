@@ -4,12 +4,10 @@ import "./CardCategoriesInfo.css";
 import { CardBtnSmall } from "../CardBtnSmall/CardBtnSmall";
 import CardTitle from "../CardTitle/CardTitle";
 import CardLinkButton from "../CardLinkButton/CardLinkButton";
-import { useAuth } from "../../context/AuthContext.jsx";
-
 
 export const CardCategoriesInfo = (props) => {    
-  const { title, itemsQty, iconSrc } = props;
-  const {user} = useAuth();
+  const { title, itemsQty, iconSrc, showAddButton = false } = props;
+  
   return (
     <div className="card-categories-info">      
       <CardTitle 
@@ -24,7 +22,7 @@ export const CardCategoriesInfo = (props) => {
           para ver o administrar, segun los permisos de su usuario.
         </p> 
 
-        {(user.espropietario == 1) ?
+        {(showAddButton) ?
           <CardBtnSmall 
             title={`Agregar ${title}`} 
             url={`${title}/agregar`}

@@ -42,7 +42,7 @@ export const DashboardProvider = ({ children }) => {
     try {
       const response = await apiClient.get(`/api/users/byuser/${userId}`);
       //console.log(response.data.users);
-      setUsersLS(response.data.users);
+      setUsersLS(response.data.users.filter(user => user.usuarios_roles_id <= userLocationLS[0].usuarios_roles_id));
     } catch (error) {
       console.error('Failed to load users:', error);
     }

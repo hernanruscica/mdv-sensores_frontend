@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
 
   const addTokenLS = (token) => {    
     setTokenLS(token);    
-    console.log("agregando el token al LS");
+   // console.log("agregando el token al LS");
   };
 
   return (

@@ -25,10 +25,10 @@ export const CardLocationInfo =  (props) => {
       <div className="card-location-info__description">
         <p className="card-location-info__description__paragraph">
           <span>
-            {(currentUser.id == user.id) 
+            {(currentUser?.id == user?.id) 
               ? 'Su Rol es  ' 
               : `El Rol de ${currentUser.nombre_1}  ${currentUser.apellido_1} es `} : <strong>{locationData.usuarios_nombre_rol}</strong></span>
-          {(user.espropietario == 1) ?
+          {(user?.espropietario == 1) ?
           <CardBtnSmall
             title='Cambiar rol'
             url={`/panel/usuarios/${locationData.usuarios_id}`}
@@ -46,7 +46,7 @@ export const CardLocationInfo =  (props) => {
           />
         </p>         */}
       </div>     
-      {(currentUser.id == user.id || user.espropietario == 1)?
+      {(currentUser?.id == user?.id || user?.espropietario == 1)?
       <CardLinkButton 
         url={`/panel/ubicaciones/${locationData.ubicaciones_id}`}
       />

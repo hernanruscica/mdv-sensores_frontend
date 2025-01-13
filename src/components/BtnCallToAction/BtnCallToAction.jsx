@@ -9,7 +9,7 @@ const  BtnCallToAction = (props) => {
     const { text, icon, type, url, onClick } = props;
     return (
       <Link
-        to={`${ENV.URL}/${url}`}   
+        to={url ? `${ENV.URL}/${url}` : '#'}   
         onClick={onClick ? onClick : ''}     
         className={`navbar-btn  navbar-btn--${type}`}
       >

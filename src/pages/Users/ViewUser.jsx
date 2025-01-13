@@ -13,12 +13,11 @@ import CardLocationInfo from "../../components/CardLocationInfo/CardLocationInfo
 import ButtonsBar from '../../components/ButtonsBar/ButtonsBar.jsx';
 import { ENV } from "../../context/env.js";
 
-//import "./Dataloggers.css";
 
-const ViewUser = () => {
+
+const ViewUser = () => { 
   
-  
-  const {  users, dataloggers, channels } = useDashboard();
+  const { dataloggers, channels } = useDashboard();
   const { id } = useParams();
  
   const [ currentUser, setCurrentUser] = useState({});  
@@ -27,6 +26,7 @@ const ViewUser = () => {
   const [ loading, setLoading] = useState(true);
   const apiClient = createApiClient();
   const {user} = useAuth();  
+ 
 
   const locationIcon =   ENV.ICONS.find(({ nameSection }) => nameSection === 'ubicaciones') ||   ENV.ICONS.find(({ nameSection }) => nameSection === "default");
 
@@ -41,6 +41,14 @@ const ViewUser = () => {
     }catch(error){
       console.log(`failed to load current user data`, error);
     }
+  }
+
+  const deleteUserApi = async (userId) => {
+    console.log(`From deleteUserApi, deleting user with id: ${userId}`);
+    const formData = new FormData();
+    formData.append("estado", 0);
+    const response = await apiClient.put(`/api/users/${userId}`, formData);    
+    return response.status == 200;
   }
   
   useEffect(() => {
@@ -72,6 +80,7 @@ const ViewUser = () => {
           dataloggers={dataloggers}
           channels={channels}
           alarms={currentUserAlarms}
+          deleteUserApi={deleteUserApi}
           />
         <Title2 
         type="ubicaciones"   
@@ -92,7 +101,7 @@ const ViewUser = () => {
           />
         ))}
       </section>
-
+       
       
       
     </>
