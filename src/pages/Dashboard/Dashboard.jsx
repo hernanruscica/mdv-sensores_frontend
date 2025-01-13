@@ -32,8 +32,8 @@ const Dashboard = () => {
   }, []);  
 
   useEffect(() => {
-    setUserHasSomeAdminRole(userLocation.some(ul => ul.usuarios_roles_id >= 8));
-    setUserHasSomePropietaryRole(userLocation.some(ul => ul.usuarios_roles_id == 9));
+    setUserHasSomeAdminRole(userLocation?.some(ul => ul.usuarios_roles_id >= 8));
+    setUserHasSomePropietaryRole(userLocation?.some(ul => ul.usuarios_roles_id == 9));
   }, [userLocation]);
 
   if (loading){
@@ -41,7 +41,7 @@ const Dashboard = () => {
       <div>cargando...</div>
     )
   }
-  //console.log(userLocation, userHasSomePropietaryRole)
+  console.log(userLocation)
   
   return (
     <>
