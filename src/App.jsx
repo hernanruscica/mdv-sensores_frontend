@@ -26,6 +26,7 @@ import EditPage from './pages/EditPage/EditPage.jsx';
 import { UnderConstruction } from './pages/UnderConstruction/UnderContruction.jsx';
 import  CreatePage  from './pages/CreatePage/CreatePage.jsx';
 import SendActivationEmail from './pages/Users/SendActivationEmail.jsx';
+import ViewStateAlarm from './pages/ViewStateAlarm/ViewStateAlarm.jsx';
 
 import Modal from 'react-modal';     
 Modal.setAppElement('#root'); 
@@ -71,7 +72,9 @@ const App = () => {
               <Route path="/panel/dataloggers/:dataloggerId/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />   
               <Route path="/panel/dataloggers/:dataloggerId/canales/:channelId/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />    
               <Route path="/panel/ubicaciones/:locationId/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />   
-              <Route path="/panel/usuarios/:userId/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />      
+              <Route path="/panel/usuarios/:userId/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />     
+              <Route path="/panel/verestadoalarma/:token" element={<ViewStateAlarm />} />     
+              
 
               <Route path="/panel/dataloggers/:id/canales/:channelId/alarmas/:alarmId" element={<PrivateRoute ><ViewAlarm /></PrivateRoute>} />   
               <Route path="/panel/dataloggers/:id/canales/:channelId/alarmas/:alarmId/edicion" element={<PrivateRoute ><EditPage /></PrivateRoute>} />   
