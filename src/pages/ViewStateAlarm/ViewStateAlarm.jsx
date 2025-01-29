@@ -35,7 +35,7 @@ const ViewStateAlarm = () => {
   return (
     <>
       <main className="page__maincontent">
-        <Title1 text="Ver estado de alarma." type="alarma" />
+        <Title1 text="Ver estado de alarma." type="alarmas" />
         <p>{`Token : ${token}`}</p>
         {/* <form onSubmit={handleSubmit} className="login__form">
           <p>🙋🏻‍♂️ Déjanos un mensaje y te responderemos a la brevedad.</p>
