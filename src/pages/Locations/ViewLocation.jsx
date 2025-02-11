@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import CardLocationDetails from "../../components/CardLocationDetails/CardLocationDetails";
 import CardDataloggerInfo from "../../components/CardDataloggerInfo/CardDataloggerInfo";
 import ButtonsBar from '../../components/ButtonsBar/ButtonsBar'
-import createApiClient from '../../api/apiClient.js' ;
+
 import { ENV } from "../../context/env.js";
 
 
@@ -18,38 +18,31 @@ const ViewLocation = () => {
   const { id } = useParams();
   const [ loading, setLoading] = useState(false);
   const [dataloggersByLocation, setDataloggersByLocation] = useState([]);
-  const [currentLocation, setCurrentLocation] = useState([]);  
+  const [currentLocation, setCurrentLocation] = useState(locations.find(loc=>loc.ubicaciones_id == id));  
 
-  const apiClient = createApiClient();
+  
 
   const currentPageIcon =
   ENV.ICONS.find(({ nameSection }) => nameSection === 'dataloggers') ||
   ENV.ICONS.find(({ nameSection }) => nameSection === "default");    
 
-  const loadCurrentlocationData = async (id) => {
-    try{
-      const response = await apiClient.get(`/api/locations/${id}`);      
-      setCurrentLocation(response.data.location);     
-      
-    }catch(error){
-      console.log(`failed to load current location data`, error);
-    }
-  }  
 
   useEffect(() => {
     setLoading(true);
     setDataloggersByLocation(dataloggers.filter(datalogger => datalogger.ubicacion_id == id));   
-    loadLocations(user.id);
-    loadCurrentlocationData(id);        
+    loadLocations(user);         
     setLoading(false);
-  }, [user.id, id]);
+    setCurrentLocation(locations.find(loc=>loc.ubicaciones_id == id));
+  }, [user.id, id, locations]);
+
+ 
   
   
   if (loading) {
     return <div>Cargando...</div>;
   }    
 
-  //console.log(currentLocation)
+ //console.log(currentLocation)
   
   const dataloggerIds = dataloggersByLocation.map(datalogger => datalogger.id);  
   const currentAlarms = alarms.filter(alarm => dataloggerIds.includes(alarm.datalogger_id)); 

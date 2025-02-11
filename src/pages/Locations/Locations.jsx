@@ -7,9 +7,6 @@ import Breadcumb from "../../components/Breadcumb/Breadcumb.jsx";
 import ButtonsBar from '../../components/ButtonsBar/ButtonsBar.jsx';
 import CardLocationInfo from '../../components/CardLocationInfo/CardLocationInfo.jsx'
 
-//import "./Locations.css";
-
-
 const Locations = () => {
   const { user } = useAuth();
   const {locations, loadLocations, dataloggers} = useDashboard();
@@ -19,10 +16,11 @@ const Locations = () => {
   ENV.ICONS.find(({ nameSection }) => nameSection === 'ubicaciones') ||
   ENV.ICONS.find(({ nameSection }) => nameSection === "default");
 
- useEffect(() => {
-  loadLocations(user.id);  
+ useEffect(() => {  
+  loadLocations(user);  
 }, [user.id]); 
 
+//console.log(locations)
   return (
     <>
       <Title1     

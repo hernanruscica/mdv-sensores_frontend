@@ -19,10 +19,15 @@ export const DashboardProvider = ({ children }) => {
   const apiClient = createApiClient();
 
   // Funciones para cargar datos desde la API y almacenarlos en localStorage
-  const loadLocations = async (userId) => {
+  const loadLocations = async (user) => {
     try {
-      const response = await apiClient.get(`/api/locationsusers/locationsbyuser/${userId}`);
-      setLocationsLS(response.data.locationUserData);
+      if (user.espropietario == 1) {
+        const response = await apiClient.get(`/api/locations`);
+        setLocationsLS(response.data.locations);
+      } else{
+        const response = await apiClient.get(`/api/locationsusers/locationsbyuser/${user.id}`);
+        setLocationsLS(response.data.locationUserData);
+      }         
     } catch (error) {
       console.error('Failed to load locations:', error);
     }
@@ -93,7 +98,7 @@ export const DashboardProvider = ({ children }) => {
 
   const loadUserLocation = async (id) => {
     try {
-      //console.log('loadUserLocation')
+      //console.log('loadUserLocation') 
       const response2 = await apiClient.get(`/api/locationsusers/locationsbyuser/${id}`);
       // console.log(response2.data.locationUserData)
       setUserLocationLS(response2.data.locationUserData)

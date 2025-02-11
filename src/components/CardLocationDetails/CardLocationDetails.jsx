@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import './CardLocationDetails.css';
 import { CardBtnSmall } from '../CardBtnSmall/CardBtnSmall';
 import { ENV } from "../../context/env";
@@ -8,35 +8,35 @@ import { useAuth } from "../../context/AuthContext.jsx";
 
 const CardLocationDetails = (props) => {
     
-    const { id, type, location, dataloggers, channels, alarms } = props;    
+    const { id, type, location,  dataloggers, channels, alarms } = props;    
      
     const channelsByLocation = channels.filter(channel => channel.ubicaciones_id == id);
     const analogChannelsByLocationQty =  channelsByLocation.filter(channel => channel.nombre_columna.startsWith('a')).length; 
     const digitalChannelsByLocationQty =  channelsByLocation.filter(channel => channel.nombre_columna.startsWith('d')).length;   
-    const {user} = useAuth(); 
+    const {user} = useAuth();    
 
-    //console.log(dataloggers);
+    //console.log(location);
   return (    
     <div className="card_location_details">
       <div className="card_location_details__container">
-        <img src={`${ENV.IMAGES_URL}/${location.foto}`} 
+        <img src={`${ENV.IMAGES_URL}/${location.ubicaciones_foto}`} 
           className='location-details__container__image'
-          alt={`Foto de ${location.nombre}`}
-          title={`Foto de ${location.nombre}`} 
+          alt={`Foto de ${location.ubicaciones_nombre}`}
+          title={`Foto de ${location.ubicaciones_nombre}`} 
         />
       </div>
       <div className="card_location_details__info">
         <h2 className="card_location_details__info__title">        
-          {location.nombre}
+          {location.ubicaciones_nombre}
         </h2>
         <p className="card_location_details__paragraph">
-        📝{location.descripcion}
+        📝{location.ubicaciones_descripcion}
         </p>
         <p className="card_location_details__paragraph">
-        🏢<strong>Direción: </strong>{`${location.calle} ${location.numero}`}
+        🏢<strong>Direción: </strong>{`${location.ubicaciones_calle} ${location.ubicaciones_calle_numero}`}
         </p>
         <p className="card_location_details__paragraph">
-        📞<strong>Telefono: </strong>{location.telefono} - 📧 <strong>Correo: </strong> {location.email}
+        📞<strong>Telefono: </strong>{location.ubicaciones_tel} - 📧 <strong>Correo: </strong> {location.ubicaciones_email}
         </p>
         <p className="card_location_details__paragraph">
         🌡️<strong>Dataloggers conectados : </strong>

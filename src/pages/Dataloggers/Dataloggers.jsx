@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { useAuth } from '../../context/AuthContext';
 import { useDashboard } from "../../context/DashboardContext.jsx";
 import { ENV } from "../../context/env.js";
@@ -11,6 +11,7 @@ import "./Dataloggers.css";
 const Dataloggers = () => {
   const { user } = useAuth();
   const { locations, loadLocations, dataloggers, loadDataloggers, loadUsers, channels, loadChannels, alarms, loadAlarms } = useDashboard(); 
+  const [loading, setLoading] = useState(false);
 
   const currentPageIcon =
   ENV.ICONS.find(({ nameSection }) => nameSection === 'dataloggers') ||
@@ -18,15 +19,20 @@ const Dataloggers = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      await loadLocations(user.id);
-      await loadDataloggers(user.id);
-      await loadUsers(user.id);
-      await loadChannels(user.id);
-      await loadAlarms(user.id)      
+      setLoading(true);        
+      await Promise.all([loadLocations(user), loadDataloggers(user.id), loadUsers(user.id), loadChannels(user.id), loadAlarms(user.id)]);
+      setLoading(false);
       }
       loadData();
   }, [user.id]);  
 
+  if (loading) {
+    return (
+      <div>Cargando...</div>
+    )
+  }
+
+  console.log(locations)
   return (
     <>
       <Title1        
