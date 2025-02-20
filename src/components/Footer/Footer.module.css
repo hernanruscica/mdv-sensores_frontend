@@ -1,0 +1,61 @@
+
+
+footer {
+    width: 100%;    
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Alinea las secciones en la parte superior */
+    padding: 20px; /* Aumenta el padding para mejor espaciado en general */
+    background-color: #333; /* Cambia a un gris más oscuro para mejor contraste con el texto */
+    color: #fff; /* Cambia el color del texto a blanco o un gris claro */
+    z-index: 100;
+    flex-wrap: wrap; /* Permite que las secciones se envuelvan en pantallas más pequeñas */
+}
+
+.footerSection {
+    width: 30%; /* Ocupa el 33% del ancho en desktop */
+    margin-bottom: 20px; /* Espacio entre las secciones */
+}
+
+.footerSection h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #fff; /* Asegura que el título sea visible */
+}
+
+.footerSection ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footerSection li {
+    margin-bottom: 5px;
+}
+
+.footerSection a, .footerSection span {
+    color: #ccc; /* Un gris claro para los enlaces y el texto */
+    text-decoration: none;
+    display: block; /* Para que el enlace ocupe todo el ancho del li */
+}
+
+.footerSection a:hover {
+    color: #fff; /* Cambia el color al pasar el mouse */
+}
+
+.footerSection p {
+    font-size: 0.8em;
+    line-height: 1.4;
+}
+
+/* Media query para mobile */
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column; /* Apila las secciones verticalmente */
+        align-items: stretch; /* Estira las secciones para ocupar todo el ancho */
+    }
+
+    .footerSection {
+        width: 100%; /* Ocupa el 100% del ancho en mobile */
+        margin-bottom: 30px; /* Aumenta el margen inferior para mejor espaciado */
+    }
+}

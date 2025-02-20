@@ -5,6 +5,7 @@ import Breadcumb from "../../components/Breadcumb/Breadcumb.jsx";
 import { Title1 } from "../../components/Title1/Title1.jsx";
 import CreateUserForm from "../../components/forms/CreateUserForm.jsx";
 import LocationForm from "../../components/forms/LocationForm.jsx";
+import CreateLocationForm from "../../components/forms/CreateLocationForm.jsx"
 import DataloggerForm from "../../components/forms/DataloggerForm.jsx";
 import ChannelForm from "../../components/forms/ChannelForm.jsx";
 import AlarmForm from "../../components/forms/AlarmForm.jsx";
@@ -14,7 +15,7 @@ import './CreatePage.css'
 
 const formComponents = {
   users: CreateUserForm,     
-  locations: LocationForm,
+  locations: CreateLocationForm,
   dataloggers: DataloggerForm,
   channels: ChannelForm,
   alarms: AlarmForm,
@@ -57,6 +58,7 @@ const CreatePage = () => {
 
   const FormComponent = formComponents[entity];
 
+  //console.log(entity)
   
   return (
     <>    

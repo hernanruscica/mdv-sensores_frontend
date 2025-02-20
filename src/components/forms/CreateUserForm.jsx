@@ -51,7 +51,7 @@ function CreateUserForm() {
     //console.log(`user permissions on locatonId: ${e.target.value} =  ${permissionLocation.usuarios_roles_id}`)
     const filteredRoles = roles.filter(roles => roles.id < permissionLocation.usuarios_roles_id);
     setCurrentRoles(filteredRoles);
-    console.log(filteredRoles)
+    //console.log(filteredRoles)
   }
 
   const handleSubmit = async (e) => {
@@ -84,7 +84,7 @@ function CreateUserForm() {
         formData2.append("roles_id", selectedLocationRol);
         formData2.append("usuarios_id", response.data.user.id);
         const response2 = await apiClient.post(`/api/locationsusers`, formData2)
-        console.log(response2);
+        //console.log(response2);
         setLoading(false);        
         setModalMessage(`Usuario ${user.nombre_1} ${user.apellido_1} creado con éxito.\nCorreo de confirmacion enviado a ${user.email}`);
         setModalIsOpen(true); 

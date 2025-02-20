@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext.jsx';
 import { DashboardProvider } from './context/DashboardContext.jsx';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer.jsx';
 import Home from './pages/Home';
 import Contact from './pages/Contact/Contact';
 import Login from './pages/Login/Login';
@@ -56,7 +57,7 @@ const App = () => {
 
               <Route path="/panel/ubicaciones" element={<PrivateRoute ><Locations /></PrivateRoute>} />       
               <Route path="/panel/ubicaciones/:id" element={<PrivateRoute ><ViewLocation /></PrivateRoute>} />     
-              <Route path="/panel/ubicaciones/agregar" element={<PrivateRoute ><UnderConstruction /></PrivateRoute>} />                  
+              <Route path="/panel/ubicaciones/agregar" element={<PrivateRoute ><CreatePage /></PrivateRoute>} />                  
               <Route path="/panel/ubicaciones/:id/edicion" element={<PrivateRoute ><EditPage /></PrivateRoute>} />
 
               <Route path="/panel/dataloggers" element={<PrivateRoute ><Dataloggers /></PrivateRoute>} />          
@@ -81,6 +82,7 @@ const App = () => {
 
               
           </Routes>
+          <Footer />
         </Router>
       </DashboardProvider>
     </AuthProvider>
