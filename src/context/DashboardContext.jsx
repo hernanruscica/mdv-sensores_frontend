@@ -22,9 +22,11 @@ export const DashboardProvider = ({ children }) => {
   const loadLocations = async (user) => {
     try {
       if (user.espropietario == 1) {
+        console.log('es propietario')
         const response = await apiClient.get(`/api/locations`);
         setLocationsLS(response.data.locations);
       } else{
+        console.log('NO es propietario')
         const response = await apiClient.get(`/api/locationsusers/locationsbyuser/${user.id}`);
         setLocationsLS(response.data.locationUserData);
       }         
@@ -34,10 +36,15 @@ export const DashboardProvider = ({ children }) => {
   };
 
   
-  const loadDataloggers = async (userId) => {
+  const loadDataloggers = async (user) => {
     try {
-      const response = await apiClient.get(`/api/dataloggers/byuser/${userId}`);
-      setDataloggersLS(response.data.dataloggers);
+      if (user.espropietario == 1) {
+        const response = await apiClient.get(`/api/dataloggers`);
+        setDataloggersLS(response.data.dataloggers);
+      }else{
+        const response = await apiClient.get(`/api/dataloggers/byuser/${user.id}`);
+        setDataloggersLS(response.data.dataloggers);
+      }
     } catch (error) {
       console.error('Failed to load dataloggers:', error);
     }
@@ -120,7 +127,7 @@ export const DashboardProvider = ({ children }) => {
 
   // Función para cargar todos los datos al mismo tiempo si es necesario
    const loadAllData = async (userId, locationId) => {
-     await Promise.all([loadLocations(userId), loadDataloggers(userId), loadUsers(userId), loadChannels(userId), loadAlarms(userId), loadAlarmsLocation(locationId), loadUserLocation(userId)]);     
+     await Promise.all([loadLocations(user), loadDataloggers(user), loadUsers(userId), loadChannels(userId), loadAlarms(userId), loadAlarmsLocation(locationId), loadUserLocation(userId)]);     
    };
 
   return (

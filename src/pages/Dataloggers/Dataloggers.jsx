@@ -20,7 +20,7 @@ const Dataloggers = () => {
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);        
-      await Promise.all([loadLocations(user), loadDataloggers(user.id), loadUsers(user.id), loadChannels(user.id), loadAlarms(user.id)]);
+      await Promise.all([loadLocations(user), loadDataloggers(user), loadUsers(user.id), loadChannels(user.id), loadAlarms(user.id)]);
       setLoading(false);
       }
       loadData();
@@ -32,7 +32,7 @@ const Dataloggers = () => {
     )
   }
 
-  console.log(locations)
+  //console.log(datalogger)
   return (
     <>
       <Title1        

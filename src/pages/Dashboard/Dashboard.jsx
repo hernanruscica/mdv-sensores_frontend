@@ -18,13 +18,13 @@ const Dashboard = () => {
   const [ userHasSomeAdminRole, setUserHasSomeAdminRole] = useState(false);
   const [ userHasSomePropietaryRole, setUserHasSomePropietaryRole] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [currentLocations, setCurrentLocations] = useState([]);
+  //const [currentLocations, setCurrentLocations] = useState([]);
 
   // Cargar las locations al actualizar la pagina
   useEffect(() => {    
       const loadData = async () => {
         setLoading(true);
-        await Promise.all([loadLocations(user), loadDataloggers(user.id), loadUsers(user.id), loadChannels(user.id)], loadAlarms(user.id), loadUserLocation(user.id));
+        await Promise.all([loadLocations(user), loadDataloggers(user), loadUsers(user.id), loadChannels(user.id)], loadAlarms(user.id), loadUserLocation(user.id));
         setLoading(false);   
         setUserHasSomeAdminRole(userLocation?.some(ul => ul.usuarios_roles_id >= 8));  //esto hay que sacar y que busque si el usuario es admin en cada ubicacion en particular
         setUserHasSomePropietaryRole(user.espropietario == 1);         
@@ -39,7 +39,7 @@ const Dashboard = () => {
       <div>cargando...</div>
     )
   }
-  //console.log(locations);
+  console.log(users);
   
   return (
     <>
