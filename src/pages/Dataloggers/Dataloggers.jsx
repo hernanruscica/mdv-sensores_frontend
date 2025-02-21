@@ -28,13 +28,13 @@ const Dataloggers = () => {
 
   if (loading) {
     return (
-      <div>Cargando...</div>
+      <div className="loading">Cargando...</div>
     )
   }
 
   //console.log(datalogger)
   return (
-    <>
+    <main className="main">
       <Title1        
         type="dataloggers"
         text="Dataloggers"
@@ -57,7 +57,7 @@ const Dataloggers = () => {
           )}
         )}
       </section>
-    </>
+    </main>
   );
 };
 

@@ -36,10 +36,10 @@ const Dashboard = () => {
 
   if (loading){
     return (
-      <div>cargando...</div>
+      <div className="loading">Cargando...</div>
     )
   }
-  console.log(users);
+  //console.log(users);
   
   return (
     <>

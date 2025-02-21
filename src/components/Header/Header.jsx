@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { Link ,useLocation } from "react-router-dom";
+import { Link ,useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
 import "./Header.css";
 import { ENV } from "../../context/env.js";
@@ -11,12 +11,15 @@ const Header = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);  
   const location = useLocation();  
 
+  const navigate = useNavigate();
+
   const menuBtnHandler = () => {    
     setNavbarVisible(!navbarVisible);
     
   }
   const handlerLogOut = (e) => {
     e.preventDefault();
+    navigate('/');
     logout();
   }
  //console.log(navbarVisible);

@@ -7,7 +7,7 @@ import CardLinkButton from "../CardLinkButton/CardLinkButton";
 
 export const CardDataloggerInfo = (props) => {    
   const { name, id, location, channels, alarms, iconSrc } = props;
-console.log(location)
+//console.log(location)
   return (
     <div className="card-datalogger-info">      
       <CardTitle 

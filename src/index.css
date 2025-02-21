@@ -38,6 +38,9 @@ h1, h2{
   color: #1a1a1a;
 }
 
+.loading{
+  min-height: 100vh;  
+}
 .section{
   width: 100%;
 }

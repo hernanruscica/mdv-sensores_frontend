@@ -22,11 +22,11 @@ export const DashboardProvider = ({ children }) => {
   const loadLocations = async (user) => {
     try {
       if (user.espropietario == 1) {
-        console.log('es propietario')
+        // console.log('es propietario')
         const response = await apiClient.get(`/api/locations`);
         setLocationsLS(response.data.locations);
       } else{
-        console.log('NO es propietario')
+        //console.log('NO es propietario')
         const response = await apiClient.get(`/api/locationsusers/locationsbyuser/${user.id}`);
         setLocationsLS(response.data.locationUserData);
       }         
