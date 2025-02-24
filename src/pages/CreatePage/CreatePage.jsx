@@ -4,9 +4,8 @@ import { useParams, useLocation } from 'react-router-dom';
 import Breadcumb from "../../components/Breadcumb/Breadcumb.jsx";
 import { Title1 } from "../../components/Title1/Title1.jsx";
 import CreateUserForm from "../../components/forms/CreateUserForm.jsx";
-import LocationForm from "../../components/forms/LocationForm.jsx";
-import CreateLocationForm from "../../components/forms/CreateLocationForm.jsx"
-import DataloggerForm from "../../components/forms/DataloggerForm.jsx";
+import CreateLocationForm from "../../components/forms/CreateLocationForm.jsx";
+import CreateDataloggerForm from "../../components/forms/CreateDataloggerForm.jsx";
 import ChannelForm from "../../components/forms/ChannelForm.jsx";
 import AlarmForm from "../../components/forms/AlarmForm.jsx";
 
@@ -16,7 +15,7 @@ import './CreatePage.css'
 const formComponents = {
   users: CreateUserForm,     
   locations: CreateLocationForm,
-  dataloggers: DataloggerForm,
+  dataloggers: CreateDataloggerForm,
   channels: ChannelForm,
   alarms: AlarmForm,
 };

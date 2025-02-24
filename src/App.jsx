@@ -32,11 +32,7 @@ import ViewStateAlarm from './pages/ViewStateAlarm/ViewStateAlarm.jsx';
 import Modal from 'react-modal';     
 Modal.setAppElement('#root'); 
 
-
-
 const App = () => {
-  
-
   return (
     <AuthProvider>
       <DashboardProvider>
@@ -62,7 +58,7 @@ const App = () => {
 
               <Route path="/panel/dataloggers" element={<PrivateRoute ><Dataloggers /></PrivateRoute>} />          
               <Route path="/panel/dataloggers/:id" element={<PrivateRoute ><ViewDatalogger /></PrivateRoute>} />   
-              <Route path="/panel/dataloggers/agregar" element={<PrivateRoute ><UnderConstruction /></PrivateRoute>} />
+              <Route path="/panel/dataloggers/agregar" element={<PrivateRoute ><CreatePage /></PrivateRoute>} />
               <Route path="/panel/dataloggers/:id/edicion" element={<PrivateRoute ><EditPage /></PrivateRoute>} />              
 
               <Route path="/panel/dataloggers/:id/canales" element={<PrivateRoute ><Channels /></PrivateRoute>} />    

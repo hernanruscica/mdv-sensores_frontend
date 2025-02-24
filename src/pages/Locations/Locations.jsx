@@ -28,7 +28,10 @@ const Locations = () => {
         text={title}
       />
       <Breadcumb />
-      <ButtonsBar itemsName='ubicaciones' itemsQty={locations.length}/>
+      <ButtonsBar 
+        itemsName='ubicaciones' 
+        itemsQty={locations.length}
+        showAddButton={user.espropietario == 1}/>
       <section className="cards-container">
         {locations.map((location) => (
           <CardLocationInfo type='ubicaciones' 

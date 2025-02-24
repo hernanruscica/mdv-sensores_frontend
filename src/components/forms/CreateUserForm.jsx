@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import CardImageLoadingPreview from "../CardImageLoadingPreview/CardImageLoadingPreview.jsx";
 import "./form.css";
 import { useDashboard } from "../../context/DashboardContext";
-import { useAuth } from '../../context/AuthContext.jsx'
 
 import Modal from "react-modal";
 Modal.setAppElement("#root");
@@ -35,7 +34,7 @@ function CreateUserForm() {
   const {locations, roles, userLocation} = useDashboard();  
   const [ selectedLocationRol, setSelectedLocationRol] = useState(7);
   const [ selectedLocation, setSelectedLocation] = useState(locations[0].ubicaciones_id);
-  const [currentRoles, setCurrentRoles]  = useState(roles.filter(roles => roles.id < 8))
+  const [currentRoles, setCurrentRoles]  = useState(roles.filter(roles => roles.id <= 8))
 
   const handleChange = (e) => {
     setUser({

@@ -38,7 +38,7 @@ const CardUserDetails = (props) => {
 
     //Delete user action:
     const userDeleted = await deleteUserApi(currentUser.id);
-    console.log(userDeleted);
+    //console.log(userDeleted);
 
     navigate('/panel/usuarios');
   }
@@ -46,7 +46,7 @@ const CardUserDetails = (props) => {
   useEffect(() => {
     setUserHasSomeAdminRole(userLocation.some(ul => ul.usuarios_roles_id >= 8));
   }, [userLocation]);
-console.log(currentUser);
+//console.log(currentUser);
    return (    
      <div className="card-user-details">
        <div className="user-details__container">

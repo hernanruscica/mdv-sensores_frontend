@@ -32,15 +32,18 @@ const Dataloggers = () => {
     )
   }
 
-  //console.log(datalogger)
+  //console.log(user)
   return (
-    <main className="main">
+    <>
       <Title1        
         type="dataloggers"
         text="Dataloggers"
       />
       <Breadcumb />
-      <ButtonsBar itemsName='dataloggers' itemsQty={dataloggers.length}/>
+      <ButtonsBar 
+        itemsName='dataloggers' 
+        showAddButton={user.espropietario == 1}
+        itemsQty={dataloggers.length}/>
       <section className="cards-container">        
         {dataloggers.map((datalogger) => {
           const currentLocation = locations.find(location => location.ubicaciones_id == datalogger.ubicacion_id);
@@ -57,7 +60,7 @@ const Dataloggers = () => {
           )}
         )}
       </section>
-    </main>
+    </>
   );
 };
 
