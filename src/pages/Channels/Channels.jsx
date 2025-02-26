@@ -1,5 +1,5 @@
   
-//import { useAuth } from '../context/AuthContext';
+import { useEffect, useState } from "react";
 
 import Breadcumb from "../../components/Breadcumb/Breadcumb.jsx";
 import { Title1 } from "../../components/Title1/Title1.jsx";
@@ -8,6 +8,7 @@ import ButtonsBar from "../../components/ButtonsBar/ButtonsBar.jsx";
 import CardChannelInfo from "../../components/CardChannelInfo/CardChannelInfo.jsx";
 
 import { useDashboard } from '../../context/DashboardContext';
+import { useAuth } from "../../context/AuthContext.jsx";
 import { useLocation } from 'react-router-dom';
 import { ENV } from "../../context/env.js";
 
@@ -19,10 +20,12 @@ const Channels = () => {
   const location = useLocation();  
   const fullPath =  location.pathname.split('/').filter(path => path !== '');    
   
-  const { dataloggers, channels, alarms } = useDashboard();
+  const { dataloggers, channels, loadChannels, alarms } = useDashboard();
+  const {user} = useAuth();
 
   const indexDataloggerIdPath = fullPath.indexOf('dataloggers') + 1;
   const dataloggerId = fullPath[indexDataloggerIdPath];
+  const [loading, setLoading] = useState(false);
 
 
   
@@ -35,6 +38,16 @@ const Channels = () => {
   ENV.ICONS.find(({ nameSection }) => nameSection === "default");    
 
 
+  useEffect(() => {
+    setLoading(true);
+    loadChannels(user.id);
+    setLoading(false);
+  }, [channels])
+
+  if (loading) {
+    <div>Loading...</div>
+  }
+  //console.log(user)
 
   return (
     <>
@@ -46,10 +59,11 @@ const Channels = () => {
       <Title2
         type="canales"
         text={`Canales de "${currentDatalogger[0]?.nombre || ''}"`}
-      />
+      />     
       <ButtonsBar
-        itemsName="canales"
+        itemsName={`dataloggers/${currentDatalogger[0].id}/canales`}
         itemsQty={currentChannels.length}
+        showAddButton={user.espropietario == 1}
       />
 
       <section className="cards-container" key="channels">   

@@ -74,7 +74,7 @@ const ViewChannel = () => {
     return <div>Cargando...</div>;
   }
   
-  //console.log(firstAlarmPorcentage) 
+  //console.log(currentChannel) 
   return (
     <>
       <Title1     
@@ -129,8 +129,9 @@ const ViewChannel = () => {
           text={`Alarmas activas para el canal "${currentChannel?.nombre || ''}"`}
         />
         <ButtonsBar
-          itemsName="alarmas"
+          itemsName={`dataloggers/${currentDatalogger.id}/canales/${currentChannel.id}/alarmas`}
           itemsQty={currentAlarms.length}
+          showAddButton={user.espropietario == 1}
         />        
       {
         (currentAlarms.length > 0 && !loading2)

@@ -93,8 +93,9 @@ const ViewDatalogger = () => {
         text={`Canales de "${currentDatalogger?.nombre || ''}"`}
       />
       <ButtonsBar
-        itemsName="canales"
+        itemsName={`dataloggers/${currentDatalogger.id}/canales`}
         itemsQty={channelsByCurrentDatalogger.length}
+        showAddButton={user.espropietario == 1}
       />
       
       <section className="cards-container" key="channels">   

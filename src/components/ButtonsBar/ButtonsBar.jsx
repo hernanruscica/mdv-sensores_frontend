@@ -1,12 +1,14 @@
 import React from 'react'
 import BtnCallToAction from '../../components/BtnCallToAction/BtnCallToAction';
 import SearchInput from '../../components/SearchInput/SearchInput';
-//import { useAuth } from "../../context/AuthContext.jsx";
+
 import './ButtonsBar.css';
 
 const ButtonsBar = (props) => {
     const {itemsName, itemsQty, showAddButton = false} = props;
-    //const {user} = useAuth(); 
+    let itemNameCleaned = itemsName.split('/');
+    itemNameCleaned = itemNameCleaned.length > 1 ? itemNameCleaned.pop() : itemNameCleaned;
+
     return (
         <div className='buttons-bar'>
             {(showAddButton) ?
@@ -17,8 +19,8 @@ const ButtonsBar = (props) => {
                 url={`panel/${itemsName}/agregar`}
             />
             : ''}
-            <SearchInput itemsName={itemsName}/>
-            <span>Mostrando <strong>{itemsQty || "0"}</strong> {itemsName}</span>   
+            <SearchInput itemsName={itemNameCleaned}/>
+            <span>Mostrando <strong>{itemsQty || "0"}</strong> {itemNameCleaned}</span>   
         </div>
     )
 }

@@ -63,13 +63,14 @@ const App = () => {
 
               <Route path="/panel/dataloggers/:id/canales" element={<PrivateRoute ><Channels /></PrivateRoute>} />    
               <Route path="/panel/dataloggers/:id/canales/:channelId" element={<PrivateRoute ><ViewChannel /></PrivateRoute>} /> 
-              <Route path="/panel/dataloggers/:id/canales/agregar" element={<PrivateRoute ><UnderConstruction /></PrivateRoute>} />
+              <Route path="/panel/dataloggers/:id/canales/agregar" element={<PrivateRoute ><CreatePage /></PrivateRoute>} />
               <Route path="/panel/dataloggers/:id/canales/:channelId/edicion" element={<PrivateRoute ><EditPage /></PrivateRoute>} /> 
 
               <Route path="/panel/dataloggers/:dataloggerId/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />   
               <Route path="/panel/dataloggers/:dataloggerId/canales/:channelId/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />    
               <Route path="/panel/ubicaciones/:locationId/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />   
               <Route path="/panel/usuarios/:userId/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />     
+              <Route path="/panel/dataloggers/:dataloggerId/canales/:channelId/alarmas/agregar" element={<PrivateRoute ><CreatePage /></PrivateRoute>} />   
               <Route path="/panel/verestadoalarma/:token" element={<ViewStateAlarm />} />                   
 
               <Route path="/panel/dataloggers/:id/canales/:channelId/alarmas/:alarmId" element={<PrivateRoute ><ViewAlarm /></PrivateRoute>} />   
