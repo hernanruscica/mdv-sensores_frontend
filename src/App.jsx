@@ -63,7 +63,7 @@ const App = () => {
 
               <Route path="/panel/dataloggers/:id/canales" element={<PrivateRoute ><Channels /></PrivateRoute>} />    
               <Route path="/panel/dataloggers/:id/canales/:channelId" element={<PrivateRoute ><ViewChannel /></PrivateRoute>} /> 
-              <Route path="/panel/dataloggers/:id/canales/agregar" element={<PrivateRoute ><CreatePage /></PrivateRoute>} />
+              <Route path="/panel/dataloggers/:dataloggerId/canales/agregar" element={<PrivateRoute ><CreatePage /></PrivateRoute>} />
               <Route path="/panel/dataloggers/:id/canales/:channelId/edicion" element={<PrivateRoute ><EditPage /></PrivateRoute>} /> 
 
               <Route path="/panel/dataloggers/:dataloggerId/alarmas" element={<PrivateRoute ><Alarms /></PrivateRoute>} />   

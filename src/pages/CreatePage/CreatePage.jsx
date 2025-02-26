@@ -8,6 +8,7 @@ import CreateLocationForm from "../../components/forms/CreateLocationForm.jsx";
 import CreateDataloggerForm from "../../components/forms/CreateDataloggerForm.jsx";
 import CreateChannelForm from "../../components/forms/CreateChannelForm.jsx";
 import CreateAlarmForm from "../../components/forms/CreateAlarmForm.jsx";
+import DefaultForm from "../../components/forms/DefaultForm.jsx";
 
 import './CreatePage.css'
 
@@ -17,54 +18,43 @@ const formComponents = {
   dataloggers: CreateDataloggerForm,
   channels: CreateChannelForm,
   alarms: CreateAlarmForm,
+  default: DefaultForm,
 };
 
 
 const CreatePage = () => {
 
-  
-
   const location = useLocation();  
-  const fullPath =  location.pathname.split('/').filter(path => path !== '');  
-  
-  const { dataloggerId, channelId } = useParams(); // Obtenemos el nombre de la entidad y el ID desde la URL  
-
- 
+  const fullPath =  location.pathname.split('/').filter(path => path !== '');    
+  const { dataloggerId, channelId } = useParams(); // Obtenemos el nombre de la entidad y el ID desde la URL   
   const entityNames = {
     usuarios: 'users',
     ubicaciones: 'locations',
     dataloggers: 'dataloggers',
     canales: 'channels',
     alarmas: 'alarms',
-  }
-
-  
+    default: 'default'
+  }  
   let entidad = null;
-  let currentId = null;
-
-  //console.log(fullPath)
+  let currentId = null;  
 
   //para usuarios y locaciones
   if (dataloggerId == undefined){
-    entidad = fullPath[1]
+    entidad = fullPath[1]    
+  }else{
+    //para dataloggers
+    if (dataloggerId != undefined && channelId == undefined){
+          entidad = fullPath[3]
+          currentId = dataloggerId
+        }else{
+           entidad = fullPath[5]
+      currentId = channelId;
+        }
   }
- 
-  //para dataloggers
-  if (dataloggerId != undefined && channelId == undefined){
-        entidad = fullPath[3]
-        currentId = dataloggerId
-      }else{
-         entidad = fullPath[5]
-    currentId = channelId;
-      }
-
- 
-  const entity = entityNames[entidad];  
-
+  
+  const entity = entityNames[entidad] || 'default';  
   const FormComponent = formComponents[entity];
 
-  //console.log(dataloggerId, channelId)
-  
   return (
     <>    
     <Title1
@@ -78,9 +68,7 @@ const CreatePage = () => {
       dataloggerId={dataloggerId || null}
       channelId={channelId || null}         
     />
-
-    </>     
-    
+    </>       
   );
 };
 
