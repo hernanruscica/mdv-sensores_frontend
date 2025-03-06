@@ -9,7 +9,7 @@ const createApiClient = (contentType) => {
   let defaultHeaders = null;
   try {
     
-    // Definir headers predeterminados 'application/json'
+    // Definir headers predeterminados 'application/json' o "multipart/form-data" --> {'Content-Type': 'multipart/form-data'}
     defaultHeaders = {
       'Content-Type': contentType ? contentType : 'application/json',
       'Authorization': `Bearer ${tokenLS}`
@@ -18,10 +18,7 @@ const createApiClient = (contentType) => {
   } catch (error) {    
     
     console.log(error)
-  }
-
-
-  
+  }  
 
   return axios.create({
     baseURL: import.meta.env.VITE_API_URL, // Reemplaza con la URL de tu API

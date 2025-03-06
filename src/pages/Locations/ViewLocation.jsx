@@ -60,26 +60,31 @@ const ViewLocation = () => {
           dataloggers={dataloggersByLocation} 
           channels={channels} 
           alarms={currentAlarms} /> 
+
       <Title2 
         type="dataloggers"
         text="dataloggers en esta ubicacion"
       />
-      <ButtonsBar itemsName='dataloggers' itemsQty={dataloggersByLocation?.length || 0}/>
-       <section className="cards-container">        
-         {dataloggersByLocation.map((datalogger) => {
-          const currentLocation = locations.find(location => location.ubicaciones_id == datalogger.ubicacion_id);
-          const currentChannels = channels.filter(channel => channel.datalogger_id == datalogger.id);    
-          
-          return (
-          <CardDataloggerInfo title='dataloggers' key={datalogger.id}
-            name={datalogger.nombre} id={datalogger.id}  
-            location={currentLocation} 
-            channels={currentChannels} 
-            alarms={currentAlarms}
-            iconSrc={`${ENV.URL}/icons/${currentPageIcon.fileName}`}/>
-          )}
-        )} 
-      </section> 
+
+      <ButtonsBar 
+        itemsName='dataloggers' 
+        itemsQty={dataloggersByLocation?.length || 0}
+        showAddButton={user.espropietario}/>
+
+      <section className="cards-container">        
+        {dataloggersByLocation.map((datalogger) => {
+        const currentLocation = locations.find(location => location.ubicaciones_id == datalogger.ubicacion_id);
+        const currentChannels = channels.filter(channel => channel.datalogger_id == datalogger.id);            
+        return (
+        <CardDataloggerInfo title='dataloggers' key={datalogger.id}
+          name={datalogger.nombre} id={datalogger.id}  
+          location={currentLocation} 
+          channels={currentChannels} 
+          alarms={currentAlarms}
+          iconSrc={`${ENV.URL}/icons/${currentPageIcon.fileName}`}/>
+        )}
+      )} 
+    </section> 
     </>
   );
 };

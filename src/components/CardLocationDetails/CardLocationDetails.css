@@ -30,6 +30,10 @@
     
   }
 
+  .card_location_text_danger{
+    color: #DE6528;
+  }
+
   .card_location_details__paragraph{
     font-size: 1.1em;
     letter-spacing: 0.03em;
@@ -104,4 +108,9 @@
     .card_location_details__info, .card_location_details__container{
       width: 100%;
     }
+  }
+
+  .card_location_modal_btn-container{
+    display: flex;
+    justify-content: space-between;
   }

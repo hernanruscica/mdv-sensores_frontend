@@ -33,10 +33,13 @@ export const CardLocationInfo =  (props) => {
       </div>
       <div className="card-location-info__description">
       <strong>Dataloggers Conectados: </strong>
-      <CardBtnSmall
-          title={currentDatalogger.nombre}
-          url={`/panel/dataloggers/${currentDatalogger.id}`}
+      {(currentDatalogger)?
+        <CardBtnSmall
+          title={currentDatalogger?.nombre} 
+          url={`/panel/dataloggers/${currentDatalogger?.id}`}
         />
+        : <span>No tiene Dataloggers</span>
+        }
       </div>
 
       <div className="card-location-info__description">
