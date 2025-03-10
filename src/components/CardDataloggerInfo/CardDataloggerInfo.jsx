@@ -7,7 +7,7 @@ import CardLinkButton from "../CardLinkButton/CardLinkButton";
 
 export const CardDataloggerInfo = (props) => {    
   const { name, id, location, channels, alarms, iconSrc } = props;
-//console.log(location)
+
   return (
     <div className="card-datalogger-info">      
       <CardTitle 
@@ -27,9 +27,9 @@ export const CardDataloggerInfo = (props) => {
           <span>Canales conectados :</span>          
           <CardList 
             items={channels}
-            getKey={(channel) => `channel-${channel.canal_id}`}
-            getTitle={(channel => channel.canal_nombre)}
-            getUrl={channel => `/panel/dataloggers/${id}/canales/${channel.canal_id}`}
+            getKey={(channel) => `channel-${channel.canales_id}`}
+            getTitle={(channel => channel.canales_nombre)}
+            getUrl={channel => `/panel/dataloggers/${id}/canales/${channel.canales_id}`}
             emptyMessage={'No tiene'}
           />
         </p>   

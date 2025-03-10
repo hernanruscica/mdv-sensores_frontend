@@ -12,8 +12,8 @@ const CardChannelDetails = (props) => {
     const { datalogger, channel, alarms } = props;    
     const { channels } = useDashboard();
       
-    const horas_uso = Math.ceil(channels.find(ch=> ch.canal_id == channel.id).horas_uso);
-    const desde = formatDate(channels.find(ch=> ch.canal_id == channel.id).fecha_inicio, 'short')
+    const horas_uso = Math.ceil(channels.find(ch=> ch.canales_id == channel.id).horas_uso);
+    const desde = formatDate(channels.find(ch=> ch.canales_id == channel.id).fecha_inicio, 'short')
     const {user} = useAuth();
 
 

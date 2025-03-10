@@ -55,25 +55,25 @@ export const CardChannelInfo = (props) => {
   return (
     <div className="card-channel-info">      
       <CardTitle 
-        text={channel.canal_nombre}
+        text={channel.canales_nombre}
         iconSrc={iconSrc}
       />
       <div className="card-channels-info__description">
         <div className='card-channels-info__container'>
           <img src={`${ENV.IMAGES_URL}/${channel.foto}`}           
-            alt={`Foto de ${channel.canal_nombre}`}
-            title={`Foto de ${channel.canal_nombre}`} 
+            alt={`Foto de ${channel.canales_nombre}`}
+            title={`Foto de ${channel.canales_nombre}`} 
             className='card-channels-info__container__image'
           />
         </div>
         <p className="card-channel-info__description__paragraph">
-        <span>📝{channel.canal_descripcion}</span>
+        <span>📝{channel.canales_descripcion}</span>
         <span>⏰ Alarmas programadas : <br/>                       
             {(alarms?.length > 0) ?
               <CardBtnSmall
-                key={`alarm-${channel.canal_id}`}
+                key={`alarm-${channel.canales_id}`}
                 title={`Ver ${alarms.length} alarmas`}
-                url={`/panel/dataloggers/${datalogger.id}/canales/${channel.canal_id}/alarmas`}
+                url={`/panel/dataloggers/${datalogger.id}/canales/${channel.canales_id}/alarmas`}
               />                 
               :
               <strong>No tiene alarmas</strong>}
@@ -93,7 +93,7 @@ export const CardChannelInfo = (props) => {
             channelType === 'digital' ? (
               <DigitalPorcentageOn 
                 data={dataChannel}
-                currentChannelName = {channel.canal_nombre}
+                currentChannelName = {channel.canales_nombre}
                 currentChannelTimeProm = {channel.tiempo_a_promediar}
                 />
             ) : (
@@ -108,7 +108,7 @@ export const CardChannelInfo = (props) => {
         </div>
       )}      
       <CardLinkButton 
-        url={`/panel/dataloggers/${channel.datalogger_id}/canales/${channel.canal_id}`}
+        url={`/panel/dataloggers/${channel.datalogger_id}/canales/${channel.canales_id}`}
       />
     </div>
   );

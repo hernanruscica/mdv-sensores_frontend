@@ -40,7 +40,7 @@ const Channels = () => {
 
   useEffect(() => {
     setLoading(true);
-    loadChannels(user.id);
+    loadChannels(user);
     setLoading(false);
   }, [channels])
 
@@ -71,7 +71,7 @@ const Channels = () => {
           const currentAlarmsByChannel = currentAlarms.filter(alarm => alarm.canal_id == channel.canal_id);          
           return(
           <CardChannelInfo    
-            key={`channel_${channel.canal_id}`}                   
+            key={`channel_${channel.canales_id}`}                   
             title="canales"
             channel={channel}
             datalogger={currentDatalogger[0]}    

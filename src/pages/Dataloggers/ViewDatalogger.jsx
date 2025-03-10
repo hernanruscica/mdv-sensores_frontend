@@ -22,6 +22,7 @@ const ViewDatalogger = () => {
   const [currentDatalogger, setCurrentDatalogger] = useState(null);
   const [channelsByCurrentDatalogger, setChannelsByCurrentDatalogger] = useState([]);
   const [alarmsByCurrentDatalogger, setAlarmsByCurrentDatalogger] = useState([]);
+  
 
   const loadCurrentDataloggerInfo = async (dataloggerId) => {
     try {
@@ -47,7 +48,7 @@ const ViewDatalogger = () => {
       setLoading(true);
       await Promise.all([
         loadCurrentDataloggerInfo(id),
-        loadChannels(user.id),
+        loadChannels(user),
         loadAlarms(user.id),      
       ]);
       setLoading(false);
@@ -63,12 +64,12 @@ const ViewDatalogger = () => {
     }
     if (currentDatalogger && channels.length > 0) {
       setChannelsByCurrentDatalogger(
-        channels.filter(channel => channel.datalogger_id == currentDatalogger.id)
+        channels.filter(channel => channel.datalogger_id == currentDatalogger.id && channel.estado == 1)
       );
       setAlarmsByCurrentDatalogger(
         alarms.filter(alarm => alarm.datalogger_id == currentDatalogger.id)
       );  
-      loadData();
+      loadData();      
     }
   }, [currentDatalogger]);
   
@@ -100,10 +101,10 @@ const ViewDatalogger = () => {
       
       <section className="cards-container" key="channels">   
         { channelsByCurrentDatalogger.map((channel) => {
-          const currentAlarmsByChannel = alarmsByCurrentDatalogger.filter(alarm => alarm.canal_id == channel.canal_id);          
+          const currentAlarmsByChannel = alarmsByCurrentDatalogger.filter(alarm => alarm.canal_id == channel.canales_id);          
           return(
           <CardChannelInfo    
-            key={`channel_${channel.canal_id}`}                   
+            key={`channel_${channel.canales_id}`}                   
             title="canales"
             channel={channel}
             datalogger={currentDatalogger}    

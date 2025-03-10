@@ -22,8 +22,8 @@ const Breadcumb = () => {
             transformedItem = foundDatalogger ? foundDatalogger.nombre : item;
         }
         if (arr[index - 1] === "canales") {
-            const foundCanal = canales.find(c => c.canal_id === parseInt(item));
-            transformedItem = foundCanal ? foundCanal.canal_nombre : item;
+            const foundCanal = canales.find(c => c.canales_id === parseInt(item));
+            transformedItem = foundCanal ? foundCanal.canales_nombre : item;
         }
         if (arr[index - 1] === "alarmas") {
             const foundAlarma = alarmas.find(a => a.id === parseInt(item));

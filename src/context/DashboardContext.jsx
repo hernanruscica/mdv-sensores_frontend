@@ -60,10 +60,16 @@ export const DashboardProvider = ({ children }) => {
     }
   };
 
-  const loadChannels = async (userId) => {
+  const loadChannels = async (user) => {
     try {
-      const response = await apiClient.get(`/api/channels/byuser/${userId}`);
-      setChannelsLS(response.data.channels);
+      if ( user.espropietario == 1){        
+        const response = await apiClient.get(`/api/channels`);        
+        setChannelsLS(response.data.channels)
+      }
+      else{
+        const response = await apiClient.get(`/api/channels/byuser/${user.id}`);
+        setChannelsLS(response.data.channels);
+    }
     } catch (error) {
       console.error('Failed to load channels:', error);
     }
@@ -127,7 +133,7 @@ export const DashboardProvider = ({ children }) => {
 
   // Función para cargar todos los datos al mismo tiempo si es necesario
    const loadAllData = async (userId, locationId) => {
-     await Promise.all([loadLocations(user), loadDataloggers(user), loadUsers(userId), loadChannels(userId), loadAlarms(userId), loadAlarmsLocation(locationId), loadUserLocation(userId)]);     
+     await Promise.all([loadLocations(user), loadDataloggers(user), loadUsers(userId), loadChannels(user), loadAlarms(userId), loadAlarmsLocation(locationId), loadUserLocation(userId)]);     
    };
 
   return (

@@ -36,7 +36,7 @@ const ViewChannel = () => {
   useEffect(() => {
     const loadData = async () =>{
       setLoading(true);
-       await loadChannels(user.id);
+       await loadChannels(user);
        await loadAlarms(user.id);
       const response = await apiClient.get(`/api/channels/${channelId}`);      
       

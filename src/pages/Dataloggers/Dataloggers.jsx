@@ -12,6 +12,8 @@ const Dataloggers = () => {
   const { user } = useAuth();
   const { locations, loadLocations, dataloggers, loadDataloggers, loadUsers, channels, loadChannels, alarms, loadAlarms } = useDashboard(); 
   const [loading, setLoading] = useState(false);
+  const [activeDataloggers, setActiveDataloggers] = useState([]);
+  const [activeChannels, setActiveChannels] = useState([]);
 
   const currentPageIcon =
   ENV.ICONS.find(({ nameSection }) => nameSection === 'dataloggers') ||
@@ -20,11 +22,13 @@ const Dataloggers = () => {
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);        
-      await Promise.all([loadLocations(user), loadDataloggers(user), loadUsers(user.id), loadChannels(user.id), loadAlarms(user.id)]);
+      //await Promise.all([loadLocations(user), loadDataloggers(user), loadUsers(user.id), loadChannels(user), loadAlarms(user.id)]);
+      setActiveDataloggers(dataloggers.filter(datalogger=>datalogger.estado == 1))
+      setActiveChannels(channels.filter(channel=>channel.estado == 1));
       setLoading(false);
       }
       loadData();
-  }, [user.id]);  
+  }, [user, dataloggers]);  
 
   if (loading) {
     return (
@@ -32,7 +36,7 @@ const Dataloggers = () => {
     )
   }
 
-  //console.log(user)
+  
   return (
     <>
       <Title1        
@@ -43,11 +47,11 @@ const Dataloggers = () => {
       <ButtonsBar 
         itemsName='dataloggers' 
         showAddButton={user.espropietario == 1}
-        itemsQty={dataloggers.length}/>
+        itemsQty={activeDataloggers.length}/>
       <section className="cards-container">        
-        {dataloggers.map((datalogger) => {
-          const currentLocation = locations.find(location => location.ubicaciones_id == datalogger.ubicacion_id);
-          const currentChannels = channels.filter(channel => channel.datalogger_id == datalogger.id);    
+        {activeDataloggers.map((datalogger) => {
+          const currentLocation = locations.find(location => location.ubicaciones_id == datalogger.ubicacion_id);          
+          const currentChannels = activeChannels.filter(channel => channel.datalogger_id == datalogger.id);    
           const currentAlarms = alarms.filter(alarm => alarm.datalogger_id == datalogger.id)      
           return (
           <CardDataloggerInfo 

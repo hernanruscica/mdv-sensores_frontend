@@ -18,18 +18,20 @@ const Dashboard = () => {
   const [ userHasSomeAdminRole, setUserHasSomeAdminRole] = useState(false);
   const [ userHasSomePropietaryRole, setUserHasSomePropietaryRole] = useState(false);
   const [loading, setLoading] = useState(false);
-  //const [currentLocations, setCurrentLocations] = useState([]);
+  const [activeDataloggers, setActiveDataloggers] = useState([]);
+  
 
   // Cargar las locations al actualizar la pagina
   useEffect(() => {    
       const loadData = async () => {
         setLoading(true);
-        await Promise.all([loadLocations(user), loadDataloggers(user), loadUsers(user.id), loadChannels(user.id)], loadAlarms(user.id), loadUserLocation(user.id));
+        await Promise.all([loadLocations(user), loadDataloggers(user), loadUsers(user.id), loadChannels(user)], loadAlarms(user.id), loadUserLocation(user.id));
         setLoading(false);   
         setUserHasSomeAdminRole(userLocation?.some(ul => ul.usuarios_roles_id >= 8));  //esto hay que sacar y que busque si el usuario es admin en cada ubicacion en particular
         setUserHasSomePropietaryRole(user.espropietario == 1);         
       } 
       loadData();
+      setActiveDataloggers(dataloggers.filter(datalogger=>datalogger.estado == 1))
       
   }, []);  
  
@@ -56,7 +58,7 @@ const Dashboard = () => {
           itemsQty={users?.length || 0} 
           iconSrc={`/icons/${usersIcon.fileName}`}  showAddButton={userHasSomeAdminRole} />
         <CardCategoriesInfo key="dataloggers" title="dataloggers" 
-          itemsQty={dataloggers?.length || 0} 
+          itemsQty={activeDataloggers?.length || 0} 
           iconSrc={`/icons/${dataloggersIcon.fileName}`} showAddButton={userHasSomePropietaryRole} />
       </section>      
     </>
