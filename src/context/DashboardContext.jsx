@@ -64,6 +64,7 @@ export const DashboardProvider = ({ children }) => {
     try {
       if ( user.espropietario == 1){        
         const response = await apiClient.get(`/api/channels`);        
+        
         setChannelsLS(response.data.channels)
       }
       else{
