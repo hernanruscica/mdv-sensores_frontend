@@ -60,7 +60,7 @@ const ViewAlarm = () => {
     loadData();
     //setCurrentAlarm(alarms.find(alarm => alarm.id == alarmId));
     setCurrentDatalogger(dataloggers.find(datalogger => datalogger.id == dataloggerId));
-    setCurrentChannel(channels.find(channel => channel.canal_id == channelId));
+    setCurrentChannel(channels.find(channel => channel.canales_id == channelId));
     //await loadCurrentEntities(alarmId);
   }, [alarmId]);
 

@@ -11,7 +11,7 @@ const CardAlarmDetails = (props) => {
 
   const { datalogger, channel, alarm } = props;    
       const {user} = useAuth(); 
-  //console.log(alarm);
+  console.log(channel);
 
 
 
@@ -30,9 +30,9 @@ const CardAlarmDetails = (props) => {
           /> <br/>
           <strong> y al canal: </strong>
             <CardBtnSmall
-            title={channel.canal_nombre}
+            title={channel.canales_nombre}
             key={`ver_canal_${channel.id}`}
-            url={`${ENV.URL}/panel/dataloggers/${datalogger.id}/canales/${channel.canal_id}`}
+            url={`${ENV.URL}/panel/dataloggers/${datalogger.id}/canales/${channel.canales_id}`}
           />           
         </p>
         <p className="card-alarm-details__paragraph">
