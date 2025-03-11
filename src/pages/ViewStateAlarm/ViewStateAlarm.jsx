@@ -1,90 +1,76 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Title1 } from "../../components/Title1/Title1";
 import "./ViewStateAlarm.css";
+import { jwtDecode } from "jwt-decode";
+import { ENV } from "../../context/env";
+import { useAuth } from "../../context/AuthContext";
+import BtnCallToAction from "../../components/BtnCallToAction/BtnCallToAction";
+import createApiClient from "../../api/apiClient";
+import { getCurrentDateTime } from "../../utils/Dates/Dates";
 
 const ViewStateAlarm = () => {
-  // useEffect(() => {
-  //   console.log("Contact component mounted");
-  // }, []);
+  
+  const { user } = useAuth();   
+  const {token} = useParams();    
+  const [loading, setLoading] = useState(false);
+  const apiClient = createApiClient(); 
+  const [decoded, setDecoded] = useState({});
+  const navigate = useNavigate();
 
-  const {token} = useParams();
+  const setCurrentDateOnAlarmLog = async () => {
+    const formData = new FormData();
+    const currentDateAndHour = getCurrentDateTime();
+    console.log('Ahora', currentDateAndHour)
+    formData.append("fecha_vista", currentDateAndHour);
+    const response =  await apiClient.put(`/api/alarmlogs/${decoded.alarmLogId}`, formData);   
+    if (response.status == 200){
+      console.log(`Redirecciona a ver alarma con id: ${decoded.alarmId}`)      
+      navigate(`/panel/dataloggers/${decoded.dataloggerId}/canales/${decoded.channelId}/alarmas/${decoded.alarmId}`);
+    }else{
+      console.log('error actualizando alarma', alarmUpdated);
+    }               
+  }  
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
+  useEffect(() => {
+    try {
+      setLoading(true);
+      setDecoded(jwtDecode(token, ENV.JWT_SECRET));          
 
-    // Usar la API de Formspree
-    const data = new FormData(form);
-    const response = await fetch("https://formspree.io/f/mgergzpp", {
-      method: "POST",
-      body: data,
-      headers: {
-        Accept: "application/json",
-      },
-    });
+      if (decoded.alarmLogId && decoded.userId && decoded.alarmId && decoded.channelId && decoded.dataloggerId
+          && user !== null && user?.id == decoded.userId){
+        console.log(`Poniendo como VISTA la alarma id: ${decoded.alarmId} del usuario con id: ${decoded.userId}`);
+        console.log(`Del log con id: ${decoded.alarmLogId} del canal con id: ${decoded.channelId} y datalogger con id: ${decoded.dataloggerId}`);
+        //console.log(user);
+                    
+        setCurrentDateOnAlarmLog(decoded.alarmLogId, decoded.alarmId);   
+      }
+    } catch (error) {        
+      console.log(error)
+    }finally{
+      setLoading(false);
+    }    
 
-    if (response.ok) {
-      alert("¡Mensaje enviado exitosamente!");
-      form.reset();
-    } else {
-      alert("Hubo un error al enviar el mensaje. Inténtelo de nuevo.");
-    }
-  };
+  }, []); 
+
+  if (loading) {
+    return(
+      <div>Cargando ...</div>
+    )
+  }
+
 
   return (
     <>
-      <main className="page__maincontent">
+      <main className="page__maincontent">       
         <Title1 text="Ver estado de alarma." type="alarmas" />
-        <p>{`Token : ${token}`}</p>
-        {/* <form onSubmit={handleSubmit} className="login__form">
-          <p>🙋🏻‍♂️ Déjanos un mensaje y te responderemos a la brevedad.</p>
-          
-          
-          <div className="login__form__input-row">
-            <label htmlFor="email" className="login__form__label">
-              Correo Electrónico:
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Ingrese su correo electrónico"
-              required
-            />
-          </div>
-
-          
-          <div className="login__form__input-row">
-            <label htmlFor="name" className="login__form__label">
-              Nombre:
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Ingrese su nombre (opcional)"
-            />
-          </div>
-
-          
-          <div className="login__form__input-row">
-            <label htmlFor="message" className="login__form__label">
-              Mensaje:
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              placeholder="Escribe tu mensaje aquí"
-              rows="5"
-              required
-            ></textarea>
-          </div>
-
-          <button className="login__form__btn" type="submit">
-            Enviar
-          </button>
-        </form> */}
+        {(user !== null && user?.id == decoded.userId ) 
+        ? <p>{`Poniendo como VISTA la alarma id: ${decoded.alarmLogId} del usuario con id: ${decoded.userId}`}</p>       
+        : <>
+            <p>Para poder ver el estado de la alarma, primero tiene que ingresar con el usuario correspondiente al correo que recibió.</p>
+            <BtnCallToAction url='inicio' text='Ingresar' type='normal' icon='user-regular.svg' />
+          </>
+        }
       </main>
     </>
   );

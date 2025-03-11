@@ -15,7 +15,7 @@ import CardAlarmDetails from '../../components/CardAlarmDetails/CardAlarmDetails
 //import "./Dataloggers.css";
 
 const ViewAlarm = () => {
-  const { id : dataloggerId, alarmId, channelId } = useParams();
+  const { id : dataloggerId, alarmId, channelId, userId } = useParams();
   const {user} = useAuth();
   const {alarms, dataloggers, channels, loadAlarms} = useDashboard();
   const [currentAlarm, setCurrentAlarm] = useState({});
@@ -62,12 +62,12 @@ const ViewAlarm = () => {
     setCurrentDatalogger(dataloggers.find(datalogger => datalogger.id == dataloggerId));
     setCurrentChannel(channels.find(channel => channel.canales_id == channelId));
     //await loadCurrentEntities(alarmId);
-  }, [alarmId]);
+  }, []);
 
   if (loading){
     return (<div>Cargando ...</div>)
-  }
-  
+  }  
+
   return (
     <>
       <Title1     
